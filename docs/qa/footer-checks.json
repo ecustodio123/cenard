@@ -1,0 +1,44 @@
+[
+  {
+    "contactBandHeight": 183,
+    "footerHeight": 763,
+    "overflow": false,
+    "width": 320
+  },
+  {
+    "contactBandHeight": 183,
+    "footerHeight": 719,
+    "overflow": false,
+    "width": 375
+  },
+  {
+    "contactBandHeight": 183,
+    "footerHeight": 697,
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "contactBandHeight": 183,
+    "footerHeight": 626,
+    "overflow": false,
+    "width": 430
+  },
+  {
+    "contactBandHeight": 108,
+    "footerHeight": 488,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "contactBandHeight": 108,
+    "footerHeight": 362,
+    "overflow": false,
+    "width": 1024
+  },
+  {
+    "contactBandHeight": 108,
+    "footerHeight": 320,
+    "overflow": false,
+    "width": 1440
+  }
+]

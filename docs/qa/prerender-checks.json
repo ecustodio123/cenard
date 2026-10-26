@@ -1,0 +1,152 @@
+[
+  {
+    "path": "dist/web/index.html",
+    "title": "Centro Nacional para la Resolución de Disputas | CENARD",
+    "description": "Centro Nacional para la Resolución de Disputas. Servicios de arbitraje y JPRD, información institucional y recursos públicos.",
+    "robots": [
+      "noindex,nofollow"
+    ],
+    "h1": 1,
+    "internalLinksBroken": []
+  },
+  {
+    "path": "dist/web/certificaciones/index.html",
+    "title": "Certificaciones | CENARD",
+    "description": "Consulta la licencia, certificados y constancias publicados por CENARD.",
+    "robots": [
+      "noindex,nofollow"
+    ],
+    "h1": 1,
+    "internalLinksBroken": []
+  },
+  {
+    "path": "dist/web/listado-de-arbitros/index.html",
+    "title": "Nómina de árbitros | CENARD",
+    "description": "Consulta los profesionales de las nóminas nacionales y de contratación pública publicadas por CENARD.",
+    "robots": [
+      "noindex,nofollow"
+    ],
+    "h1": 1,
+    "internalLinksBroken": []
+  },
+  {
+    "path": "dist/web/atalaya-de-integridad/index.html",
+    "title": "Atalaya de Integridad | CENARD",
+    "description": "Acceso a la información pública y a las categorías de transparencia institucional.",
+    "robots": [
+      "noindex,nofollow"
+    ],
+    "h1": 1,
+    "internalLinksBroken": []
+  },
+  {
+    "path": "dist/web/alto-consejo/index.html",
+    "title": "Alto Consejo | CENARD",
+    "description": "Conoce a los profesionales que conforman el Alto Consejo de CENARD.",
+    "robots": [
+      "noindex,nofollow"
+    ],
+    "h1": 1,
+    "internalLinksBroken": []
+  },
+  {
+    "path": "dist/web/calculadora/index.html",
+    "title": "Calculadora de tarifas | CENARD",
+    "description": "Consulta las modalidades de costos de arbitraje y JPRD. Interfaz de estimación en revisión institucional.",
+    "robots": [
+      "noindex,nofollow"
+    ],
+    "h1": 1,
+    "internalLinksBroken": []
+  },
+  {
+    "path": "dist/web/documentos/index.html",
+    "title": "Normativa y documentos | CENARD",
+    "description": "Reglamentos, directivas, código de ética y fichas. La documentación institucional en un solo lugar.",
+    "robots": [
+      "noindex,nofollow"
+    ],
+    "h1": 1,
+    "internalLinksBroken": []
+  },
+  {
+    "path": "dist/web/contacto/index.html",
+    "title": "Contacto | CENARD",
+    "description": "Nuestros canales institucionales de atención, dirección y horario.",
+    "robots": [
+      "noindex,nofollow"
+    ],
+    "h1": 1,
+    "internalLinksBroken": []
+  },
+  {
+    "path": "dist/web/arbitraje/index.html",
+    "title": "Arbitraje | CENARD",
+    "description": "Administración de controversias a través de un proceso arbitral. Información, normativa y recursos del servicio.",
+    "robots": [
+      "noindex,nofollow"
+    ],
+    "h1": 1,
+    "internalLinksBroken": []
+  },
+  {
+    "path": "dist/web/secretaria-general/index.html",
+    "title": "Secretaría General y Director | CENARD",
+    "description": "Dirección institucional y equipo de Secretaría General de CENARD.",
+    "robots": [
+      "noindex,nofollow"
+    ],
+    "h1": 1,
+    "internalLinksBroken": []
+  },
+  {
+    "path": "dist/web/servicio-de-arbitraje/index.html",
+    "title": "Preguntas frecuentes | CENARD",
+    "description": "Respuestas institucionales sobre el arbitraje, sus ventajas y el inicio de un proceso en CENARD.",
+    "robots": [
+      "noindex,nofollow"
+    ],
+    "h1": 1,
+    "internalLinksBroken": []
+  },
+  {
+    "path": "dist/web/nomina-de-adjudicadores/index.html",
+    "title": "Nómina de adjudicadores | CENARD",
+    "description": "Consulta los nombres, profesiones y especialidades de la nómina de adjudicadores.",
+    "robots": [
+      "noindex,nofollow"
+    ],
+    "h1": 1,
+    "internalLinksBroken": []
+  },
+  {
+    "path": "dist/web/conocenos/index.html",
+    "title": "Conócenos | CENARD",
+    "description": "Nuestra institución, misión y compromiso con la cultura de solución de controversias.",
+    "robots": [
+      "noindex,nofollow"
+    ],
+    "h1": 1,
+    "internalLinksBroken": []
+  },
+  {
+    "path": "dist/web/jprd/index.html",
+    "title": "Junta de Prevención y Resolución de Disputas | CENARD",
+    "description": "Prevención y resolución de disputas durante la ejecución de contratos de obras y de suministro.",
+    "robots": [
+      "noindex,nofollow"
+    ],
+    "h1": 1,
+    "internalLinksBroken": []
+  },
+  {
+    "path": "dist/web/organigrama/index.html",
+    "title": "Organigrama | CENARD",
+    "description": "La estructura de dirección, decisión y gestión de nuestra institución.",
+    "robots": [
+      "noindex,nofollow"
+    ],
+    "h1": 1,
+    "internalLinksBroken": []
+  }
+]
