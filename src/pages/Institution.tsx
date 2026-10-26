@@ -19,7 +19,7 @@ import {
   InfoNote,
   SectionHeading,
 } from "../components/UI";
-import { notice, pathFor, site } from "../data/site";
+import { features, notice, pathFor, site } from "../data/site";
 import council from "../data/council.json";
 import secretary from "../data/secretary.json";
 import faq from "../data/faq.json";
@@ -323,7 +323,9 @@ export function ServicePage({ jprd = false }: { jprd?: boolean }) {
           >
             Consultar nómina de {jprd ? "adjudicadores" : "árbitros"}
           </ArrowLink>
-          <ArrowLink to={pathFor("calculadora")}>Consultar tarifas</ArrowLink>
+          {features.tariffCalculator && (
+            <ArrowLink to={pathFor("calculadora")}>Consultar tarifas</ArrowLink>
+          )}
           <ArrowLink to={pathFor("atalaya-de-integridad")}>
             Atalaya de Integridad
           </ArrowLink>

@@ -16,7 +16,7 @@ import {
   Eyebrow,
   SectionHeading,
 } from "../components/UI";
-import { notice, pathFor } from "../data/site";
+import { features, notice, pathFor } from "../data/site";
 
 const shortcuts = [
   {
@@ -47,7 +47,7 @@ const shortcuts = [
     slug: "calculadora",
     n: "04",
   },
-];
+].filter((shortcut) => features.tariffCalculator || shortcut.slug !== "calculadora");
 export function HomePage() {
   return (
     <>
@@ -114,7 +114,7 @@ export function HomePage() {
             <span>Tu consulta, más cerca</span>
             <span>ACCESOS RÁPIDOS</span>
           </div>
-          <div className="shortcut-grid">
+          <div className={`shortcut-grid ${shortcuts.length === 3 ? "shortcut-grid-three" : ""}`}>
             {shortcuts.map((s) => (
               <Link className="shortcut" key={s.slug} to={pathFor(s.slug)}>
                 <div className="shortcut-top">

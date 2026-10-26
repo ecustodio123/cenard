@@ -20,11 +20,13 @@ Usar Node 22.18+ o una versión actual compatible con Vite. Las pruebas usan la 
 
 ## Páginas e interacción
 
-Se conservan las 13 rutas de origen y se agregan `/web/documentos/` y `/web/contacto/`. Inicio también responde en `/` como alias de preview. La biblioteca tiene búsqueda, filtros en URL, recuento, restablecimiento y estado vacío. Las nóminas permiten buscar sin tildes o diferencias de mayúsculas, filtrar por grupo/profesión e inicial del apellido. Tabla desktop y fichas móviles muestran los mismos datos.
+Se conservan las rutas institucionales de origen, salvo la calculadora temporalmente oculta, y se agregan `/web/documentos/` y `/web/contacto/`. Inicio también responde en `/` como alias de preview. La biblioteca tiene búsqueda, filtros en URL, recuento, restablecimiento y estado vacío. Las nóminas permiten buscar sin tildes o diferencias de mayúsculas, filtrar por grupo/profesión e inicial del apellido. Tabla desktop y fichas móviles muestran los mismos datos.
 
 Incluye menú móvil con manejo del foco y Escape, FAQ y comunicado accesibles, organigrama HTML, cinco fichas documentales de certificación y canales de atención centralizados. Los archivos públicos conservan sus URLs originales; no se migró ni retiró infraestructura.
 
-**Calculadora:** seis modalidades con campos específicos, PEN/USD, validación mediante Zod y React Hook Form. No calcula importes hasta disponer de reglas y resultados aprobados por CENARD. La interfaz explica este estado y permite revisar el formato de los datos sin simular una cotización.
+**Calculadora oculta temporalmente:** la opción `features.tariffCalculator` en `src/data/site.ts` controla sus accesos, navegación y ruta pública. Con el valor `false`, no se genera su HTML ni se incluye en el sitemap, y su URL muestra la página 404. El código se conserva para retomarlo después.
+
+Implementación conservada: seis modalidades con campos específicos, PEN/USD, validación mediante Zod y React Hook Form. No calcula importes hasta disponer de reglas y resultados aprobados por CENARD. La interfaz explica este estado y permite revisar el formato de los datos sin simular una cotización.
 
 ## Contenido y mantenimiento
 
@@ -45,7 +47,7 @@ No incluye CMS ni panel editorial: los cambios se realizan en archivos y requier
 
 ## Prerender y SEO
 
-`npm run build` genera HTML completo para las 15 rutas, el alias raíz y 404. Se hidrata sobre ese HTML para mantener los controles interactivos. Cada página tiene un H1, título y descripción propios. La preview tiene `noindex,nofollow` y `robots.txt` bloqueado.
+`npm run build` genera HTML completo para las 14 rutas visibles, el alias raíz y 404. Se hidrata sobre ese HTML para mantener los controles interactivos. Cada página tiene un H1, título y descripción propios. La preview tiene `noindex,nofollow` y `robots.txt` bloqueado.
 
 El dominio final no se presupone. Para una compilación aprobada se proporcionan `SITE_URL` y `SITE_INDEXABLE=true` como variables de entorno del proceso de build. Con SITE_URL se genera canonical, Open Graph y sitemap; la indexación solo se activa si también se establece SITE_INDEXABLE=true. `.env.example` documenta las variables; el prerender lee `process.env`, por lo que deben exportarse en la terminal o CI (no basta con crear `.env`).
 

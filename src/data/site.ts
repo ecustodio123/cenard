@@ -1,3 +1,6 @@
+// Temporarily hidden until CENARD validates the tariff calculator.
+export const features = { tariffCalculator: false };
+
 export const site = {
   name: "Centro Nacional para la Resolución de Disputas",
   shortName: "CENARD",
@@ -14,7 +17,7 @@ export const site = {
     "https://drive.google.com/drive/folders/1s9m-DFrRpSkRRe-YKwb4CwGePuy1zJOa?usp=sharing",
 };
 
-export const pages = [
+const allPages = [
   {
     slug: "",
     title: "Inicio",
@@ -121,6 +124,10 @@ export const pages = [
       "Nuestros canales institucionales de atención, dirección y horario.",
   },
 ];
+export const pages = allPages.filter(
+  (page) => features.tariffCalculator || page.slug !== "calculadora",
+);
+
 export const pathFor = (slug = "") => `/web/${slug ? `${slug}/` : ""}`;
 export const navigation = [
   {
@@ -142,7 +149,7 @@ export const navigation = [
       "nomina-de-adjudicadores",
       "calculadora",
       "servicio-de-arbitraje",
-    ],
+    ].filter((slug) => features.tariffCalculator || slug !== "calculadora"),
   },
 ];
 export const notice = [

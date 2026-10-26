@@ -25,3 +25,7 @@ Las rutas originales se mantienen. No hay redirecciones 301 necesarias para esta
 Los documentos y el formato de reclamaciones conservan su URL pública exacta. El manifiesto `manifiesto-recursos.json` registra 27 referencias de página (22 URLs de archivo distintas), sin sustituciones. Al cambiar de hosting se deberá preservar `/web/wp-content/uploads/` o proporcionar destinos reales y un mapa de equivalencias aprobado; actualmente no hay archivos migrados ni nuevos destinos que redirigir.
 
 Las imágenes de preview y las fuentes se alojan localmente. El logo es el archivo de CENARD, no una recreación. Las fotografías ilustrativas y del Alto Consejo requieren aprobación de uso. Las fuentes tienen licencia OFL incluida. No se accedió a sistemas excluidos.
+
+## Actualización — 26/10/2026
+
+La calculadora se ocultó temporalmente por solicitud del cliente: sin enlaces en inicio, servicios o menú, sin ruta pública generada ni entrada en sitemap. El código se conserva mediante `features.tariffCalculator = false`; la URL anterior muestra la página 404 mientras esté desactivada. Los documentos normativos de costos se conservan en la biblioteca.

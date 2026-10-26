@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import { readdir, readFile, stat } from 'node:fs/promises'
 import { join } from 'node:path'
+import { pages as visiblePages } from '../src/data/site.ts'
 
 async function files(directory) {
   const output = []
@@ -12,7 +13,7 @@ async function files(directory) {
   return output
 }
 const pages = await files('dist/web')
-assert.equal(pages.length, 15, 'All institutional routes must be prerendered')
+assert.equal(pages.length, visiblePages.length, 'All institutional routes must be prerendered')
 const titles = new Set(), descriptions = new Set()
 for (const path of pages) {
   const html = await readFile(path, 'utf8')
@@ -26,6 +27,6 @@ for (const path of pages) {
     assert.ok((await stat(join('dist', match[1], 'index.html'))).isFile(), `Route destination ${match[1]} from ${path}`)
   }
 }
-assert.equal(titles.size, 15, 'Unique titles per route')
-assert.equal(descriptions.size, 15, 'Unique descriptions per route')
-console.log('Verified 15 static pages: content, unique metadata, robots directives and internal route destinations.')
+assert.equal(titles.size, visiblePages.length, 'Unique titles per route')
+assert.equal(descriptions.size, visiblePages.length, 'Unique descriptions per route')
+console.log(`Verified ${visiblePages.length} static pages: content, unique metadata, robots directives and internal route destinations.`)

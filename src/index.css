@@ -3974,3 +3974,7 @@ figcaption,
   .footer-compact .footer-brand { grid-template-columns: 105px 1fr; gap: 0 15px; }
   .footer-compact .footer-links { column-gap: 16px; }
 }
+
+@media (min-width: 768px) {
+  .shortcut-grid-three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
