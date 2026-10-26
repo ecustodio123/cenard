@@ -286,17 +286,6 @@ export function Layout() {
           <div className="footer-bottom">
             <span>© 2025 CENARD Arbitraje. Todos los derechos reservados.</span>
             <a href="https://cenardarbitraje.com/web/wp-content/uploads/2025/05/Formato-de-Reclamaciones-CENARD.docx">Libro de Reclamaciones (DOCX)</a>
-            <span>
-              Diseño original:{" "}
-              <a
-                href="https://wa.me/51936024257"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Smartic Pro
-                <span className="sr-only"> (abre en otra pestaña)</span>
-              </a>
-            </span>
           </div>
           <div className="preview-label">
             <span />
