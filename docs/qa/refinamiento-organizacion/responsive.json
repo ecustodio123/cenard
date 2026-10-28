@@ -1,0 +1,47 @@
+[
+  {
+    "chevrons": 7,
+    "councilMinHeight": "0px",
+    "overflow": false,
+    "roleSizes": [
+      "12px"
+    ],
+    "width": 320
+  },
+  {
+    "chevrons": 7,
+    "councilMinHeight": "0px",
+    "overflow": false,
+    "roleSizes": [
+      "12px"
+    ],
+    "width": 390
+  },
+  {
+    "chevrons": 7,
+    "councilMinHeight": "180px",
+    "overflow": false,
+    "roleSizes": [
+      "12px"
+    ],
+    "width": 768
+  },
+  {
+    "chevrons": 7,
+    "councilMinHeight": "180px",
+    "overflow": false,
+    "roleSizes": [
+      "12px"
+    ],
+    "width": 1024
+  },
+  {
+    "chevrons": 7,
+    "councilMinHeight": "180px",
+    "overflow": false,
+    "roleSizes": [
+      "12px"
+    ],
+    "width": 1440
+  }
+]

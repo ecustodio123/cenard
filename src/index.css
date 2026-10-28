@@ -4145,7 +4145,7 @@ figcaption,
 .council-gallery .council-profile-overview { display: flex; flex-direction: column; }
 .council-gallery .council-portrait { height: 300px; }
 .council-gallery .council-portrait img { object-position: center 27%; }
-.council-gallery .council-profile-heading { align-self: stretch; padding: 26px; min-height: 205px; }
+.council-gallery .council-profile-heading { align-self: stretch; padding: 26px 26px 20px; min-height: 180px; }
 .council-gallery .council-profile-heading h3 { font-size: 29px; }
 .council-gallery .council-biography { padding: 18px 26px 24px; }
 .council-gallery .council-biography summary { background: var(--green); color: white; border-color: var(--green); width: 100%; justify-content: center; }
@@ -4201,7 +4201,7 @@ figcaption,
 
 /* Dirección y Secretaría: composición editorial seleccionada. */
 .management-editorial .organization-office-title { font: 600 13px/1.5 var(--sans); letter-spacing: .05em; text-transform: uppercase; margin-bottom: 14px; }
-.management-editorial .council-role { font-size: 10px; line-height: 1.6; color: #c7d9d0; }
+.management-editorial .council-role { font-size: 12px; line-height: 1.6; letter-spacing: .05em; color: #c7d9d0; }
 .management-editorial .council-profile { background: var(--green); border-color: var(--green); }
 .management-editorial .council-profile-overview { display: grid; grid-template-columns: 190px minmax(0, 1fr); min-height: 260px; }
 .management-editorial .council-portrait { height: 100%; min-height: 260px; position: relative; }
@@ -4212,8 +4212,8 @@ figcaption,
 .management-editorial .council-biography { border-color: #ffffff30; padding: 18px 24px 22px; }
 .management-editorial .council-biography summary { background: white; color: var(--green); border-color: white; gap: 12px; }
 .management-editorial .council-biography summary:hover { background: #e1e8df; }
-.management-editorial .profile-disclosure { flex-shrink: 0; transition: transform .18s ease; }
-.management-editorial details[open] .profile-disclosure { transform: rotate(180deg); }
+.institutional-organization .profile-disclosure { flex-shrink: 0; transition: transform .18s ease; }
+.institutional-organization details[open] .profile-disclosure { transform: rotate(180deg); }
 .management-editorial .council-biography[open] { background: white; border-color: var(--line); color: var(--ink); }
 .management-editorial .council-biography[open] summary { background: #eef3ed; border-color: var(--line); }
 .management-editorial .council-biography-text p { color: var(--muted); }
@@ -4233,7 +4233,7 @@ figcaption,
   .management-editorial .council-profile-heading { padding: 24px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .management-editorial .profile-disclosure { transition: none; }
+  .institutional-organization .profile-disclosure { transition: none; }
 }
 
 /* Contenido de muestra para comparar las tarjetas de Secretaría. */
@@ -4270,3 +4270,8 @@ figcaption,
 
 /* Las anclas apuntan al título, sin sumar el margen de la sección al offset del header. */
 .institutional-organization .organization-anchor[id] { scroll-margin-top: 0; }
+
+/* Ajustes de lectura y consistencia de perfiles institucionales. */
+.institutional-organization .council-role { font-size: 12px; line-height: 1.6; letter-spacing: .05em; }
+.institutional-organization .council-biography summary { gap: 12px; }
+.management-role-context { max-width: 850px; margin: 0 0 28px; font-size: 15px; line-height: 1.7; color: var(--muted); }

@@ -103,13 +103,13 @@ export function AboutPage() {
           title="Las personas detrás de la institución."
         />
         <div className="link-rows">
+          <ArrowLink to={pathFor("organizacion-institucional") + "#estructura-institucional"}>
+            Estructura institucional
+          </ArrowLink>
           <ArrowLink to={pathFor("organizacion-institucional") + "#direccion-secretaria"}>
             Secretaría General y Director
           </ArrowLink>
           <ArrowLink to={pathFor("organizacion-institucional") + "#alto-consejo"}>Alto Consejo</ArrowLink>
-          <ArrowLink to={pathFor("organizacion-institucional") + "#estructura-institucional"}>
-            Estructura institucional
-          </ArrowLink>
         </div>
         <details className="plain-details">
           <summary>
@@ -133,7 +133,7 @@ const councilSpecialties = [
 ];
 
 function InstitutionalProfile({
-  id, name, role, image, initials, specialties = [], biography, subheading = false, placeholder = false, rolePreview = false, showDisclosure = false,
+  id, name, role, image, initials, specialties = [], biography, subheading = false, placeholder = false, rolePreview = false, showDisclosure = true,
 }: {
   id: string;
   name: string;
@@ -217,14 +217,15 @@ export function InstitutionalOrganizationPage() {
         <div id="direccion-secretaria" className="council-directory-heading organization-anchor">
           <div><Eyebrow>Dirección y gestión</Eyebrow><h2 id="management-title">Dirección y Secretaría General</h2></div>
         </div>
+        <p className="management-role-context">Se conserva la denominación conjunta «{secretary.role}». La relación funcional con la «{secretary.technical.role}» está pendiente de confirmación institucional.</p>
         <div className="management-editorial">
             <div className="organization-management-grid">
               <div>
-                <h3 className="organization-office-title">Dirección</h3>
+                <h3 className="organization-office-title">Dirección y Secretaría General</h3>
                 <InstitutionalProfile id="director-name" name={secretary.name} role={secretary.role} image="/assets/team/angel-alcala-contreras.webp" subheading showDisclosure biography={<><p>{secretary.intro}</p>{secretary.sections.map((section) => <section className="institutional-bio-section" key={section.title}><h5>{section.title}</h5><p>{section.text}</p></section>)}</>} />
               </div>
               <div>
-                <h3 className="organization-office-title">Secretaría General</h3>
+                <h3 className="organization-office-title">Secretaría arbitral / técnica</h3>
                 <InstitutionalProfile id="secretary-name" name={secretary.technical.name} role={secretary.technical.role} image="/assets/team/angel-alcala-contreras.webp" placeholder subheading rolePreview showDisclosure description="La secretaría arbitral brinda apoyo al tribunal en la tramitación del arbitraje y facilita la coordinación de las actuaciones y comunicaciones del proceso." biography={<>
                   <p className="profile-role-sample">Funciones generales · texto provisional</p>
                   <p>Esta descripción sirve para visualizar el diseño. No es una biografía de Elizabeth ni una relación de funciones aprobada por CENARD.</p>
