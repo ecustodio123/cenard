@@ -1,0 +1,57 @@
+[
+  {
+    "duplicateIds": [],
+    "nodes": [
+      3,
+      3,
+      3
+    ],
+    "overflow": false,
+    "proposals": 3,
+    "width": 320
+  },
+  {
+    "duplicateIds": [],
+    "nodes": [
+      3,
+      3,
+      3
+    ],
+    "overflow": false,
+    "proposals": 3,
+    "width": 390
+  },
+  {
+    "duplicateIds": [],
+    "nodes": [
+      3,
+      3,
+      3
+    ],
+    "overflow": false,
+    "proposals": 3,
+    "width": 768
+  },
+  {
+    "duplicateIds": [],
+    "nodes": [
+      3,
+      3,
+      3
+    ],
+    "overflow": false,
+    "proposals": 3,
+    "width": 1024
+  },
+  {
+    "duplicateIds": [],
+    "nodes": [
+      3,
+      3,
+      3
+    ],
+    "overflow": false,
+    "proposals": 3,
+    "width": 1440
+  }
+]

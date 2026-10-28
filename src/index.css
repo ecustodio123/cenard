@@ -905,20 +905,8 @@ section[id] {
 }
 .page-intro {
   background: var(--cream);
-  padding: 25px 0 48px;
+  padding: 48px 0;
   border-bottom: 1px solid var(--line);
-}
-.breadcrumbs {
-  display: flex;
-  gap: 14px;
-  font-size: 12px;
-  margin-bottom: 37px;
-  color: var(--muted);
-}
-.breadcrumbs a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 30px;
 }
 .page-intro .eyebrow {
   font-size: 10px;
@@ -2657,13 +2645,8 @@ figcaption {
     margin-top: 5px;
   }
   .page-intro {
-    padding-top: 16px;
+    padding-top: 32px;
     padding-bottom: 34px;
-  }
-  .breadcrumbs {
-    font-size: 11px;
-    gap: 10px;
-    margin-bottom: 25px;
   }
   .page-intro .eyebrow {
     font-size: 9px;
@@ -3482,7 +3465,6 @@ figcaption {
 .preview-label,
 .caption,
 .page-intro .lead .caption,
-.breadcrumbs,
 .document-subtitle,
 .document-action,
 .results-header,
@@ -3545,7 +3527,6 @@ figcaption,
 }
 .footer-grid > div > a,
 .footer-grid > div:nth-child(3) > a,
-.breadcrumbs a,
 .service-bottom a {
   min-height: 44px;
 }
@@ -3978,3 +3959,345 @@ figcaption,
 @media (min-width: 768px) {
   .shortcut-grid-three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
+
+/* Editorial refinements: shared resources, contextual links and readable lists. */
+.document-services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+.catalogue-unit {
+  margin-bottom: 18px;
+  max-width: 850px;
+}
+.related-information {
+  margin-top: 48px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+.related-information h2 {
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+.related-information > p {
+  font-size: 16px;
+  max-width: 800px;
+  margin-bottom: 16px;
+}
+.related-information > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 40px;
+}
+.related-information .text-link {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+.org-chart h3 a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  gap: 12px;
+}
+.org-chart h3 a:hover {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+.faq-list details > div > ul {
+  list-style: disc;
+  padding-left: 22px;
+  color: var(--muted);
+}
+.faq-list details > div li + li {
+  margin-top: 9px;
+}
+.faq-list details > div > .text-link {
+  margin-top: 18px;
+}
+.faq-specific-title {
+  font: 600 17px/1.4 var(--sans);
+  margin: 24px 0 12px;
+}
+.claims-section > .text-link {
+  margin-top: 6px;
+}
+@media (max-width: 767px) {
+  .related-information {
+    margin-top: 32px;
+    padding-top: 24px;
+  }
+  .related-information h2 {
+    font-size: 26px;
+  }
+  .related-information > div {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .related-information .text-link {
+    font-size: 15px;
+    gap: 15px;
+  }
+}
+
+/* Certificaciones: identidad visual y acceso a documentos. */
+.credentials-page { padding-top: 52px; }
+.credentials-section + .credentials-section { margin-top: 64px; }
+.credentials-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 36px; margin-bottom: 26px; }
+.credentials-kicker { color: var(--muted); font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 9px; }
+.credentials-heading h2 { font-size: clamp(28px, 3vw, 38px); line-height: 1.2; margin: 0; }
+.credentials-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.credentials-section--iso .credentials-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.credential-card { background: white; border: 1px solid var(--line); min-width: 0; overflow: hidden; display: flex; flex-direction: column; }
+.credential-logo { height: 158px; display: flex; align-items: center; justify-content: center; padding: 28px; border-bottom: 1px solid #e9ede8; background: #fff; }
+.credential-logo img { width: auto; height: auto; max-height: 104px; max-width: 100%; object-fit: contain; }
+.credential-body { padding: 28px; display: flex; flex: 1; flex-direction: column; align-items: flex-start; }
+.credential-category { margin: 0 0 10px; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.credential-body h3 { font-family: var(--serif); font-weight: 400; font-size: 26px; line-height: 1.25; margin: 0 0 14px; }
+.credential-description { font-size: 16px; line-height: 1.6; color: var(--muted); margin: 0 0 28px; }
+.credential-action { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; max-width: 100%; margin-top: auto; padding: 10px 18px; border: 1px solid var(--green); border-radius: 10px; background: var(--green); color: white; font-size: 14px; font-weight: 600; line-height: 1.4; text-align: center; transition: background-color .2s ease; }
+.credential-action:hover { background: var(--green-deep); }
+.credentials-section--iso .credential-card { flex-direction: row; border-top: 3px solid var(--green); }
+.credentials-section--iso .credential-logo { flex: 0 0 175px; height: auto; border-bottom: 0; border-right: 1px solid #e9ede8; padding: 24px; }
+.credentials-section--iso .credential-logo img { max-height: 125px; }
+.credentials-section--iso .credential-body { padding: 30px 26px; min-width: 0; }
+.credentials-section--iso .credential-body h3 { font-size: 35px; }
+.credentials-note { margin-top: 38px; }
+.credentials-note .info-note { margin-bottom: 0; }
+@media (max-width: 1100px) {
+  .credentials-section--iso .credential-logo { flex-basis: 130px; padding: 18px; }
+  .credentials-section--iso .credential-body { padding: 24px 20px; }
+  .credential-body { padding: 24px; }
+}
+@media (max-width: 800px) {
+  .credentials-heading { align-items: flex-start; flex-direction: column; gap: 14px; }
+  .credentials-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .credentials-section--iso .credential-card { flex-direction: column; }
+  .credentials-section--iso .credential-logo { flex-basis: auto; height: 170px; border-right: 0; border-bottom: 1px solid #e9ede8; }
+}
+@media (max-width: 540px) {
+  .credentials-page { padding-top: 34px; }
+  .credentials-grid, .credentials-section--iso .credentials-grid { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .credentials-section + .credentials-section { margin-top: 42px; }
+  .credentials-heading { gap: 12px; margin-bottom: 22px; }
+  .credentials-kicker { font-size: 10px; }
+  .credentials-section--iso .credential-card { flex-direction: row; }
+  .credentials-section--iso .credential-logo { flex: 0 0 100px; height: auto; padding: 14px; border-right: 1px solid #e9ede8; border-bottom: 0; }
+  .credentials-section--iso .credential-body { padding: 24px 18px; }
+  .credentials-section--iso .credential-body h3 { font-size: 29px; }
+  .credential-action { padding: 10px 12px; font-size: 13px; }
+  .credential-logo { height: 140px; }
+  .credentials-note { margin-top: 28px; }
+}
+
+/* Alto Consejo: directorio de integrantes y trayectorias. */
+.council-page { padding-top: 48px; }
+.council-directory-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 30px; }
+.council-directory-heading .eyebrow { font-size: 10px; margin-bottom: 12px; }
+.council-directory-heading h2 { margin: 0; font-size: clamp(27px, 3vw, 36px); line-height: 1.25; }
+.council-count { white-space: nowrap; padding: 6px 13px; border: 1px solid var(--line); border-radius: 20px; font-size: 13px; color: var(--muted); }
+.council-directory { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: 26px; }
+.council-profile { border: 1px solid var(--line); background: #fff; min-width: 0; }
+.council-profile-overview { display: grid; grid-template-columns: 170px minmax(0, 1fr); min-height: 246px; }
+.council-portrait { overflow: hidden; background: var(--cream); }
+.council-portrait img { width: 100%; height: 100%; aspect-ratio: 2/3; object-fit: cover; object-position: center 25%; }
+.council-profile-heading { align-self: center; padding: 28px; }
+.council-role { color: var(--muted); font-size: 10px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; margin: 0 0 14px; }
+.council-profile-heading h3 { font: 400 clamp(25px, 2.2vw, 31px)/1.2 var(--serif); margin: 0 0 20px; color: var(--green); }
+.council-specialties { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 7px; }
+.council-specialties li { background: #f1f4ef; color: #435b52; font-size: 12px; line-height: 1.45; padding: 5px 9px; border-radius: 4px; }
+.council-biography { border-top: 1px solid var(--line); padding: 17px 24px; }
+.council-biography summary { list-style: none; display: flex; width: fit-content; max-width: 100%; min-height: 44px; align-items: center; border: 1px solid #c3d0c8; background: #fff; color: var(--green); font-size: 14px; font-weight: 600; line-height: 1.4; padding: 10px 16px; border-radius: 10px; }
+.council-biography summary::-webkit-details-marker { display: none; }
+.council-biography summary:hover, .council-biography[open] summary { background: var(--green); border-color: var(--green); color: white; }
+.council-profile-close, .council-biography[open] .council-profile-open { display: none; }
+.council-biography[open] .council-profile-close { display: inline; }
+.council-biography-text { padding: 24px 0 5px; }
+.council-biography-label { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--green); margin: 0 0 12px; }
+.council-biography-text > p:last-child { font-size: 16px; line-height: 1.85; color: var(--muted); margin: 0; }
+.council-source-note { margin-top: 30px; }
+.council-source-note .info-note { margin-bottom: 0; }
+@media (max-width: 1100px) {
+  .council-profile-overview { grid-template-columns: 130px minmax(0, 1fr); min-height: 220px; }
+  .council-profile-heading { padding: 22px; }
+  .council-profile-heading h3 { font-size: 26px; }
+}
+@media (max-width: 760px) {
+  .council-directory { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .council-profile-overview { grid-template-columns: 150px minmax(0, 1fr); min-height: 225px; }
+  .council-directory-heading { align-items: flex-start; flex-direction: column; gap: 16px; }
+  .council-profile-heading h3 { font-size: 28px; }
+  .council-page { padding-top: 34px; }
+}
+@media (max-width: 430px) {
+  .council-profile-overview { grid-template-columns: 112px minmax(0, 1fr); min-height: 222px; }
+  .council-profile-heading { padding: 20px 16px; }
+  .council-profile-heading h3 { font-size: 25px; margin-bottom: 15px; }
+  .council-role { font-size: 9px; letter-spacing: .04em; margin-bottom: 10px; }
+  .council-specialties li { font-size: 11px; padding: 4px 7px; }
+  .council-biography { padding: 16px 18px; }
+}
+
+/* Alto Consejo: galería de retratos seleccionada. */
+.council-gallery .council-directory { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; }
+.council-gallery .council-profile { border-radius: 14px; overflow: hidden; }
+.council-gallery .council-profile-overview { display: flex; flex-direction: column; }
+.council-gallery .council-portrait { height: 300px; }
+.council-gallery .council-portrait img { object-position: center 27%; }
+.council-gallery .council-profile-heading { align-self: stretch; padding: 26px; min-height: 205px; }
+.council-gallery .council-profile-heading h3 { font-size: 29px; }
+.council-gallery .council-biography { padding: 18px 26px 24px; }
+.council-gallery .council-biography summary { background: var(--green); color: white; border-color: var(--green); width: 100%; justify-content: center; }
+.council-gallery .council-biography summary:hover { background: var(--green-deep); }
+@media (max-width: 1050px) {
+  .council-gallery .council-directory { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 540px) {
+  .council-gallery .council-directory { grid-template-columns: minmax(0, 1fr); }
+  .council-gallery .council-portrait { height: 330px; }
+  .council-gallery .council-profile-heading { min-height: 0; }
+}
+
+/* Organización institucional: estructura, integrantes y gestión en una página. */
+.organization-section-nav { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 48px; padding-bottom: 26px; border-bottom: 1px solid var(--line); }
+.organization-section-nav a { display: inline-flex; align-items: center; min-height: 44px; max-width: 100%; padding: 10px 18px; border: 1px solid #c3d0c8; border-radius: 10px; background: white; color: var(--green); font-size: 15px; font-weight: 600; line-height: 1.4; }
+.organization-section-nav a:hover { background: var(--green); color: white; border-color: var(--green); }
+.organization-section { scroll-margin-top: 140px; }
+.organization-section + .organization-section { margin-top: 64px; padding-top: 52px; border-top: 1px solid var(--line); }
+.institutional-organization .organization-layout { margin: 0; padding: 0; }
+.institutional-organization .organization-layout h2 { font-size: clamp(30px, 3.5vw, 40px); }
+.institutional-organization .organization-layout .eyebrow { font-size: 10px; }
+.institutional-organization .org-chart h3 a { text-decoration: underline; text-underline-offset: 5px; text-decoration-color: #b4c4bb; }
+.organization-management-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; align-items: start; }
+.organization-management-grid > div { min-width: 0; }
+.organization-office-title { font: 400 26px/1.3 var(--serif); margin: 0 0 18px; }
+.institutional-neutral-portrait { height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 20px; background: var(--green); color: #e0e8df; }
+.institutional-neutral-portrait > span { font: 400 76px/1 var(--serif); }
+.institutional-neutral-portrait small { font-size: 11px; letter-spacing: .2em; }
+.council-profile-heading h4 { font: 400 29px/1.2 var(--serif); margin: 0 0 20px; color: var(--green); }
+.institutional-profile-caption { font-size: 15px; color: var(--muted); line-height: 1.6; margin: 16px 0 0; }
+.institutional-bio-section { margin-top: 24px; }
+.institutional-bio-section h5 { font: 600 17px/1.5 var(--sans); margin: 0 0 9px; }
+.institutional-bio-section p, .council-biography-text > p { font-size: 16px; line-height: 1.85; color: var(--muted); }
+.organization-role-context { font-size: 16px; color: var(--muted); max-width: 800px; margin: 24px 0 30px; }
+.organization-validation-note { margin-top: 28px; }
+.organization-validation-note .info-note { margin-bottom: 0; }
+.organization-profile-note { margin: 26px 0 20px; }
+@media (max-width: 760px) {
+  .organization-section-nav { gap: 10px; margin-bottom: 34px; }
+  .organization-section-nav a { font-size: 14px; padding: 10px 14px; }
+  .organization-section + .organization-section { margin-top: 42px; padding-top: 36px; }
+  .organization-management-grid { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+  .institutional-organization .council-directory-heading h2 { font-size: 30px; }
+  .institutional-organization .organization-layout { gap: 28px; }
+}
+@media (max-width: 430px) {
+  .organization-section-nav { flex-direction: column; align-items: stretch; }
+  .organization-section-nav a { justify-content: center; }
+  .organization-section { scroll-margin-top: 115px; }
+  .institutional-neutral-portrait { height: 240px; }
+}
+
+/* Comparación de Dirección y Secretaría con retratos. */
+.management-options-nav { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 42px; }
+.management-options-nav a { min-height: 44px; padding: 10px 16px; display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 10px; background: white; font-size: 14px; font-weight: 600; }
+.management-options-nav a:hover { background: var(--green); color: white; }
+.management-choice { scroll-margin-top: 140px; }
+.management-choice + .management-choice { margin-top: 56px; padding-top: 44px; border-top: 1px solid var(--line); }
+.management-choice-heading { margin-bottom: 28px; }
+.management-choice-label { display: inline-flex; padding: 5px 11px; border-radius: 5px; background: var(--green); color: white; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; margin-bottom: 16px; }
+.management-choice-heading h3 { font: 400 clamp(28px, 3vw, 36px)/1.25 var(--serif); margin: 0 0 10px; }
+.management-choice-heading > p { color: var(--muted); font-size: 16px; margin: 0; max-width: 650px; }
+.management-choice .organization-office-title { font: 600 13px/1.5 var(--sans); letter-spacing: .05em; text-transform: uppercase; margin-bottom: 14px; }
+.management-choice .council-role { font-size: 10px; line-height: 1.6; }
+.management-choice .council-profile-heading h4 { overflow-wrap: anywhere; }
+.management-choice .council-portrait img { object-position: center 32%; }
+.management-choice .institutional-photo-placeholder { background: #e8ece5; color: #536c60; }
+.management-choice .institutional-photo-placeholder > span { font-size: 70px; }
+.management-choice .institutional-photo-placeholder small { font-size: 10px; letter-spacing: .13em; }
+/* 1. Galería clásica de dos retratos. */
+.management-choice--portrait .council-portrait, .management-choice--portrait .institutional-photo-placeholder { height: 380px; }
+.management-choice--portrait .council-profile-heading { min-height: 180px; }
+.management-choice--portrait .council-profile-heading h4 { font-size: 32px; }
+/* 2. Fotografía lateral y texto sobre verde. */
+.management-choice--editorial .council-profile { background: var(--green); border-color: var(--green); }
+.management-choice--editorial .council-profile-overview { display: grid; grid-template-columns: 190px minmax(0, 1fr); min-height: 310px; }
+.management-choice--editorial .council-portrait, .management-choice--editorial .institutional-photo-placeholder { height: 100%; min-height: 310px; }
+.management-choice--editorial .council-profile-heading { align-self: center; min-height: 0; padding: 28px; }
+.management-choice--editorial .council-profile-heading h4 { color: white; font-size: 30px; }
+.management-choice--editorial .council-role { color: #c7d9d0; }
+.management-choice--editorial .institutional-profile-caption { color: #c7d9d0; }
+.management-choice--editorial .council-biography { border-color: #ffffff30; padding: 22px 28px 26px; }
+.management-choice--editorial .council-biography summary { background: white; color: var(--green); border-color: white; }
+.management-choice--editorial .council-biography summary:hover { background: #e1e8df; }
+.management-choice--editorial .council-biography-text p { color: #e0e8df; }
+.management-choice--editorial .institutional-bio-section h5 { color: white; }
+/* 3. Retratos circulares sobre crema. */
+.management-choice--round .council-profile { background: var(--cream); border: 0; padding-top: 36px; }
+.management-choice--round .council-profile-overview { align-items: center; }
+.management-choice--round .council-portrait, .management-choice--round .institutional-photo-placeholder { width: 180px; height: 180px; border-radius: 50%; border: 5px solid white; }
+.management-choice--round .council-portrait img { object-position: center 30%; }
+.management-choice--round .institutional-photo-placeholder { gap: 12px; }
+.management-choice--round .institutional-photo-placeholder > span { font-size: 48px; }
+.management-choice--round .institutional-photo-placeholder small { font-size: 8px; letter-spacing: .06em; }
+.management-choice--round .council-profile-heading { text-align: center; min-height: 190px; padding: 28px 34px; }
+.management-choice--round .council-profile-heading h4 { font-size: 33px; }
+.management-choice--round .council-biography { padding: 24px 34px 30px; }
+.management-choice--round .council-biography summary { width: fit-content; margin-inline: auto; padding-inline: 24px; }
+@media (max-width: 1100px) {
+  .management-choice--editorial .council-profile-overview { grid-template-columns: 130px minmax(0, 1fr); }
+  .management-choice--editorial .council-profile-heading { padding: 22px; }
+  .management-choice--editorial .council-profile-heading h4 { font-size: 27px; }
+}
+@media (max-width: 760px) {
+  .management-choice { scroll-margin-top: 125px; }
+  .management-choice--portrait .council-portrait, .management-choice--portrait .institutional-photo-placeholder { height: 360px; }
+  .management-choice--portrait .council-profile-heading, .management-choice--round .council-profile-heading { min-height: 0; }
+  .management-choice--editorial .council-profile-overview { grid-template-columns: 160px minmax(0, 1fr); }
+  .management-choice--editorial .council-profile-heading h4 { font-size: 30px; }
+}
+@media (max-width: 430px) {
+  .management-options-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .management-options-nav a { justify-content: center; padding-inline: 8px; font-size: 13px; }
+  .management-choice + .management-choice { margin-top: 40px; padding-top: 34px; }
+  .management-choice--editorial .council-profile-overview { grid-template-columns: minmax(0, 1fr); }
+  .management-choice--editorial .council-portrait, .management-choice--editorial .institutional-photo-placeholder { height: 330px; min-height: 0; }
+  .management-choice--editorial .council-profile-heading { padding: 26px; }
+  .management-choice--round .council-profile-heading { padding-inline: 24px; }
+  .management-choice--round .council-profile-heading h4 { font-size: 29px; }
+}
+
+/* Contenido de muestra para comparar las tarjetas de Secretaría. */
+.management-choice .council-portrait { position: relative; }
+.profile-photo-sample { position: absolute; bottom: 10px; left: 10px; right: 10px; padding: 5px 8px; background: #123d3ced; color: white; border-radius: 5px; text-align: center; font-size: 10px; line-height: 1.3; }
+.profile-role-sample { color: var(--muted); font-size: 10px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; margin: 15px 0 0; }
+.profile-role-reference { margin-top: 22px; font-size: 13px !important; }
+.profile-role-reference a { text-decoration: underline; text-underline-offset: 3px; }
+.management-choice--editorial .profile-role-sample { color: #c7d9d0; }
+.management-choice--round .profile-photo-sample { bottom: 12px; left: 21px; right: 21px; font-size: 9px; }
+
+/* Organigrama: imagen institucional y lectura guiada seleccionadas. */
+.organ-intro { font-size: 18px; line-height: 1.7; color: var(--muted); margin: 0 0 30px; }
+.organ-reference-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; gap: 38px; }
+.organ-source-figure { margin: 0; min-width: 0; }
+.organ-source-figure img { width: 100%; max-width: 600px; height: auto; margin-inline: auto; border-radius: 12px; }
+.organ-source-figure figcaption { text-align: center; padding: 16px 10px; font-size: 13px; }
+.organ-source-figure figcaption a { display: inline-flex; min-height: 44px; align-items: center; text-decoration: underline; text-underline-offset: 4px; }
+.organ-validation-note { margin: 28px 0 0; }
+@media (max-width: 900px) {
+  .organ-reference-layout { gap: 24px; }
+}
+@media (max-width: 760px) {
+  .organ-reference-layout { grid-template-columns: minmax(0, 1fr); }
+  .organ-source-figure { max-width: 600px; margin-inline: auto; }
+}
+
+.organ-description { align-self: start; padding: 0; }
+.organ-description p { font-size: 21px; line-height: 1.9; color: var(--muted); margin: 0; }
+@media (max-width: 760px) {
+  .organ-description { padding: 0; }
+  .organ-description p { font-size: 19px; line-height: 1.85; }
+}
+
+.organ-description strong { font-weight: 600; color: var(--green); }

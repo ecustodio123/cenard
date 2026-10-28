@@ -1,212 +1,331 @@
 [
   {
-    "id": "arbitraje-0",
+    "id": "codigo-etica-2025",
     "title": "Código de ética 2025",
-    "service": "Arbitraje",
+    "services": ["Arbitraje", "JPRD"],
     "type": "Código de ética",
-    "context": "Publicado desde el 04/08/2025",
-    "status": "Pendiente de validar vigencia",
-    "urlOrigin": "https://cenardarbitraje.com/web/arbitraje/",
-    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2025/11/CODIGO-DE-ETICA.pdf"
+    "sourceGrouping": {
+      "kind": "desde",
+      "label": "desde el 04/08/2025"
+    },
+    "validationStatus": "Aplicación por confirmar",
+    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2025/11/CODIGO-DE-ETICA.pdf",
+    "references": [
+      {
+        "id": "arbitraje-0",
+        "service": "Arbitraje",
+        "urlOrigin": "https://cenardarbitraje.com/web/arbitraje/"
+      },
+      {
+        "id": "jprd-0",
+        "service": "JPRD",
+        "urlOrigin": "https://cenardarbitraje.com/web/jprd/"
+      }
+    ]
   },
   {
-    "id": "arbitraje-1",
+    "id": "reglamento-procesal-apendices-2025",
     "title": "Reglamento procesal y apéndices 2025",
-    "service": "Arbitraje",
+    "services": ["Arbitraje"],
     "type": "Reglamento",
-    "context": "Publicado desde el 04/08/2025",
-    "status": "Pendiente de validar vigencia",
-    "urlOrigin": "https://cenardarbitraje.com/web/arbitraje/",
-    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2026/05/Reglamento-Procesal-y-Apendices-2025-1.pdf"
+    "sourceGrouping": {
+      "kind": "desde",
+      "label": "desde el 04/08/2025"
+    },
+    "validationStatus": "Aplicación por confirmar",
+    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2026/05/Reglamento-Procesal-y-Apendices-2025-1.pdf",
+    "references": [
+      {
+        "id": "arbitraje-1",
+        "service": "Arbitraje",
+        "urlOrigin": "https://cenardarbitraje.com/web/arbitraje/"
+      }
+    ]
   },
   {
-    "id": "arbitraje-2",
+    "id": "reglamento-interno-2025",
     "title": "Reglamento interno 2025",
-    "service": "Arbitraje",
+    "services": ["Arbitraje", "JPRD"],
     "type": "Reglamento",
-    "context": "Publicado desde el 04/08/2025",
-    "status": "Pendiente de validar vigencia",
-    "urlOrigin": "https://cenardarbitraje.com/web/arbitraje/",
-    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2026/07/REGLAMENTO-INTERNO-CENARD.pdf"
+    "sourceGrouping": {
+      "kind": "desde",
+      "label": "desde el 04/08/2025"
+    },
+    "validationStatus": "Aplicación por confirmar",
+    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2026/07/REGLAMENTO-INTERNO-CENARD.pdf",
+    "references": [
+      {
+        "id": "arbitraje-2",
+        "service": "Arbitraje",
+        "urlOrigin": "https://cenardarbitraje.com/web/arbitraje/"
+      },
+      {
+        "id": "jprd-2",
+        "service": "JPRD",
+        "urlOrigin": "https://cenardarbitraje.com/web/jprd/"
+      }
+    ]
   },
   {
-    "id": "arbitraje-3",
+    "id": "directiva-01-arbitraje",
     "title": "Directiva 01 incorporación y renovación",
-    "service": "Arbitraje",
+    "services": ["Arbitraje"],
     "type": "Directiva",
-    "context": "Publicado desde el 04/08/2025",
-    "status": "Pendiente de validar vigencia",
-    "urlOrigin": "https://cenardarbitraje.com/web/arbitraje/",
-    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2026/07/Directiva-01-Incorporacion-y-Renovacion.pdf"
+    "sourceGrouping": {
+      "kind": "desde",
+      "label": "desde el 04/08/2025"
+    },
+    "validationStatus": "Aplicación por confirmar",
+    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2026/07/Directiva-01-Incorporacion-y-Renovacion.pdf",
+    "references": [
+      {
+        "id": "arbitraje-3",
+        "service": "Arbitraje",
+        "urlOrigin": "https://cenardarbitraje.com/web/arbitraje/"
+      }
+    ]
   },
   {
-    "id": "arbitraje-4",
+    "id": "reglamento-costos-2025",
     "title": "Reglamento de costos 2025",
-    "service": "Arbitraje",
+    "services": ["Arbitraje", "JPRD"],
     "type": "Reglamento",
-    "context": "Publicado desde el 04/08/2025",
-    "status": "Pendiente de validar vigencia",
-    "urlOrigin": "https://cenardarbitraje.com/web/arbitraje/",
-    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2026/05/REGLAMENTO-DE-COSTOS-2025-ACTUALIZADO.pdf"
+    "sourceGrouping": {
+      "kind": "desde",
+      "label": "desde el 04/08/2025"
+    },
+    "validationStatus": "Aplicación por confirmar",
+    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2026/05/REGLAMENTO-DE-COSTOS-2025-ACTUALIZADO.pdf",
+    "references": [
+      {
+        "id": "arbitraje-4",
+        "service": "Arbitraje",
+        "urlOrigin": "https://cenardarbitraje.com/web/arbitraje/"
+      },
+      {
+        "id": "jprd-4",
+        "service": "JPRD",
+        "urlOrigin": "https://cenardarbitraje.com/web/jprd/"
+      }
+    ]
   },
   {
-    "id": "arbitraje-5",
+    "id": "ficha-renovacion",
     "title": "Fichas de renovación árbitro / adjudicador",
-    "service": "Arbitraje",
+    "services": ["Arbitraje", "JPRD"],
     "type": "Ficha",
-    "context": "Publicado desde el 04/08/2025",
-    "status": "Pendiente de validar vigencia",
-    "urlOrigin": "https://cenardarbitraje.com/web/arbitraje/",
-    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2025/11/Ficha-renovacion.pdf"
+    "sourceGrouping": {
+      "kind": "desde",
+      "label": "desde el 04/08/2025"
+    },
+    "validationStatus": "Aplicación por confirmar",
+    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2025/11/Ficha-renovacion.pdf",
+    "references": [
+      {
+        "id": "arbitraje-5",
+        "service": "Arbitraje",
+        "urlOrigin": "https://cenardarbitraje.com/web/arbitraje/"
+      },
+      {
+        "id": "jprd-5",
+        "service": "JPRD",
+        "urlOrigin": "https://cenardarbitraje.com/web/jprd/"
+      }
+    ]
   },
   {
-    "id": "arbitraje-6",
+    "id": "ficha-inscripcion",
     "title": "Fichas de inscripción árbitro / adjudicador",
-    "service": "Arbitraje",
+    "services": ["Arbitraje", "JPRD"],
     "type": "Ficha",
-    "context": "Publicado desde el 04/08/2025",
-    "status": "Pendiente de validar vigencia",
-    "urlOrigin": "https://cenardarbitraje.com/web/arbitraje/",
-    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2025/11/FICHAS-1.pdf"
+    "sourceGrouping": {
+      "kind": "desde",
+      "label": "desde el 04/08/2025"
+    },
+    "validationStatus": "Aplicación por confirmar",
+    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2025/11/FICHAS-1.pdf",
+    "references": [
+      {
+        "id": "arbitraje-6",
+        "service": "Arbitraje",
+        "urlOrigin": "https://cenardarbitraje.com/web/arbitraje/"
+      },
+      {
+        "id": "jprd-6",
+        "service": "JPRD",
+        "urlOrigin": "https://cenardarbitraje.com/web/jprd/"
+      }
+    ]
   },
   {
-    "id": "arbitraje-7",
+    "id": "directiva-emergencia-historica",
     "title": "Directiva sobre costos para medidas de emergencias – arbitro de emergencia",
-    "service": "Arbitraje",
+    "services": ["Arbitraje"],
     "type": "Directiva",
-    "context": "Archivo histórico hasta el 03/08/2025",
-    "status": "Histórico en la fuente",
-    "urlOrigin": "https://cenardarbitraje.com/web/arbitraje/",
-    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2025/05/CNR-Arbitraje-Sobre-los-costos-para-procedimientos-de-emergencia-.pdf"
+    "sourceGrouping": {
+      "kind": "historico",
+      "label": "hasta el 03/08/2025"
+    },
+    "validationStatus": "Aplicación por confirmar",
+    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2025/05/CNR-Arbitraje-Sobre-los-costos-para-procedimientos-de-emergencia-.pdf",
+    "references": [
+      {
+        "id": "arbitraje-7",
+        "service": "Arbitraje",
+        "urlOrigin": "https://cenardarbitraje.com/web/arbitraje/"
+      }
+    ]
   },
   {
-    "id": "arbitraje-8",
+    "id": "directiva-eleccion-arbitro-2024",
     "title": "Directiva de elección de árbitro y escrutinio 2024",
-    "service": "Arbitraje",
+    "services": ["Arbitraje"],
     "type": "Directiva",
-    "context": "Archivo histórico hasta el 03/08/2025",
-    "status": "Histórico en la fuente",
-    "urlOrigin": "https://cenardarbitraje.com/web/arbitraje/",
-    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2025/05/Directiva-de-Eleccion-de-Arbitro-y-Escrutinio-2024.pdf"
+    "sourceGrouping": {
+      "kind": "historico",
+      "label": "hasta el 03/08/2025"
+    },
+    "validationStatus": "Aplicación por confirmar",
+    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2025/05/Directiva-de-Eleccion-de-Arbitro-y-Escrutinio-2024.pdf",
+    "references": [
+      {
+        "id": "arbitraje-8",
+        "service": "Arbitraje",
+        "urlOrigin": "https://cenardarbitraje.com/web/arbitraje/"
+      }
+    ]
   },
   {
-    "id": "arbitraje-9",
+    "id": "reglamento-procesal-2023",
     "title": "Reglamento procesal de arbitraje 2023",
-    "service": "Arbitraje",
+    "services": ["Arbitraje"],
     "type": "Reglamento",
-    "context": "Archivo histórico hasta el 03/08/2025",
-    "status": "Histórico en la fuente",
-    "urlOrigin": "https://cenardarbitraje.com/web/arbitraje/",
-    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2025/05/Reglamento-Procesal-de-Arbitraje.pdf"
+    "sourceGrouping": {
+      "kind": "historico",
+      "label": "hasta el 03/08/2025"
+    },
+    "validationStatus": "Aplicación por confirmar",
+    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2025/05/Reglamento-Procesal-de-Arbitraje.pdf",
+    "references": [
+      {
+        "id": "arbitraje-9",
+        "service": "Arbitraje",
+        "urlOrigin": "https://cenardarbitraje.com/web/arbitraje/"
+      }
+    ]
   },
   {
-    "id": "arbitraje-10",
+    "id": "codigo-etica-historico",
     "title": "Código de ética",
-    "service": "Arbitraje",
+    "services": ["Arbitraje"],
     "type": "Código de ética",
-    "context": "Archivo histórico hasta el 03/08/2025",
-    "status": "Histórico en la fuente",
-    "urlOrigin": "https://cenardarbitraje.com/web/arbitraje/",
-    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2025/05/CODIGO-DE-ETICA-CENARD-2023-2024-3.pdf"
+    "sourceGrouping": {
+      "kind": "historico",
+      "label": "hasta el 03/08/2025"
+    },
+    "validationStatus": "Aplicación por confirmar",
+    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2025/05/CODIGO-DE-ETICA-CENARD-2023-2024-3.pdf",
+    "references": [
+      {
+        "id": "arbitraje-10",
+        "service": "Arbitraje",
+        "urlOrigin": "https://cenardarbitraje.com/web/arbitraje/"
+      }
+    ]
   },
   {
-    "id": "arbitraje-11",
+    "id": "reglamento-arbitraje-acelerado-historico",
     "title": "Reglamento para arbitraje acelerado",
-    "service": "Arbitraje",
+    "services": ["Arbitraje"],
     "type": "Reglamento",
-    "context": "Archivo histórico hasta el 03/08/2025",
-    "status": "Histórico en la fuente",
-    "urlOrigin": "https://cenardarbitraje.com/web/arbitraje/",
-    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2025/05/Reglamento-Arbitraje-Acelerado-2023-1.pdf"
+    "sourceGrouping": {
+      "kind": "historico",
+      "label": "hasta el 03/08/2025"
+    },
+    "validationStatus": "Aplicación por confirmar",
+    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2025/05/Reglamento-Arbitraje-Acelerado-2023-1.pdf",
+    "references": [
+      {
+        "id": "arbitraje-11",
+        "service": "Arbitraje",
+        "urlOrigin": "https://cenardarbitraje.com/web/arbitraje/"
+      }
+    ]
   },
   {
-    "id": "arbitraje-12",
+    "id": "reglamento-costos-2024",
     "title": "Reglamento de costo 2024",
-    "service": "Arbitraje",
+    "services": ["Arbitraje"],
     "type": "Reglamento",
-    "context": "Archivo histórico hasta el 03/08/2025",
-    "status": "Histórico en la fuente",
-    "urlOrigin": "https://cenardarbitraje.com/web/arbitraje/",
-    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2025/05/Reglamento-de-Costos-2024-2.pdf"
+    "sourceGrouping": {
+      "kind": "historico",
+      "label": "hasta el 03/08/2025"
+    },
+    "validationStatus": "Aplicación por confirmar",
+    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2025/05/Reglamento-de-Costos-2024-2.pdf",
+    "references": [
+      {
+        "id": "arbitraje-12",
+        "service": "Arbitraje",
+        "urlOrigin": "https://cenardarbitraje.com/web/arbitraje/"
+      }
+    ]
   },
   {
-    "id": "arbitraje-13",
+    "id": "reglamento-cuantias-indeterminadas-2024",
     "title": "Reglamento de costos para cuantías indeterminadas 2024",
-    "service": "Arbitraje",
+    "services": ["Arbitraje"],
     "type": "Reglamento",
-    "context": "Archivo histórico hasta el 03/08/2025",
-    "status": "Histórico en la fuente",
-    "urlOrigin": "https://cenardarbitraje.com/web/arbitraje/",
-    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2025/05/Reglamento-de-Cuantias-Indeterminadas-2024.pdf"
+    "sourceGrouping": {
+      "kind": "historico",
+      "label": "hasta el 03/08/2025"
+    },
+    "validationStatus": "Aplicación por confirmar",
+    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2025/05/Reglamento-de-Cuantias-Indeterminadas-2024.pdf",
+    "references": [
+      {
+        "id": "arbitraje-13",
+        "service": "Arbitraje",
+        "urlOrigin": "https://cenardarbitraje.com/web/arbitraje/"
+      }
+    ]
   },
   {
-    "id": "jprd-0",
-    "title": "Código de ética 2025",
-    "service": "JPRD",
-    "type": "Código de ética",
-    "context": "Publicado desde el 04/08/2025",
-    "status": "Pendiente de validar vigencia",
-    "urlOrigin": "https://cenardarbitraje.com/web/jprd/",
-    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2025/11/CODIGO-DE-ETICA.pdf"
-  },
-  {
-    "id": "jprd-1",
+    "id": "reglamento-jprd-2025",
     "title": "Reglamento de JPRD 2025",
-    "service": "JPRD",
+    "services": ["JPRD"],
     "type": "Reglamento",
-    "context": "Publicado desde el 04/08/2025",
-    "status": "Pendiente de validar vigencia",
-    "urlOrigin": "https://cenardarbitraje.com/web/jprd/",
-    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2025/11/REGLAMENTO-DE-JPRD.pdf"
+    "sourceGrouping": {
+      "kind": "desde",
+      "label": "desde el 04/08/2025"
+    },
+    "validationStatus": "Aplicación por confirmar",
+    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2025/11/REGLAMENTO-DE-JPRD.pdf",
+    "references": [
+      {
+        "id": "jprd-1",
+        "service": "JPRD",
+        "urlOrigin": "https://cenardarbitraje.com/web/jprd/"
+      }
+    ]
   },
   {
-    "id": "jprd-2",
-    "title": "Reglamento interno 2025",
-    "service": "JPRD",
-    "type": "Reglamento",
-    "context": "Publicado desde el 04/08/2025",
-    "status": "Pendiente de validar vigencia",
-    "urlOrigin": "https://cenardarbitraje.com/web/jprd/",
-    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2026/07/REGLAMENTO-INTERNO-CENARD.pdf"
-  },
-  {
-    "id": "jprd-3",
+    "id": "directiva-01-jprd",
     "title": "Directiva 01 incorporación y renovación",
-    "service": "JPRD",
+    "services": ["JPRD"],
     "type": "Directiva",
-    "context": "Publicado desde el 04/08/2025",
-    "status": "Pendiente de validar vigencia",
-    "urlOrigin": "https://cenardarbitraje.com/web/jprd/",
-    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2025/08/Directiva-01-Incorporacion-y-Renovacion.pdf"
-  },
-  {
-    "id": "jprd-4",
-    "title": "Reglamento de costos 2025",
-    "service": "JPRD",
-    "type": "Reglamento",
-    "context": "Publicado desde el 04/08/2025",
-    "status": "Pendiente de validar vigencia",
-    "urlOrigin": "https://cenardarbitraje.com/web/jprd/",
-    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2026/05/REGLAMENTO-DE-COSTOS-2025-ACTUALIZADO.pdf"
-  },
-  {
-    "id": "jprd-5",
-    "title": "Fichas de renovación árbitro / adjudicador",
-    "service": "JPRD",
-    "type": "Ficha",
-    "context": "Publicado desde el 04/08/2025",
-    "status": "Pendiente de validar vigencia",
-    "urlOrigin": "https://cenardarbitraje.com/web/jprd/",
-    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2025/11/Ficha-renovacion.pdf"
-  },
-  {
-    "id": "jprd-6",
-    "title": "Fichas de inscripción árbitro / adjudicador",
-    "service": "JPRD",
-    "type": "Ficha",
-    "context": "Publicado desde el 04/08/2025",
-    "status": "Pendiente de validar vigencia",
-    "urlOrigin": "https://cenardarbitraje.com/web/jprd/",
-    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2025/11/FICHAS-1.pdf"
+    "sourceGrouping": {
+      "kind": "desde",
+      "label": "desde el 04/08/2025"
+    },
+    "validationStatus": "Aplicación por confirmar",
+    "urlPublic": "https://cenardarbitraje.com/web/wp-content/uploads/2025/08/Directiva-01-Incorporacion-y-Renovacion.pdf",
+    "references": [
+      {
+        "id": "jprd-3",
+        "service": "JPRD",
+        "urlOrigin": "https://cenardarbitraje.com/web/jprd/"
+      }
+    ]
   }
 ]

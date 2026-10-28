@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import {
-  ArrowRight,
   Calculator,
   CheckCircle2,
   Info,
@@ -291,7 +290,6 @@ export function CalculatorPage() {
           <div className="form-actions">
             <button className="button" type="submit">
               Revisar datos
-              <ArrowRight size={18} aria-hidden="true" />
             </button>
             <button
               className="reset-button"
@@ -354,7 +352,6 @@ export function CalculatorPage() {
           </div>
           <a className="text-link" href={`mailto:${site.emails[1]}`}>
             Consultar a Secretaría
-            <ArrowRight size={17} aria-hidden="true" />
           </a>
           <Link
             className="summary-regulation"

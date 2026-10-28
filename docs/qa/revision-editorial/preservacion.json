@@ -1,0 +1,13 @@
+{
+  "unchangedData": {
+    "professionals": true,
+    "certifications": true,
+    "council": true,
+    "secretary": true
+  },
+  "excludedFilesUnchanged": {
+    "src/pages/CalculatorPage.tsx": true,
+    "src/lib/calculator.ts": true,
+    "scripts/calculator.test.ts": true
+  }
+}

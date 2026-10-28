@@ -12,6 +12,7 @@ export const site = {
     "secretariageneral@cenardarbitraje.com",
   ],
   address: "Av. del Ejército 1180, Magdalena del Mar, Oficina 1404",
+  claimsForm: "https://cenardarbitraje.com/web/wp-content/uploads/2025/05/Formato-de-Reclamaciones-CENARD.docx",
   hours: "Lunes a viernes · 09:00 a 16:30",
   laudos:
     "https://drive.google.com/drive/folders/1s9m-DFrRpSkRRe-YKwb4CwGePuy1zJOa?usp=sharing",
@@ -33,25 +34,11 @@ const allPages = [
       "Nuestra institución, misión y compromiso con la cultura de solución de controversias.",
   },
   {
-    slug: "secretaria-general",
-    title: "Secretaría General y Director",
+    slug: "organizacion-institucional",
+    title: "Organización institucional",
     section: "Institución",
     description:
-      "Dirección institucional y equipo de Secretaría General de CENARD.",
-  },
-  {
-    slug: "alto-consejo",
-    title: "Alto Consejo",
-    section: "Institución",
-    description:
-      "Conoce a los profesionales que conforman el Alto Consejo de CENARD.",
-  },
-  {
-    slug: "organigrama",
-    title: "Organigrama",
-    section: "Institución",
-    description:
-      "La estructura de dirección, decisión y gestión de nuestra institución.",
+      "Conoce la estructura de CENARD y a las personas que integran sus órganos institucionales.",
   },
   {
     slug: "certificaciones",
@@ -79,7 +66,7 @@ const allPages = [
     title: "Normativa y documentos",
     section: "Recursos",
     description:
-      "Reglamentos, directivas, código de ética y fichas. La documentación institucional en un solo lugar.",
+      "Normativa de Arbitraje y JPRD: reglamentos, directivas, códigos y fichas.",
   },
   {
     slug: "listado-de-arbitros",
@@ -134,9 +121,7 @@ export const navigation = [
     label: "Institución",
     slugs: [
       "conocenos",
-      "secretaria-general",
-      "alto-consejo",
-      "organigrama",
+      "organizacion-institucional",
       "certificaciones",
     ],
   },

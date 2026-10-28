@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router";
 import {
-  ArrowUpRight,
-  ChevronDown,
   Clock3,
   Mail,
   MapPin,
@@ -158,13 +156,11 @@ export function Layout() {
                   }
                 >
                   {group.label}
-                  <ChevronDown size={13} aria-hidden="true" />
                 </summary>
                 <div className="dropdown-content">
                   {group.slugs.map((slug) => (
                     <NavLink key={slug} to={pathFor(slug)}>
                       {pages.find((p) => p.slug === slug)?.title}
-                      <ArrowUpRight size={15} aria-hidden="true" />
                     </NavLink>
                   ))}
                 </div>
@@ -173,7 +169,6 @@ export function Layout() {
             <NavLink to={pathFor("atalaya-de-integridad")}>Integridad</NavLink>
             <NavLink className="nav-contact" to={pathFor("contacto")}>
               Contáctanos
-              <ArrowUpRight size={16} aria-hidden="true" />
             </NavLink>
           </nav>
           <button
@@ -216,14 +211,17 @@ export function Layout() {
       <main id="contenido" tabIndex={-1}>
         <Outlet />
       </main>
-      <section className="contact-band contact-band-compact">
-        <div className="container">
-          <h2>Conversemos sobre el siguiente paso.</h2>
-          <Link className="button button-light" to={pathFor("contacto")}>
-            Contactar a CENARD<ArrowUpRight size={18} aria-hidden="true" />
-          </Link>
-        </div>
-      </section>
+      {location.pathname.replace(/\/$/, "") !==
+        pathFor("contacto").replace(/\/$/, "") && (
+        <section className="contact-band contact-band-compact">
+          <div className="container">
+            <h2>Conversemos sobre el siguiente paso.</h2>
+            <Link className="button button-light" to={pathFor("contacto")}>
+              Contactar a CENARD
+            </Link>
+          </div>
+        </section>
+      )}
       <footer className="site-footer footer-compact">
         <div className="container">
           <div className="footer-grid">
@@ -242,7 +240,10 @@ export function Layout() {
                 <br />
                 Resolución de Disputas
               </p>
-              <nav className="footer-links" aria-label="Enlaces del pie de página">
+              <nav
+                className="footer-links"
+                aria-label="Enlaces del pie de página"
+              >
                 <Link to={pathFor("conocenos")}>Institución</Link>
                 <Link to="/web/#servicios">Servicios</Link>
                 <Link to={pathFor("documentos")}>Documentos</Link>
@@ -263,10 +264,11 @@ export function Layout() {
               ))}
               <div className="footer-phone-row">
                 <a className="footer-icon-link" href={site.phoneHref}>
-                  <Phone size={16} aria-hidden="true" />{site.phone}
+                  <Phone size={16} aria-hidden="true" />
+                  {site.phone}
                 </a>
                 <a href={site.whatsapp} target="_blank" rel="noreferrer">
-                  WhatsApp<ArrowUpRight size={13} aria-hidden="true" />
+                  WhatsApp
                   <span className="sr-only"> (abre en otra pestaña)</span>
                 </a>
               </div>
@@ -285,7 +287,7 @@ export function Layout() {
           </div>
           <div className="footer-bottom">
             <span>© 2025 CENARD Arbitraje. Todos los derechos reservados.</span>
-            <a href="https://cenardarbitraje.com/web/wp-content/uploads/2025/05/Formato-de-Reclamaciones-CENARD.docx">Libro de Reclamaciones (DOCX)</a>
+            <a href={site.claimsForm}>Libro de Reclamaciones (DOCX)</a>
           </div>
           <div className="preview-label">
             <span />

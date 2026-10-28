@@ -32,7 +32,7 @@ Implementación conservada: seis modalidades con campos específicos, PEN/USD, v
 
 - `src/data/site.ts`: navegación, páginas, contacto y comunicado.
 - `src/data/professionals.json`: personas, grupo, profesión/especialidad publicada y periodo de origen. No fusionar categorías automáticamente.
-- `src/data/documents.json`: referencias por servicio, tipo, contexto temporal, estado de validación y URLs de origen/pública. Fechas o versiones desconocidas quedan ausentes.
+- `src/data/documents.json`: un documento o versión por ficha, con identidad estable, varios servicios y referencias de origen separadas. `src/data/documents.ts` define el modelo y las etiquetas de agrupación temporal. Las fechas de publicación, versiones y periodos de aplicación no confirmados permanecen ausentes. No fusionar documentos por título; las dos Directivas 01 son referencias independientes.
 - `src/data/certifications.json`, `council.json`, `secretary.json` y `faq.json`: contenido institucional compartido.
 - `src/pages/`: plantillas por tipo de contenido.
 - `src/index.css`: tokens, composición y breakpoints.
@@ -56,3 +56,13 @@ Servir los archivos de `dist/`, resolviendo `/web/<ruta>/` a su `index.html`. Se
 ## Alcance
 
 Mesa de Partes y Atenea están excluidos y no se visitaron. No se modificaron el WordPress actual, el dominio ni producción. La entrega se limita al repositorio y a la preview local. No hay analítica ni llamadas de datos a servidores de terceros; al abrir recursos, PDF y canales externos el visitante accede a los destinos publicados.
+
+## Revisión editorial institucional (27/10/2026)
+
+La biblioteca cuenta documentos/versiones y muestra una ficha por archivo común, conservando sus servicios. Las etiquetas de fecha indican agrupación de origen y aplicación por confirmar. Certificaciones y el formato de reclamaciones se enlazan como recursos relacionados fuera del catálogo.
+
+Los CTA, las FAQ con listas y enlace al Reglamento Procesal, la navegación entre autoridades y la sección `/web/contacto/#reclamaciones` conservan las rutas del proyecto. El bloque global de contacto se oculta únicamente en la propia página Contacto.
+
+Pendientes específicos: `docs/pendientes-validacion-cenard.md`. Propuesta editorial sin publicar: `docs/propuesta-editorial-faq.md`. Comprobación de integridad del catálogo: `node --test scripts/documents.test.ts`. La prueba utiliza las referencias públicas archivadas para comprobar que no se pierden enlaces ni asociaciones por servicio.
+
+Los archivos de `src/data/` son datos editoriales curados. `scripts/extract-source-data.py` documenta la extracción histórica de V1 y **no debe ejecutarse sobre los datos curados**: escribe el formato de importación original. Para actualizar el catálogo, editar el modelo actual y ejecutar la comprobación de integridad.

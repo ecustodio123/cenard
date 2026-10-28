@@ -1,0 +1,42 @@
+[
+  {
+    "count": "21 documentos encontrados",
+    "path": "/web/documentos/",
+    "publicationLabel": "Arbitraje · Código de ética · Publicado desde el 04/08/2025 · PDF"
+  },
+  {
+    "contactBand": true,
+    "path": "/web/conocenos/",
+    "reclamaciones": false,
+    "serviceCTA": [
+      {
+        "href": "/web/arbitraje/",
+        "text": "Nuestros servicios"
+      }
+    ]
+  },
+  {
+    "contactBand": true,
+    "path": "/web/jprd/",
+    "reclamaciones": false,
+    "serviceCTA": [
+      {
+        "href": "/web/servicio-de-arbitraje/",
+        "text": "Resolver preguntas frecuentes"
+      }
+    ]
+  },
+  {
+    "contactBand": true,
+    "firstQuestion": "01¿Cuáles son las ventajas de Contratar a CENARD para resolución de controversias?",
+    "path": "/web/servicio-de-arbitraje/",
+    "reclamaciones": false,
+    "serviceCTA": []
+  },
+  {
+    "contactBand": true,
+    "path": "/web/contacto/",
+    "reclamaciones": false,
+    "serviceCTA": []
+  }
+]

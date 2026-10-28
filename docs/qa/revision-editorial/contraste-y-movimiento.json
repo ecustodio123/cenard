@@ -1,0 +1,37 @@
+{
+  "palette": [
+    {
+      "background": "rgb(247, 248, 245)",
+      "foreground": "rgb(20, 43, 43)",
+      "ratio": 13.97,
+      "selector": ".document-title"
+    },
+    {
+      "background": "rgb(247, 248, 245)",
+      "foreground": "rgb(83, 102, 97)",
+      "ratio": 5.73,
+      "selector": ".document-subtitle"
+    },
+    {
+      "background": "rgb(233, 239, 229)",
+      "foreground": "rgb(53, 83, 68)",
+      "ratio": 7.26,
+      "selector": ".document-services .tag"
+    },
+    {
+      "background": "rgb(237, 240, 232)",
+      "foreground": "rgb(20, 43, 43)",
+      "ratio": 12.93,
+      "selector": ".info-note"
+    },
+    {
+      "background": "rgb(247, 248, 245)",
+      "foreground": "rgb(20, 43, 43)",
+      "ratio": 13.97,
+      "selector": ".related-information .text-link"
+    }
+  ],
+  "motionRules": [
+    "@media (prefers-reduced-motion: reduce) {\n  html { scroll-behavior: auto; }\n  *, ::before, ::after { transition: none !important; animation: auto ease 0s 1 normal none running none !important; }\n}"
+  ]
+}

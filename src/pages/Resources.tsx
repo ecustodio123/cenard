@@ -1,8 +1,6 @@
 import { useMemo, useState } from "react";
 import { useSearchParams } from "react-router";
 import {
-  ArrowUpRight,
-  Check,
   FileCheck2,
   Search,
   SlidersHorizontal,
@@ -11,10 +9,9 @@ import {
 import {
   DocumentRow,
   EmptyState,
-  ExternalLink,
   InfoNote,
 } from "../components/UI";
-import docs from "../data/documents.json";
+import { documents as docs, sourceGroupingLabel } from "../data/documents";
 import professionals from "../data/professionals.json";
 import certificates from "../data/certifications.json";
 import { pathFor, site } from "../data/site";
@@ -39,12 +36,12 @@ export function DocumentsPage() {
   const filtered = docs.filter(
     (d) =>
       normalize(d.title).includes(normalize(query)) &&
-      (!service || d.service === service) &&
+      (!service || d.services.includes(service)) &&
       (!type || d.type === type) &&
       (!status ||
         (status === "historico"
-          ? d.status.startsWith("Histórico")
-          : !d.status.startsWith("Histórico"))),
+          ? d.sourceGrouping.kind === "historico"
+          : d.sourceGrouping.kind !== "historico")),
   );
   return (
     <div className="container page-content">
@@ -91,16 +88,18 @@ export function DocumentsPage() {
             </select>
           </label>
           <label>
-            Contexto de publicación
+            Agrupación de origen
             <select
               value={status}
               onChange={(e) => update("estado", e.target.value)}
             >
               <option value="">Todos los documentos</option>
               <option value="reciente">
-                Desde el 04/08/2025 · Por validar
+                Desde el 04/08/2025 · Aplicación por confirmar
               </option>
-              <option value="historico">Archivo histórico de la fuente</option>
+              <option value="historico">
+                Histórico hasta el 03/08/2025 · Por validar
+              </option>
             </select>
           </label>
           <button className="reset-button" onClick={() => setParams({})}>
@@ -111,20 +110,28 @@ export function DocumentsPage() {
       </div>
       <div className="results-header">
         <p role="status">
-          <strong>{filtered.length}</strong> documentos encontrados
+          <strong>{filtered.length}</strong>{" "}
+          {filtered.length === 1
+            ? "documento encontrado"
+            : "documentos encontrados"}
         </p>
         <span>
           <SlidersHorizontal size={15} aria-hidden="true" />
-          Biblioteca institucional
+          Catálogo de normativa
         </span>
       </div>
+      <p className="caption catalogue-unit">
+        El contador indica documentos o versiones, no referencias por servicio.
+        Un documento compartido se muestra una sola vez.
+      </p>
       <div className="document-list">
         {filtered.map((d) => (
           <DocumentRow
             key={d.id}
             href={d.urlPublic}
             title={d.title}
-            subtitle={`${d.service} · ${d.type} · ${d.context} · PDF`}
+            services={d.services}
+            subtitle={`${d.type} · ${sourceGroupingLabel(d)} · PDF`}
           />
         ))}
       </div>
@@ -133,6 +140,24 @@ export function DocumentsPage() {
         Se conservan los archivos en sus URLs públicas originales. Las
         directivas de Arbitraje y JPRD se muestran como referencias separadas.
       </p>
+      <section
+        className="related-information"
+        aria-label="Recursos relacionados"
+      >
+        <h2>Recursos relacionados</h2>
+        <p>
+          Certificaciones y reclamaciones se consultan fuera de este catálogo
+          normativo.
+        </p>
+        <div>
+          <Link className="text-link" to={pathFor("certificaciones")}>
+            Certificaciones y constancias
+          </Link>
+          <a className="text-link" href={site.claimsForm}>
+            Formato de reclamaciones (DOCX)
+          </a>
+        </div>
+      </section>
     </div>
   );
 }
@@ -150,6 +175,7 @@ export function ProfessionalsPage({
     () => professionals.filter((p) => p.kind === kind),
     [kind],
   );
+  const groups = [...new Set(all.map((person) => person.group))];
   const reset = () => {
     setQuery("");
     setGroup("");
@@ -189,15 +215,17 @@ export function ProfessionalsPage({
           </div>
         </label>
         <div className="filter-row">
-          <label>
-            Grupo
-            <select value={group} onChange={(e) => setGroup(e.target.value)}>
-              <option value="">Todos los grupos</option>
-              {[...new Set(all.map((p) => p.group))].map((t) => (
-                <option key={t}>{t}</option>
-              ))}
-            </select>
-          </label>
+          {groups.length > 1 && (
+            <label>
+              Grupo
+              <select value={group} onChange={(e) => setGroup(e.target.value)}>
+                <option value="">Todos los grupos</option>
+                {groups.map((t) => (
+                  <option key={t}>{t}</option>
+                ))}
+              </select>
+            </label>
+          )}
           <label>
             Profesión publicada
             <select
@@ -235,7 +263,10 @@ export function ProfessionalsPage({
       </div>
       <div className="results-header">
         <p role="status">
-          <strong>{filtered.length}</strong> registros encontrados
+          <strong>{filtered.length}</strong>{" "}
+          {filtered.length === 1
+            ? "registro encontrado"
+            : "registros encontrados"}
         </p>
         <span>Periodo 2025 · Fuente institucional</span>
       </div>
@@ -303,49 +334,64 @@ export function ProfessionalsPage({
         </div>
         <Link className="text-link" to={pathFor("documentos") + "?tipo=Ficha"}>
           Ver fichas
-          <ArrowUpRight size={18} aria-hidden="true" />
         </Link>
       </div>
       <p className="caption">
-        Los registros de distintos grupos se conservan por separado. Para
-        información sobre incorporación, escribe a{" "}
+        {groups.length > 1
+          ? "Los registros de distintos grupos se conservan por separado. "
+          : "Los registros corresponden al grupo publicado de contratación pública. "}
+        Para información sobre incorporación, escribe a{" "}
         <a href={`mailto:${site.emails[0]}`}>{site.emails[0]}</a>.
       </p>
     </div>
   );
 }
 
+const certificatePresentation = [
+  { id: "2", image: "/assets/certificates/iso-9001.webp", title: "ISO 9001", category: "Gestión de la calidad", description: "Consulta el certificado publicado y revisa su alcance, versión y periodo de validez." },
+  { id: "1", image: "/assets/certificates/iso-37001.webp", title: "ISO 37001", category: "Gestión antisoborno", description: "Accede al certificado para conocer la norma de referencia y el alcance documentado." },
+  { id: "4", image: "/assets/certificates/oece-arbitraje.webp", title: "Constancia de Arbitraje", category: "OECE · Arbitraje", description: "Documento institucional correspondiente al servicio de arbitraje." },
+  { id: "3", image: "/assets/certificates/oece-jprd.webp", title: "Constancia de JPRD", category: "OECE · JPRD", description: "Documento correspondiente a Juntas de Prevención y Resolución de Disputas." },
+  { id: "0", image: "/assets/certificates/licencia-funcionamiento.webp", title: "Licencia de funcionamiento", category: "Autorización municipal", description: "Consulta la licencia de funcionamiento publicada por CENARD." },
+];
+
 export function CertificationsPage() {
   return (
-    <div className="container page-content">
-      <InfoNote title="Documentación pública, con información verificable">
-        La publicación de estos documentos no implica una afirmación de
-        vigencia. La fuente presenta una diferencia de versión para ISO 37001
-        que debe confirmar CENARD.
-      </InfoNote>
-      <div className="certification-grid">
-        {certificates.map((c, i) => (
-          <article className="certification-card" key={c.id}>
-            <div className="certification-top">
-              <FileCheck2 size={32} strokeWidth={1.2} aria-hidden="true" />
-              <span>0{i + 1} / DOCUMENTO</span>
+    <div className="container page-content credentials-page">
+      {[
+        { id: "iso", label: "01 / Sistemas de gestión", title: "Certificaciones ISO", items: certificatePresentation.slice(0, 2) },
+        { id: "institucional", label: "02 / Documentación institucional", title: "Constancias y licencia", items: certificatePresentation.slice(2) },
+      ].map((group) => (
+        <section className={`credentials-section credentials-section--${group.id}`} key={group.id} aria-labelledby={`credentials-${group.id}`}>
+          <div className="credentials-heading">
+            <div>
+              <p className="credentials-kicker">{group.label}</p>
+              <h2 id={`credentials-${group.id}`}>{group.title}</h2>
             </div>
-            <h2>{c.title}</h2>
-            <p>
-              {i === 0
-                ? "Documento de licencia de funcionamiento publicado por la institución."
-                : i < 3
-                  ? "Certificado publicado en la sección institucional. Consulta el documento para revisar su denominación y alcance."
-                  : "Constancia publicada por CENARD. Consulta el documento original para revisar su contenido."}
-            </p>
-            <div className="validation-status">
-              <Check size={15} aria-hidden="true" />
-              {c.status}
-            </div>
-            <ExternalLink href={c.url}>Ver {c.title} (PDF)</ExternalLink>
-          </article>
-        ))}
-      </div>
+          </div>
+          <div className="credentials-grid">
+            {group.items.map((item) => {
+              const certificate = certificates.find((entry) => entry.id === item.id)!;
+              return (
+                <article className="credential-card" key={item.id}>
+                  <div className="credential-logo">
+                    <img src={item.image} alt={item.title === "Licencia de funcionamiento" ? "Municipalidad de Magdalena del Mar · Licencia de funcionamiento" : item.category.startsWith("OECE") ? `OECE · ${item.title}` : `Sello ${item.title}`} width={item.id === "1" || item.id === "2" ? 150 : 300} height={item.id === "1" || item.id === "2" ? 150 : item.id === "0" ? 86 : item.id === "3" ? 106 : 110} />
+                  </div>
+                  <div className="credential-body">
+                    <p className="credential-category">{item.category}</p>
+                    <h3>{item.title}</h3>
+                    <p className="credential-description">{item.description}</p>
+                    <a href={certificate.url} className="credential-action" target="_blank" rel="noreferrer">
+                      Ver documento
+                      <span className="sr-only"> · {item.title} (PDF, abre en otra pestaña)</span>
+                    </a>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </section>
+      ))}
     </div>
   );
 }

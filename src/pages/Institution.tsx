@@ -1,6 +1,5 @@
+import type { ReactNode } from "react";
 import {
-  ArrowDown,
-  ArrowUpRight,
   BookOpenText,
   Compass,
   Mail,
@@ -23,7 +22,7 @@ import { features, notice, pathFor, site } from "../data/site";
 import council from "../data/council.json";
 import secretary from "../data/secretary.json";
 import faq from "../data/faq.json";
-import docs from "../data/documents.json";
+import { documents as docs, sourceGroupingLabel } from "../data/documents";
 
 export function AboutPage() {
   return (
@@ -45,7 +44,7 @@ export function AboutPage() {
             controversias de manera eficiente, transparente y confiable, con
             procesos imparciales y especializados.
           </p>
-          <ButtonLink to={pathFor("arbitraje")}>Nuestros servicios</ButtonLink>
+          <ButtonLink to="/web/#servicios">Nuestros servicios</ButtonLink>
         </div>
         <figure>
           <img
@@ -103,18 +102,17 @@ export function AboutPage() {
           title="Las personas detrás de la institución."
         />
         <div className="link-rows">
-          <ArrowLink to={pathFor("secretaria-general")}>
+          <ArrowLink to={pathFor("organizacion-institucional") + "#direccion-secretaria"}>
             Secretaría General y Director
           </ArrowLink>
-          <ArrowLink to={pathFor("alto-consejo")}>Alto Consejo</ArrowLink>
-          <ArrowLink to={pathFor("organigrama")}>
+          <ArrowLink to={pathFor("organizacion-institucional") + "#alto-consejo"}>Alto Consejo</ArrowLink>
+          <ArrowLink to={pathFor("organizacion-institucional") + "#estructura-institucional"}>
             Estructura institucional
           </ArrowLink>
         </div>
         <details className="plain-details">
           <summary>
             Comunicado sobre identidad institucional
-            <ArrowDown size={18} aria-hidden="true" />
           </summary>
           {notice.map((p) => (
             <p key={p}>{p}</p>
@@ -125,142 +123,143 @@ export function AboutPage() {
   );
 }
 
-export function SecretaryPage() {
+const councilSpecialties = [
+  ["Ingeniería civil", "Obras públicas y privadas"],
+  ["Derecho corporativo", "Transacciones internacionales"],
+  ["Derecho societario", "Fusiones y adquisiciones"],
+  ["Gestión pública", "Contratación y arbitraje"],
+  ["Ingeniería civil", "Gestión de proyectos"],
+];
+
+function InstitutionalProfile({
+  id, name, role, image, initials, specialties = [], biography, subheading = false, placeholder = false, rolePreview = false,
+}: {
+  id: string;
+  name: string;
+  role: string;
+  image?: string;
+  initials?: string;
+  specialties?: string[];
+  biography?: ReactNode;
+  subheading?: boolean;
+  placeholder?: boolean;
+  description?: string;
+  rolePreview?: boolean;
+}) {
+  const Heading = subheading ? "h4" : "h3";
   return (
-    <div className="container page-content">
-      <InfoNote>
-        Perfiles reproducidos de la fuente institucional. La vigencia de los
-        cargos y las biografías requiere confirmación antes de publicar.
-      </InfoNote>
-      <div className="profile-feature">
-        <div className="profile-monogram" aria-hidden="true">
-          <span>AC</span>
-          <span>CENARD / DIRECCIÓN</span>
+    <article className="council-profile" aria-labelledby={id}>
+      <div className="council-profile-overview">
+        {image ? (
+          <div className="council-portrait">
+            <img src={image} width="600" height="900" alt={placeholder ? `Foto de muestra del secretario general, utilizada provisionalmente en la tarjeta de ${name}` : name} loading="lazy" />
+            {placeholder && <span className="profile-photo-sample">Foto de muestra</span>}
+          </div>
+        ) : (
+          <div className={`institutional-neutral-portrait${placeholder ? " institutional-photo-placeholder" : ""}`} role={placeholder ? "img" : undefined} aria-label={placeholder ? `Fotografía pendiente de ${name}` : undefined} aria-hidden={placeholder ? undefined : true}>
+            {initials ? <span>{initials}</span> : <UsersRound size={64} strokeWidth={1} />}
+            <small>{placeholder ? "Foto pendiente" : "CENARD"}</small>
+          </div>
+        )}
+        <div className="council-profile-heading">
+          <p className="council-role">{role}</p>
+          <Heading id={id}>{name}</Heading>
+          {specialties.length > 0 && (
+            <ul className="council-specialties" aria-label="Áreas de experiencia">
+              {specialties.map((specialty) => <li key={specialty}>{specialty}</li>)}
+            </ul>
+          )}
+          {!biography && <p className="institutional-profile-caption">La fuente disponible no incluye una biografía profesional.</p>}
         </div>
-        <div>
-          <Eyebrow>{secretary.role}</Eyebrow>
-          <h2>{secretary.name}</h2>
-          <p className="lead">{secretary.intro}</p>
-          <div className="bio-sections">
-            {secretary.sections.map((s) => (
-              <section key={s.title}>
-                <h3>{s.title}</h3>
-                <p>{s.text}</p>
-              </section>
-            ))}
+      </div>
+      {biography && (
+        <details className="council-biography">
+          <summary>
+            <span className="council-profile-open">{rolePreview ? "Ver funciones del rol" : "Ver perfil profesional"}</span>
+            <span className="council-profile-close">{rolePreview ? "Cerrar funciones del rol" : "Cerrar perfil profesional"}</span>
+            <span className="sr-only"> de {name}</span>
+          </summary>
+          <div className="council-biography-text">{biography}</div>
+        </details>
+      )}
+    </article>
+  );
+}
+
+export function InstitutionalOrganizationPage() {
+  return (
+    <div className="container page-content institutional-organization">
+      <nav className="organization-section-nav" aria-label="Secciones de Organización institucional">
+        <a href="#estructura-institucional">Estructura institucional</a>
+        <a href="#alto-consejo">Alto Consejo</a>
+        <a href="#direccion-secretaria">Dirección y Secretaría</a>
+      </nav>
+
+      <section id="estructura-institucional" className="organization-section" aria-labelledby="structure-title">
+        <div className="council-directory-heading">
+          <div><Eyebrow>Gobierno institucional</Eyebrow><h2 id="structure-title">Estructura institucional</h2></div>
+        </div>
+        <p className="organ-intro">Una estructura jerárquica que articula la conducción institucional con el funcionamiento del centro.</p>
+        <div className="organ-reference-layout">
+          <figure className="organ-source-figure">
+            <img src="/assets/institution/organigrama.webp" width="600" height="600" loading="lazy" alt="Organigrama de CENARD: El Director, El Alto Consejo y La Secretaría General, de dirección a gestión." />
+          </figure>
+          <div className="organ-description">
+            <p>El organigrama del <strong>CENARD Arbitraje</strong> muestra una estructura jerárquica clara y formal. En la cima se ubica <strong>El Director</strong> como <strong>Órgano Directivo</strong>, responsable de la conducción institucional y de definir las directrices generales. En el nivel intermedio está <strong>El Alto Consejo</strong>, <strong>Órgano Decisorio</strong> que analiza, delibera y adopta resoluciones clave. En la base se encuentra <strong>La Secretaría General</strong>, <strong>Órgano de Gestión</strong> encargado de ejecutar las políticas, coordinar la administración y asegurar el funcionamiento operativo del centro.</p>
           </div>
         </div>
-      </div>
-      <article className="technical-profile">
-        <UsersRound size={30} strokeWidth={1.2} aria-hidden="true" />
-        <div>
-          <Eyebrow>Equipo de secretaría</Eyebrow>
-          <h2>{secretary.technical.name}</h2>
-          <p>{secretary.technical.role}</p>
-        </div>
-        <a href={`mailto:${site.emails[1]}`} className="text-link">
-          Contactar a Secretaría
-          <ArrowUpRight size={18} aria-hidden="true" />
-        </a>
-      </article>
-      <p className="caption">
-        Se ha conservado una sola fuente de contenido para cada perfil. No se
-        atribuyen retratos sin identificación verificable en la fuente.
-      </p>
-    </div>
-  );
-}
+      </section>
 
-export function CouncilPage() {
-  return (
-    <div className="container page-content">
-      <InfoNote title="Composición publicada por CENARD">
-        Se conservan los cinco nombres y sus biografías de la fuente. La
-        composición vigente y las fotografías requieren confirmación
-        institucional.
-      </InfoNote>
-      <div className="council-grid">
-        {council.map((p, i) => (
-          <article className="council-card" key={p.name}>
-            <div className="council-image">
-              <img
-                src={p.image}
-                width="600"
-                height="900"
-                alt={p.name}
-                loading="lazy"
-              />
-              <span>0{i + 1}</span>
-            </div>
-            <div className="council-info">
-              <p className="eyebrow">ALTO CONSEJO</p>
-              <h2>{p.name}</h2>
-              <details>
-                <summary>
-                  Ver perfil profesional
-                  <ArrowDown size={16} aria-hidden="true" />
-                </summary>
-                <p>{p.bio}</p>
-              </details>
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-const structure = [
-  {
-    title: "El Director",
-    type: "Órgano Directivo",
-    text: "Responsable de la conducción institucional y de definir las directrices generales del centro.",
-  },
-  {
-    title: "El Alto Consejo",
-    type: "Órgano Decisorio",
-    text: "Analiza, delibera y adopta resoluciones clave para la institución.",
-  },
-  {
-    title: "La Secretaría General",
-    type: "Órgano de Gestión",
-    text: "Ejecuta las políticas, coordina la administración y asegura el funcionamiento operativo del centro.",
-  },
-];
-export function OrganizationPage() {
-  return (
-    <div className="container page-content">
-      <div className="organization-layout">
-        <div>
-          <Eyebrow>Gobierno institucional</Eyebrow>
-          <h2>
-            Dirección, decisión
-            <br />y gestión.
-          </h2>
-          <p>
-            Una estructura jerárquica que articula la conducción institucional
-            con el funcionamiento del centro.
-          </p>
-          <p className="caption">
-            Jerarquía y funciones según el organigrama publicado por CENARD.
-          </p>
-          <ArrowLink to={pathFor("secretaria-general")}>
-            Conocer la dirección
-          </ArrowLink>
+      <section id="alto-consejo" className="organization-section council-gallery" aria-labelledby="council-title">
+        <div className="council-directory-heading">
+          <div><Eyebrow>Integrantes</Eyebrow><h2 id="council-title">Alto Consejo</h2></div>
+          <span className="council-count">{council.length} integrantes</span>
         </div>
-        <ol className="org-chart">
-          {structure.map((p, i) => (
-            <li key={p.title}>
-              <span className="org-step">0{i + 1}</span>
-              <div>
-                <span className="eyebrow">{p.type}</span>
-                <h3>{p.title}</h3>
-                <p>{p.text}</p>
-              </div>
-            </li>
+        <div className="council-directory">
+          {council.map((person, index) => (
+            <InstitutionalProfile key={person.name} id={`council-name-${index}`} name={person.name} role="Alto Consejo · CENARD" image={person.image} specialties={councilSpecialties[index]} biography={<><p className="council-biography-label">Trayectoria y formación</p><p>{person.bio}</p></>} />
           ))}
-        </ol>
-      </div>
+        </div>
+      </section>
+
+      <section id="direccion-secretaria" className="organization-section council-gallery" aria-labelledby="management-title">
+        <div className="council-directory-heading">
+          <div><Eyebrow>Dirección y gestión</Eyebrow><h2 id="management-title">Dirección y Secretaría General</h2></div>
+        </div>
+        <nav className="management-options-nav" aria-label="Comparar diseños de Dirección y Secretaría">
+          {[1, 2, 3].map((number) => <a key={number} href={`#direccion-propuesta-${number}`}>Propuesta {number}</a>)}
+        </nav>
+        {[
+          { id: 1, style: "portrait", title: "Retratos protagonistas", description: "Fotografía amplia sobre fondo blanco, con una presentación cercana y ordenada." },
+          { id: 2, style: "editorial", title: "Composición editorial", description: "Retrato lateral y bloque verde para dar fuerza a la identidad institucional." },
+          { id: 3, style: "round", title: "Perfiles circulares", description: "Retratos circulares y composición centrada, con un tratamiento más ligero." },
+        ].map((proposal) => (
+          <section key={proposal.id} id={`direccion-propuesta-${proposal.id}`} className={`management-choice management-choice--${proposal.style}`} aria-labelledby={`management-choice-title-${proposal.id}`}>
+            <div className="management-choice-heading">
+              <span className="management-choice-label">Propuesta {proposal.id}</span>
+              <h3 id={`management-choice-title-${proposal.id}`}>{proposal.title}</h3>
+              <p>{proposal.description}</p>
+            </div>
+            <div className="organization-management-grid">
+              <div>
+                <p className="organization-office-title">Dirección</p>
+                <InstitutionalProfile id={`director-name-${proposal.id}`} name={secretary.name} role={secretary.role} image="/assets/team/angel-alcala-contreras.webp" subheading biography={<><p>{secretary.intro}</p>{secretary.sections.map((section) => <section className="institutional-bio-section" key={section.title}><h5>{section.title}</h5><p>{section.text}</p></section>)}</>} />
+              </div>
+              <div>
+                <p className="organization-office-title">Secretaría General</p>
+                <InstitutionalProfile id={`secretary-name-${proposal.id}`} name={secretary.technical.name} role={secretary.technical.role} image="/assets/team/angel-alcala-contreras.webp" placeholder subheading rolePreview description="La secretaría arbitral brinda apoyo al tribunal en la tramitación del arbitraje y facilita la coordinación de las actuaciones y comunicaciones del proceso." biography={<>
+                  <p className="profile-role-sample">Funciones generales · texto provisional</p>
+                  <p>Esta descripción sirve para visualizar el diseño. No es una biografía de Elizabeth ni una relación de funciones aprobada por CENARD.</p>
+                  <section className="institutional-bio-section"><h5>Apoyo en la tramitación</h5><p>La secretaría arbitral asiste al tribunal en el desarrollo de las actuaciones del arbitraje y contribuye a su gestión administrativa.</p></section>
+                  <section className="institutional-bio-section"><h5>Coordinación y comunicaciones</h5><p>De forma general, puede apoyar la organización de audiencias y mantener las comunicaciones entre las partes y el tribunal, según las reglas de la institución correspondiente.</p></section>
+                </>} />
+              </div>
+            </div>
+          </section>
+        ))}
+        <p className="caption organization-profile-note">Vista de comparación: la fotografía del secretario general se repite provisionalmente en la tarjeta de Elizabeth. Su texto describe el rol de secretaría arbitral y está pendiente de validación institucional.</p>
+        <a href={`mailto:${site.emails[1]}`} className="button button-secondary">Contactar a Secretaría</a>
+      </section>
     </div>
   );
 }
@@ -268,7 +267,8 @@ export function OrganizationPage() {
 export function ServicePage({ jprd = false }: { jprd?: boolean }) {
   const service = jprd ? "JPRD" : "Arbitraje";
   const selected = docs.filter(
-    (d) => d.service === service && !d.status.startsWith("Histórico"),
+    (d) =>
+      d.services.includes(service) && d.sourceGrouping.kind !== "historico",
   );
   return (
     <div className="container page-content">
@@ -311,7 +311,9 @@ export function ServicePage({ jprd = false }: { jprd?: boolean }) {
             </>
           )}
           <ArrowLink to={pathFor("servicio-de-arbitraje")}>
-            Resolver preguntas frecuentes
+            {jprd
+              ? "Preguntas frecuentes sobre arbitraje"
+              : "Resolver preguntas frecuentes"}
           </ArrowLink>
         </div>
         <aside className="service-resource-box">
@@ -344,7 +346,6 @@ export function ServicePage({ jprd = false }: { jprd?: boolean }) {
         <details className="plain-details">
           <summary>
             Leer descripción normativa publicada
-            <ArrowDown size={18} aria-hidden="true" />
           </summary>
           <p>
             Según la descripción institucional, las funciones de la JPRD se
@@ -410,15 +411,17 @@ export function ServicePage({ jprd = false }: { jprd?: boolean }) {
           </ArrowLink>
         </SectionHeading>
         <p className="caption">
-          Documentos agrupados en la fuente desde el 04 de agosto de 2025.
-          Vigencia actual pendiente de validación.
+          Agrupación de origen: desde el 04/08/2025 · Aplicación por confirmar.
+          Esta agrupación no establece la fecha de publicación individual de los
+          archivos.
         </p>
         <div className="document-list">
           {selected.map((d) => (
             <DocumentRow
               key={d.id}
               title={d.title}
-              subtitle={`${d.type} · ${service} · PDF`}
+              services={d.services}
+              subtitle={`${d.type} · ${sourceGroupingLabel(d)} · PDF`}
               href={d.urlPublic}
             />
           ))}
@@ -454,8 +457,11 @@ export function FaqPage() {
         <Eyebrow>Orientación institucional</Eyebrow>
         <h2>Información para dar el primer paso.</h2>
         <p>
-          Estas respuestas recogen el contenido publicado por CENARD. Para una
-          consulta específica, comunícate con Secretaría General.
+          Estas respuestas recogen la orientación general publicada por CENARD.
+        </p>
+        <h3 className="faq-specific-title">Consulta específica</h3>
+        <p>
+          Para una consulta sobre tu caso, comunícate con Secretaría General.
         </p>
         <ArrowLink to={pathFor("contacto")}>Ver canales de atención</ArrowLink>
         <p className="caption">
@@ -469,10 +475,28 @@ export function FaqPage() {
             <summary>
               <span className="faq-number">0{i + 1}</span>
               <span>{f.q}</span>
-              <ArrowDown size={18} aria-hidden="true" />
             </summary>
             <div>
-              <p>{f.a}</p>
+              {f.items?.length ? (
+                <ul>
+                  {f.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              ) : (
+                <p>{f.a}</p>
+              )}
+              {f.documentId &&
+                docs.find((document) => document.id === f.documentId) && (
+                  <ExternalLink
+                    href={
+                      docs.find((document) => document.id === f.documentId)!
+                        .urlPublic
+                    }
+                  >
+                    Consultar Reglamento Procesal y Apéndices (PDF)
+                  </ExternalLink>
+                )}
             </div>
           </details>
         ))}
@@ -569,7 +593,6 @@ export function ContactPage() {
                 <strong>{email}</strong>
                 <small>Escribir un correo</small>
               </span>
-              <ArrowUpRight size={20} aria-hidden="true" />
             </a>
           ))}
           <a href={site.phoneHref}>
@@ -579,7 +602,6 @@ export function ContactPage() {
               <strong>{site.phone}</strong>
               <small>Llamar a CENARD</small>
             </span>
-            <ArrowUpRight size={20} aria-hidden="true" />
           </a>
           <a href={site.whatsapp} target="_blank" rel="noreferrer">
             <UsersRound size={25} strokeWidth={1.2} aria-hidden="true" />
@@ -588,10 +610,27 @@ export function ContactPage() {
               <strong>Conversemos por WhatsApp</strong>
               <small>Abrir conversación en una nueva pestaña</small>
             </span>
-            <ArrowUpRight size={20} aria-hidden="true" />
           </a>
         </div>
       </div>
+      <section
+        id="reclamaciones"
+        className="related-information claims-section"
+        aria-labelledby="reclamaciones-titulo"
+      >
+        <Eyebrow>Recurso público</Eyebrow>
+        <h2 id="reclamaciones-titulo" tabIndex={-1}>
+          Libro de Reclamaciones
+        </h2>
+        <p>
+          Formato público disponible para descarga. Las instrucciones de
+          presentación, los plazos y los canales de recepción están pendientes
+          de confirmación de CENARD.
+        </p>
+        <a className="text-link" href={site.claimsForm}>
+          Descargar formato de reclamaciones (DOCX)
+        </a>
+      </section>
     </div>
   );
 }

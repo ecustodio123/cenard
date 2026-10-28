@@ -1,0 +1,77 @@
+[
+  {
+    "breadcrumbs": 0,
+    "brokenImages": 0,
+    "columns": "265px",
+    "councilCards": 5,
+    "h1": 1,
+    "open": 0,
+    "overflow": false,
+    "sections": [
+      "estructura-institucional",
+      "alto-consejo",
+      "direccion-secretaria"
+    ],
+    "width": 320
+  },
+  {
+    "breadcrumbs": 0,
+    "brokenImages": 0,
+    "columns": "335px",
+    "councilCards": 5,
+    "h1": 1,
+    "open": 0,
+    "overflow": false,
+    "sections": [
+      "estructura-institucional",
+      "alto-consejo",
+      "direccion-secretaria"
+    ],
+    "width": 390
+  },
+  {
+    "breadcrumbs": 0,
+    "brokenImages": 0,
+    "columns": "331.5px 331.5px",
+    "councilCards": 5,
+    "h1": 1,
+    "open": 0,
+    "overflow": false,
+    "sections": [
+      "estructura-institucional",
+      "alto-consejo",
+      "direccion-secretaria"
+    ],
+    "width": 768
+  },
+  {
+    "breadcrumbs": 0,
+    "brokenImages": 0,
+    "columns": "459.5px 459.5px",
+    "councilCards": 5,
+    "h1": 1,
+    "open": 0,
+    "overflow": false,
+    "sections": [
+      "estructura-institucional",
+      "alto-consejo",
+      "direccion-secretaria"
+    ],
+    "width": 1024
+  },
+  {
+    "breadcrumbs": 0,
+    "brokenImages": 0,
+    "columns": "382.656px 382.672px 382.656px",
+    "councilCards": 5,
+    "h1": 1,
+    "open": 0,
+    "overflow": false,
+    "sections": [
+      "estructura-institucional",
+      "alto-consejo",
+      "direccion-secretaria"
+    ],
+    "width": 1440
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "listItems": 6,
+    "openAnswers": 2,
+    "overflow": false,
+    "width": 320
+  },
+  {
+    "listItems": 6,
+    "openAnswers": 2,
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "listItems": 6,
+    "openAnswers": 2,
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "listItems": 6,
+    "openAnswers": 2,
+    "overflow": false,
+    "width": 1440
+  }
+]

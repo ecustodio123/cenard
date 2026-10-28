@@ -13,19 +13,15 @@ import {
 import {
   AboutPage,
   ContactPage,
-  CouncilPage,
   FaqPage,
   IntegrityPage,
-  OrganizationPage,
-  SecretaryPage,
+  InstitutionalOrganizationPage,
   ServicePage,
 } from "./pages/Institution";
 import type { ReactNode } from "react";
 const components: Record<string, ReactNode> = {
   conocenos: <AboutPage />,
-  "secretaria-general": <SecretaryPage />,
-  "alto-consejo": <CouncilPage />,
-  organigrama: <OrganizationPage />,
+  "organizacion-institucional": <InstitutionalOrganizationPage />,
   certificaciones: <CertificationsPage />,
   arbitraje: <ServicePage />,
   jprd: <ServicePage jprd />,

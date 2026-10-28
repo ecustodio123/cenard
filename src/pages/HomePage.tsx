@@ -1,6 +1,4 @@
 import {
-  ArrowDown,
-  ArrowUpRight,
   BookOpenText,
   Calculator,
   FileCheck2,
@@ -104,7 +102,6 @@ export function HomePage() {
           <span>Institución · Servicios · Recursos</span>
           <a href="#recursos" aria-label="Explorar recursos">
             Explora CENARD
-            <ArrowDown size={15} aria-hidden="true" />
           </a>
         </div>
       </section>
@@ -123,11 +120,6 @@ export function HomePage() {
                 </div>
                 <h2>{s.title}</h2>
                 <p>{s.text}</p>
-                <ArrowUpRight
-                  size={19}
-                  aria-hidden="true"
-                  className="shortcut-arrow"
-                />
               </Link>
             ))}
           </div>
@@ -164,11 +156,9 @@ export function HomePage() {
               <div className="service-bottom">
                 <Link to={pathFor("documentos") + "?servicio=Arbitraje"}>
                   Normativa
-                  <ArrowUpRight size={14} aria-hidden="true" />
                 </Link>
                 <Link to={pathFor("listado-de-arbitros")}>
                   Nómina de árbitros
-                  <ArrowUpRight size={14} aria-hidden="true" />
                 </Link>
               </div>
             </article>
@@ -189,11 +179,9 @@ export function HomePage() {
               <div className="service-bottom">
                 <Link to={pathFor("documentos") + "?servicio=JPRD"}>
                   Normativa
-                  <ArrowUpRight size={14} aria-hidden="true" />
                 </Link>
                 <Link to={pathFor("nomina-de-adjudicadores")}>
                   Nómina de adjudicadores
-                  <ArrowUpRight size={14} aria-hidden="true" />
                 </Link>
               </div>
             </article>
@@ -228,17 +216,14 @@ export function HomePage() {
             </p>
             <ArrowLink to={pathFor("conocenos")}>Conoce CENARD</ArrowLink>
             <div className="institution-links">
-              <Link to={pathFor("alto-consejo")}>
+              <Link to={pathFor("organizacion-institucional") + "#alto-consejo"}>
                 Alto Consejo
-                <ArrowUpRight size={17} aria-hidden="true" />
               </Link>
-              <Link to={pathFor("organigrama")}>
+              <Link to={pathFor("organizacion-institucional") + "#estructura-institucional"}>
                 Estructura institucional
-                <ArrowUpRight size={17} aria-hidden="true" />
               </Link>
               <Link to={pathFor("certificaciones")}>
                 Certificaciones y constancias
-                <ArrowUpRight size={17} aria-hidden="true" />
               </Link>
             </div>
           </div>
@@ -296,7 +281,6 @@ export function HomePage() {
               </div>
               <span className="notice-open">
                 Leer comunicado
-                <ArrowDown size={16} aria-hidden="true" />
               </span>
             </summary>
             <div className="notice-content">
@@ -310,7 +294,6 @@ export function HomePage() {
                 rel="noreferrer"
               >
                 Ver comunicado original
-                <ArrowUpRight size={16} aria-hidden="true" />
                 <span className="sr-only"> (abre en otra pestaña)</span>
               </a>
               <p className="caption">

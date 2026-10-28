@@ -1,0 +1,125 @@
+[
+  {
+    "test": "Búsqueda ética",
+    "result": "2 documentos encontrados"
+  },
+  {
+    "test": "Búsqueda y filtros combinados",
+    "result": "1 documento encontrado",
+    "url": "http://127.0.0.1:5174/web/documentos/?q=%C3%A9tica&servicio=JPRD&tipo=C%C3%B3digo+de+%C3%A9tica"
+  },
+  {
+    "test": "Recarga conserva filtros",
+    "result": "1 documento encontrado",
+    "filters": [
+      "ética",
+      "JPRD",
+      "Código de ética",
+      ""
+    ]
+  },
+  {
+    "test": "Búsqueda inexistente",
+    "result": "0 documentos encontrados"
+  },
+  {
+    "test": "Restablecer biblioteca",
+    "result": "16 documentos encontrados"
+  },
+  {
+    "test": "Documentos de Arbitraje",
+    "result": "14 documentos encontrados"
+  },
+  {
+    "test": "Documentos de JPRD",
+    "result": "7 documentos encontrados"
+  },
+  {
+    "test": "Directivas independientes",
+    "documents": [
+      {
+        "services": [
+          "Arbitraje"
+        ],
+        "url": "https://cenardarbitraje.com/web/wp-content/uploads/2026/07/Directiva-01-Incorporacion-y-Renovacion.pdf"
+      },
+      {
+        "services": [
+          "JPRD"
+        ],
+        "url": "https://cenardarbitraje.com/web/wp-content/uploads/2025/08/Directiva-01-Incorporacion-y-Renovacion.pdf"
+      }
+    ]
+  },
+  {
+    "test": "Búsqueda ANDIA sin tilde",
+    "result": "2 registros encontrados"
+  },
+  {
+    "test": "Restablecer nómina",
+    "result": "132 registros encontrados"
+  },
+  {
+    "test": "Adjudicadores: grupo único sin filtro redundante",
+    "result": "27 registros encontrados",
+    "groupFilters": 0
+  },
+  {
+    "test": "CTA Conócenos y ancla servicios",
+    "result": {
+      "anchorTop": 225,
+      "focus": "H1",
+      "hash": "#servicios",
+      "headerBottom": 93
+    }
+  },
+  {
+    "test": "CTA JPRD específico",
+    "href": "/web/servicio-de-arbitraje/"
+  },
+  {
+    "test": "FAQ artículo 11 y documento contextual",
+    "href": "https://cenardarbitraje.com/web/wp-content/uploads/2026/05/Reglamento-Procesal-y-Apendices-2025-1.pdf"
+  },
+  {
+    "test": "FAQ teclado y lista legible",
+    "items": 6
+  },
+  {
+    "test": "Reclamaciones y CTA global oculto en Contacto",
+    "result": {
+      "anchorTop": 225,
+      "contactBands": 0,
+      "download": "https://cenardarbitraje.com/web/wp-content/uploads/2025/05/Formato-de-Reclamaciones-CENARD.docx",
+      "footer": "https://cenardarbitraje.com/web/wp-content/uploads/2025/05/Formato-de-Reclamaciones-CENARD.docx",
+      "headerBottom": 93,
+      "mail": [
+        "mailto:mesadepartes@cenardarbitraje.com",
+        "mailto:secretariageneral@cenardarbitraje.com"
+      ]
+    }
+  },
+  {
+    "test": "Menú por teclado",
+    "result": {
+      "bodyOverflow": "hidden",
+      "focus": "Conócenos",
+      "open": "true"
+    }
+  },
+  {
+    "test": "Escape devuelve foco",
+    "result": {
+      "focus": "Abrir menú",
+      "open": "false"
+    }
+  },
+  {
+    "test": "Foco visible",
+    "result": {
+      "outline": "solid",
+      "tag": "A",
+      "width": "3px"
+    }
+  }
+]

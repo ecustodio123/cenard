@@ -1,13 +1,9 @@
 import {
-  ArrowDown,
-  ArrowRight,
-  ArrowUpRight,
   FileText,
   Info,
 } from "lucide-react";
 import { Link } from "react-router";
 import type { ReactNode } from "react";
-import { pathFor } from "../data/site";
 
 export function ArrowLink({
   to,
@@ -21,7 +17,6 @@ export function ArrowLink({
   return (
     <Link to={to} className={`text-link ${className}`}>
       {children}
-      <ArrowRight size={18} aria-hidden="true" />
     </Link>
   );
 }
@@ -37,7 +32,6 @@ export function ButtonLink({
   return (
     <Link className={`button ${secondary ? "button-secondary" : ""}`} to={to}>
       {children}
-      <ArrowRight size={18} aria-hidden="true" />
     </Link>
   );
 }
@@ -58,7 +52,6 @@ export function ExternalLink({
       rel="noreferrer"
     >
       {children}
-      <ArrowUpRight size={18} aria-hidden="true" />
       <span className="sr-only"> (abre en otra pestaña)</span>
     </a>
   );
@@ -125,11 +118,6 @@ export function PageIntro({
   return (
     <section className="page-intro">
       <div className="container">
-        <nav className="breadcrumbs" aria-label="Ruta de navegación">
-          <Link to={pathFor()}>Inicio</Link>
-          <span aria-hidden="true">/</span>
-          <span>{section}</span>
-        </nav>
         <Eyebrow>{section}</Eyebrow>
         <h1 tabIndex={-1}>{title}</h1>
         <p className="lead">{description}</p>
@@ -141,10 +129,12 @@ export function DocumentRow({
   title,
   subtitle,
   href,
+  services = [],
 }: {
   title: string;
   subtitle: string;
   href: string;
+  services?: string[];
 }) {
   return (
     <a className="document-row" href={href} target="_blank" rel="noreferrer">
@@ -153,11 +143,19 @@ export function DocumentRow({
       </span>
       <span className="document-text">
         <span className="document-title">{title}</span>
+        {services.length > 0 && (
+          <span className="document-services">
+            {services.map((service) => (
+              <span className="tag" key={service}>
+                {service}
+              </span>
+            ))}
+          </span>
+        )}
         <span className="document-subtitle">{subtitle}</span>
       </span>
       <span className="document-action">
         Ver PDF
-        <ArrowUpRight size={18} aria-hidden="true" />
       </span>
       <span className="sr-only"> (abre en otra pestaña)</span>
     </a>
@@ -171,7 +169,6 @@ export function EmptyState({ reset }: { reset: () => void }) {
       <p>Prueba con otro término o restablece los filtros.</p>
       <button className="button button-secondary" onClick={reset}>
         Restablecer filtros
-        <ArrowDown size={17} aria-hidden="true" />
       </button>
     </div>
   );
