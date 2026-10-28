@@ -66,7 +66,7 @@ export function AboutPage() {
             label="Nuestra forma de trabajar"
             title="Un compromiso compartido."
           />
-          <div className="principles-grid">
+          <div className="principles-grid about-principles">
             {[
               {
                 icon: Compass,
@@ -102,22 +102,26 @@ export function AboutPage() {
           label="Conoce la organización"
           title="Las personas detrás de la institución."
         />
-        <div className="link-rows">
+        <div className="link-rows about-organization-links">
           <ArrowLink to={pathFor("organizacion-institucional") + "#estructura-institucional"}>
             Estructura institucional
           </ArrowLink>
           <ArrowLink to={pathFor("organizacion-institucional") + "#direccion-secretaria"}>
-            Secretaría General y Director
+            Dirección y Secretaría General
           </ArrowLink>
           <ArrowLink to={pathFor("organizacion-institucional") + "#alto-consejo"}>Alto Consejo</ArrowLink>
         </div>
-        <details className="plain-details">
+        <details className="plain-details about-notice">
           <summary>
-            Comunicado sobre identidad institucional
+            <span>Comunicado sobre identidad institucional</span>
+            <span className="about-notice-action">
+              <span className="about-notice-read">Leer comunicado</span>
+              <span className="about-notice-close">Cerrar comunicado</span>
+            </span>
           </summary>
-          {notice.map((p) => (
-            <p key={p}>{p}</p>
-          ))}
+          <div className="about-notice-body">
+            {notice.map((p) => <p key={p}>{p}</p>)}
+          </div>
         </details>
       </section>
     </>
