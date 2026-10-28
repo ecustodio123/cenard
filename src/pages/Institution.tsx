@@ -304,11 +304,6 @@ export function ServicePage({ jprd = false }: { jprd?: boolean }) {
               </p>
             </>
           )}
-          <ArrowLink to={pathFor("servicio-de-arbitraje")}>
-            {jprd
-              ? "Preguntas frecuentes sobre arbitraje"
-              : "Resolver preguntas frecuentes"}
-          </ArrowLink>
         </div>
         <aside className="service-resource-box">
           <span className="eyebrow">RECURSOS DEL SERVICIO</span>
@@ -330,12 +325,6 @@ export function ServicePage({ jprd = false }: { jprd?: boolean }) {
           </ArrowLink>
         </aside>
       </div>
-      <InfoNote title="Información normativa por validar">
-        Las referencias a la Directiva 4–2025–OECE–CD y al límite de 2000 UIT
-        aparecen en la fuente de este servicio. Su alcance y aplicación actual
-        deben ser confirmados por CENARD. Consulta los textos originales; esta
-        preview no establece criterios jurídicos nuevos.
-      </InfoNote>
       {jprd && (
         <details className="plain-details">
           <summary>

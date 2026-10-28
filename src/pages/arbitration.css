@@ -1,0 +1,95 @@
+.arbitration-page { --arbitration-rule: #cbd5cd; }
+.arbitration-hero { background: var(--cream); border-bottom: 1px solid var(--line); }
+.arbitration-hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px; align-items: center; padding-block: 64px 52px; }
+.arbitration-hero h1 { font-size: clamp(3rem, 6vw, 5rem); margin-block: 20px 24px; }
+.arbitration-introduction { font-size: 21px; line-height: 1.6; max-width: 42ch; }
+.arbitration-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.arbitration-actions .button { font-size: 15px; min-height: 48px; }
+.arbitration-hero-image { border-top: 3px solid var(--accent); padding-top: 14px; }
+.arbitration-hero-image img { width: 100%; aspect-ratio: 1.4; object-fit: cover; }
+.arbitration-hero-image figcaption { font-size: 12px; color: var(--muted); line-height: 1.5; margin-top: 12px; max-width: 52ch; }
+.arbitration-tools { background: var(--green); color: white; padding-block: 36px 40px; }
+.arbitration-tools-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; margin-bottom: 32px; }
+.arbitration-kicker { color: #d0bb8a; font-size: 12px; text-transform: uppercase; letter-spacing: .12em; }
+.arbitration-tools h2 { font-size: 30px; }
+.arbitration-tools-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 28px; }
+.arbitration-tools-grid article { display: grid; grid-template-rows: subgrid; grid-row: span 4; padding-right: 24px; border-right: 1px solid #51716a; }
+.arbitration-tools-grid article:last-child { border: 0; padding-right: 0; }
+.arbitration-tools-grid svg { color: #d0bb8a; margin-bottom: 18px; }
+.arbitration-tools-grid h3 { color: white; font-size: 23px; margin-bottom: 12px; }
+.arbitration-tools-grid p { color: #d5e2dc; font-size: 16px; line-height: 1.55; padding-bottom: 18px; }
+.arbitration-tools-grid a { align-self: start; justify-self: start; font-size: 15px; font-weight: 600; text-decoration: underline; text-underline-offset: 5px; text-decoration-color: #8ba49a; min-height: 44px; display: flex; flex-direction: column; justify-content: center; padding-block: 8px; }
+.arbitration-tools-grid a:hover, .arbitration-tools-grid a:focus-visible { color: #f1d9a7; text-decoration-color: currentColor; }
+.arbitration-external { color: #d5e2dc; font-size: 11px; font-weight: 400; margin-top: 6px; }
+.arbitration-accompaniment { padding-block: 72px; }
+.arbitration-section-heading { display: flex; justify-content: space-between; align-items: end; gap: 32px; margin-bottom: 32px; }
+.arbitration-section-heading h2 { font-size: clamp(30px, 3vw, 40px); max-width: 24ch; margin-top: 16px; }
+.arbitration-section-heading > .text-link { flex-shrink: 0; font-size: 15px; text-decoration: underline; text-underline-offset: 5px; padding-block: 12px; }
+.arbitration-accompaniment-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 30px; }
+.arbitration-accompaniment-grid article { display: grid; grid-template-rows: subgrid; grid-row: span 3; border-top: 1px solid var(--arbitration-rule); padding-top: 20px; }
+.arbitration-number { color: var(--accent); font-size: 13px; letter-spacing: .08em; margin-bottom: 16px; }
+.arbitration-accompaniment-grid h3 { font-size: 26px; max-width: 19ch; margin-bottom: 16px; }
+.arbitration-accompaniment-grid p { font-size: 17px; line-height: 1.7; }
+.arbitration-editorial-note { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--line); max-width: 100ch; font-size: 13px; }
+.arbitration-library { background: var(--cream); border-block: 1px solid var(--line); padding-block: 64px; }
+#normativa-arbitraje { scroll-margin-top: 24px; }
+.arbitration-library-note { font-size: 15px; max-width: 85ch; margin-bottom: 28px; }
+.arbitration-document-groups { border-top: 2px solid var(--green); }
+.arbitration-document-group { border-bottom: 1px solid var(--arbitration-rule); }
+.arbitration-document-group summary { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 22px 24px; list-style: none; background: #e7e9e0; }
+.arbitration-document-group summary::-webkit-details-marker { display: none; }
+.arbitration-document-group summary:hover { background: #dfe5d9; }
+.arbitration-group-label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: .09em; color: var(--muted); margin-bottom: 4px; }
+.arbitration-group-title { display: block; font-family: var(--serif); font-size: 25px; }
+.arbitration-disclosure { font-size: 14px; text-decoration: underline; text-underline-offset: 5px; flex-shrink: 0; }
+.arbitration-hide, .arbitration-document-group[open] .arbitration-show { display: none; }
+.arbitration-document-group[open] .arbitration-hide { display: inline; }
+.arbitration-document-rows { background: white; padding-inline: 24px; }
+.arbitration-document { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 17px 8px; border-top: 1px solid var(--line); min-height: 78px; }
+.arbitration-document:first-child { border-top: 0; }
+.arbitration-document:hover { background: #f3f6f0; }
+.arbitration-document-title { display: block; font-size: 17px; line-height: 1.45; font-weight: 600; }
+.arbitration-document-type { display: block; font-size: 12px; color: var(--muted); margin-top: 4px; }
+.arbitration-pdf-action { flex-shrink: 0; text-decoration: underline; text-underline-offset: 5px; font-size: 14px; padding-block: 12px; }
+.arbitration-validation-note { margin-top: 28px; border-left: 2px solid var(--accent); padding: 4px 0 4px 20px; max-width: 94ch; }
+.arbitration-validation-note strong { display: block; font-size: 14px; margin-bottom: 8px; }
+.arbitration-validation-note p { font-size: 14px; line-height: 1.7; }
+@media (max-width: 1100px) {
+  .arbitration-hero-grid { gap: 36px; }
+  .arbitration-tools-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 28px; }
+  .arbitration-tools-grid article:nth-child(2) { border: 0; }
+  .arbitration-tools-grid article:nth-child(n+3) { margin-top: 28px; border-top: 1px solid #51716a; padding-top: 24px; }
+  .arbitration-section-heading { align-items: start; flex-direction: column; gap: 12px; }
+}
+@media (max-width: 767px) {
+  .arbitration-hero-grid { grid-template-columns: 1fr; padding-block: 36px 32px; gap: 28px; }
+  .arbitration-hero h1 { font-size: 54px; margin-block: 16px; }
+  .arbitration-introduction { font-size: 19px; }
+  .arbitration-actions { margin-top: 24px; }
+  .arbitration-hero-image img { height: 200px; aspect-ratio: auto; object-position: center 60%; }
+  .arbitration-tools-heading { flex-direction: column; gap: 8px; margin-bottom: 28px; }
+  .arbitration-accompaniment { padding-block: 44px; }
+  .arbitration-accompaniment-grid { grid-template-columns: 1fr; gap: 24px; }
+  .arbitration-accompaniment-grid article { display: block; }
+  .arbitration-number { display: block; margin-bottom: 10px; }
+  .arbitration-accompaniment-grid h3 { max-width: none; margin-bottom: 12px; }
+  .arbitration-library { padding-block: 44px; }
+  .arbitration-document-group summary { padding: 20px 16px; align-items: start; flex-direction: column; gap: 12px; }
+  .arbitration-document-rows { padding-inline: 12px; }
+  .arbitration-document { gap: 16px; padding-inline: 4px; }
+  .arbitration-document-title { font-size: 16px; }
+  .arbitration-group-title { font-size: 23px; }
+}
+@media (max-width: 540px) {
+  .arbitration-tools-grid { grid-template-columns: 1fr; gap: 0; }
+  .arbitration-tools-grid article, .arbitration-tools-grid article:nth-child(n+3) { display: block; margin-top: 0; padding: 24px 0; border-right: 0; border-top: 1px solid #51716a; }
+  .arbitration-tools-grid article:nth-child(2), .arbitration-tools-grid article:last-child { border-top: 1px solid #51716a; }
+  .arbitration-tools-grid article:first-child { border-top: 0; padding-top: 0; }
+  .arbitration-tools-grid article:last-child { padding-bottom: 0; }
+  .arbitration-tools-grid svg { margin-bottom: 12px; }
+  .arbitration-tools-grid h3 { margin-bottom: 8px; }
+  .arbitration-tools-grid p { padding-bottom: 8px; }
+  .arbitration-tools-grid a { display: inline-flex; }
+  .arbitration-actions { flex-direction: column; align-items: stretch; }
+  .arbitration-actions .button { justify-content: center; padding-inline: 12px; }
+}

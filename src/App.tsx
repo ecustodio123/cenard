@@ -3,6 +3,7 @@ import { Layout } from "./components/Layout";
 import { PageIntro } from "./components/UI";
 import { pages } from "./data/site";
 import { HomePage } from "./pages/HomePage";
+import { ArbitrationPage } from "./pages/Arbitration";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { CalculatorPage } from "./pages/CalculatorPage";
 import {
@@ -23,7 +24,7 @@ const components: Record<string, ReactNode> = {
   conocenos: <AboutPage />,
   "organizacion-institucional": <InstitutionalOrganizationPage />,
   certificaciones: <CertificationsPage />,
-  arbitraje: <ServicePage />,
+  arbitraje: <ArbitrationPage />,
   jprd: <ServicePage jprd />,
   documentos: <DocumentsPage />,
   "listado-de-arbitros": <ProfessionalsPage key="arbitro" kind="arbitro" />,
@@ -49,11 +50,11 @@ export default function App() {
               path={`web/${p.slug}/`}
               element={
                 <>
-                  <PageIntro
+                  {p.slug !== "arbitraje" && <PageIntro
                     title={p.title}
                     description={p.description}
                     section={p.section}
-                  />
+                  />}
                   {components[p.slug]}
                 </>
               }
