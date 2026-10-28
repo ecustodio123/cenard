@@ -4199,83 +4199,49 @@ figcaption,
   .institutional-neutral-portrait { height: 240px; }
 }
 
-/* Comparación de Dirección y Secretaría con retratos. */
-.management-options-nav { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 42px; }
-.management-options-nav a { min-height: 44px; padding: 10px 16px; display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 10px; background: white; font-size: 14px; font-weight: 600; }
-.management-options-nav a:hover { background: var(--green); color: white; }
-.management-choice { scroll-margin-top: 140px; }
-.management-choice + .management-choice { margin-top: 56px; padding-top: 44px; border-top: 1px solid var(--line); }
-.management-choice-heading { margin-bottom: 28px; }
-.management-choice-label { display: inline-flex; padding: 5px 11px; border-radius: 5px; background: var(--green); color: white; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; margin-bottom: 16px; }
-.management-choice-heading h3 { font: 400 clamp(28px, 3vw, 36px)/1.25 var(--serif); margin: 0 0 10px; }
-.management-choice-heading > p { color: var(--muted); font-size: 16px; margin: 0; max-width: 650px; }
-.management-choice .organization-office-title { font: 600 13px/1.5 var(--sans); letter-spacing: .05em; text-transform: uppercase; margin-bottom: 14px; }
-.management-choice .council-role { font-size: 10px; line-height: 1.6; }
-.management-choice .council-profile-heading h4 { overflow-wrap: anywhere; }
-.management-choice .council-portrait img { object-position: center 32%; }
-.management-choice .institutional-photo-placeholder { background: #e8ece5; color: #536c60; }
-.management-choice .institutional-photo-placeholder > span { font-size: 70px; }
-.management-choice .institutional-photo-placeholder small { font-size: 10px; letter-spacing: .13em; }
-/* 1. Galería clásica de dos retratos. */
-.management-choice--portrait .council-portrait, .management-choice--portrait .institutional-photo-placeholder { height: 380px; }
-.management-choice--portrait .council-profile-heading { min-height: 180px; }
-.management-choice--portrait .council-profile-heading h4 { font-size: 32px; }
-/* 2. Fotografía lateral y texto sobre verde. */
-.management-choice--editorial .council-profile { background: var(--green); border-color: var(--green); }
-.management-choice--editorial .council-profile-overview { display: grid; grid-template-columns: 190px minmax(0, 1fr); min-height: 310px; }
-.management-choice--editorial .council-portrait, .management-choice--editorial .institutional-photo-placeholder { height: 100%; min-height: 310px; }
-.management-choice--editorial .council-profile-heading { align-self: center; min-height: 0; padding: 28px; }
-.management-choice--editorial .council-profile-heading h4 { color: white; font-size: 30px; }
-.management-choice--editorial .council-role { color: #c7d9d0; }
-.management-choice--editorial .institutional-profile-caption { color: #c7d9d0; }
-.management-choice--editorial .council-biography { border-color: #ffffff30; padding: 22px 28px 26px; }
-.management-choice--editorial .council-biography summary { background: white; color: var(--green); border-color: white; }
-.management-choice--editorial .council-biography summary:hover { background: #e1e8df; }
-.management-choice--editorial .council-biography-text p { color: #e0e8df; }
-.management-choice--editorial .institutional-bio-section h5 { color: white; }
-/* 3. Retratos circulares sobre crema. */
-.management-choice--round .council-profile { background: var(--cream); border: 0; padding-top: 36px; }
-.management-choice--round .council-profile-overview { align-items: center; }
-.management-choice--round .council-portrait, .management-choice--round .institutional-photo-placeholder { width: 180px; height: 180px; border-radius: 50%; border: 5px solid white; }
-.management-choice--round .council-portrait img { object-position: center 30%; }
-.management-choice--round .institutional-photo-placeholder { gap: 12px; }
-.management-choice--round .institutional-photo-placeholder > span { font-size: 48px; }
-.management-choice--round .institutional-photo-placeholder small { font-size: 8px; letter-spacing: .06em; }
-.management-choice--round .council-profile-heading { text-align: center; min-height: 190px; padding: 28px 34px; }
-.management-choice--round .council-profile-heading h4 { font-size: 33px; }
-.management-choice--round .council-biography { padding: 24px 34px 30px; }
-.management-choice--round .council-biography summary { width: fit-content; margin-inline: auto; padding-inline: 24px; }
+/* Dirección y Secretaría: composición editorial seleccionada. */
+.management-editorial .organization-office-title { font: 600 13px/1.5 var(--sans); letter-spacing: .05em; text-transform: uppercase; margin-bottom: 14px; }
+.management-editorial .council-role { font-size: 10px; line-height: 1.6; color: #c7d9d0; }
+.management-editorial .council-profile { background: var(--green); border-color: var(--green); }
+.management-editorial .council-profile-overview { display: grid; grid-template-columns: 190px minmax(0, 1fr); min-height: 260px; }
+.management-editorial .council-portrait { height: 100%; min-height: 260px; position: relative; }
+.management-editorial .council-portrait img { object-position: center 32%; }
+.management-editorial .council-profile-heading { align-self: center; min-height: 0; padding: 24px; }
+.management-editorial .council-profile-heading h4 { color: white; font-size: 30px; overflow-wrap: anywhere; margin-bottom: 0; }
+.management-editorial .institutional-profile-caption { color: #c7d9d0; }
+.management-editorial .council-biography { border-color: #ffffff30; padding: 18px 24px 22px; }
+.management-editorial .council-biography summary { background: white; color: var(--green); border-color: white; gap: 12px; }
+.management-editorial .council-biography summary:hover { background: #e1e8df; }
+.management-editorial .profile-disclosure { flex-shrink: 0; transition: transform .18s ease; }
+.management-editorial details[open] .profile-disclosure { transform: rotate(180deg); }
+.management-editorial .council-biography[open] { background: white; border-color: var(--line); color: var(--ink); }
+.management-editorial .council-biography[open] summary { background: #eef3ed; border-color: var(--line); }
+.management-editorial .council-biography-text p { color: var(--muted); }
+.management-editorial .institutional-bio-section h5 { color: var(--green); }
 @media (max-width: 1100px) {
-  .management-choice--editorial .council-profile-overview { grid-template-columns: 130px minmax(0, 1fr); }
-  .management-choice--editorial .council-profile-heading { padding: 22px; }
-  .management-choice--editorial .council-profile-heading h4 { font-size: 27px; }
+  .management-editorial .council-profile-overview { grid-template-columns: 130px minmax(0, 1fr); }
+  .management-editorial .council-profile-heading { padding: 22px; }
+  .management-editorial .council-profile-heading h4 { font-size: 27px; }
 }
 @media (max-width: 760px) {
-  .management-choice { scroll-margin-top: 125px; }
-  .management-choice--portrait .council-portrait, .management-choice--portrait .institutional-photo-placeholder { height: 360px; }
-  .management-choice--portrait .council-profile-heading, .management-choice--round .council-profile-heading { min-height: 0; }
-  .management-choice--editorial .council-profile-overview { grid-template-columns: 160px minmax(0, 1fr); }
-  .management-choice--editorial .council-profile-heading h4 { font-size: 30px; }
+  .management-editorial .council-profile-overview { grid-template-columns: 160px minmax(0, 1fr); }
+  .management-editorial .council-profile-heading h4 { font-size: 30px; }
 }
 @media (max-width: 430px) {
-  .management-options-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .management-options-nav a { justify-content: center; padding-inline: 8px; font-size: 13px; }
-  .management-choice + .management-choice { margin-top: 40px; padding-top: 34px; }
-  .management-choice--editorial .council-profile-overview { grid-template-columns: minmax(0, 1fr); }
-  .management-choice--editorial .council-portrait, .management-choice--editorial .institutional-photo-placeholder { height: 330px; min-height: 0; }
-  .management-choice--editorial .council-profile-heading { padding: 26px; }
-  .management-choice--round .council-profile-heading { padding-inline: 24px; }
-  .management-choice--round .council-profile-heading h4 { font-size: 29px; }
+  .management-editorial .council-profile-overview { grid-template-columns: minmax(0, 1fr); }
+  .management-editorial .council-portrait { height: 280px; min-height: 0; }
+  .management-editorial .council-profile-heading { padding: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .management-editorial .profile-disclosure { transition: none; }
 }
 
 /* Contenido de muestra para comparar las tarjetas de Secretaría. */
-.management-choice .council-portrait { position: relative; }
 .profile-photo-sample { position: absolute; bottom: 10px; left: 10px; right: 10px; padding: 5px 8px; background: #123d3ced; color: white; border-radius: 5px; text-align: center; font-size: 10px; line-height: 1.3; }
 .profile-role-sample { color: var(--muted); font-size: 10px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; margin: 15px 0 0; }
 .profile-role-reference { margin-top: 22px; font-size: 13px !important; }
 .profile-role-reference a { text-decoration: underline; text-underline-offset: 3px; }
-.management-choice--editorial .profile-role-sample { color: #c7d9d0; }
-.management-choice--round .profile-photo-sample { bottom: 12px; left: 21px; right: 21px; font-size: 9px; }
+.management-editorial .profile-role-sample { color: var(--muted); }
 
 /* Organigrama: imagen institucional y lectura guiada seleccionadas. */
 .organ-intro { font-size: 18px; line-height: 1.7; color: var(--muted); margin: 0 0 30px; }
@@ -4301,3 +4267,6 @@ figcaption,
 }
 
 .organ-description strong { font-weight: 600; color: var(--green); }
+
+/* Las anclas apuntan al título, sin sumar el margen de la sección al offset del header. */
+.institutional-organization .organization-anchor[id] { scroll-margin-top: 0; }

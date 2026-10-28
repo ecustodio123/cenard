@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import {
   BookOpenText,
   Compass,
+  ChevronDown,
   Mail,
   MapPin,
   Phone,
@@ -132,7 +133,7 @@ const councilSpecialties = [
 ];
 
 function InstitutionalProfile({
-  id, name, role, image, initials, specialties = [], biography, subheading = false, placeholder = false, rolePreview = false,
+  id, name, role, image, initials, specialties = [], biography, subheading = false, placeholder = false, rolePreview = false, showDisclosure = false,
 }: {
   id: string;
   name: string;
@@ -145,6 +146,7 @@ function InstitutionalProfile({
   placeholder?: boolean;
   description?: string;
   rolePreview?: boolean;
+  showDisclosure?: boolean;
 }) {
   const Heading = subheading ? "h4" : "h3";
   return (
@@ -178,6 +180,7 @@ function InstitutionalProfile({
             <span className="council-profile-open">{rolePreview ? "Ver funciones del rol" : "Ver perfil profesional"}</span>
             <span className="council-profile-close">{rolePreview ? "Cerrar funciones del rol" : "Cerrar perfil profesional"}</span>
             <span className="sr-only"> de {name}</span>
+            {showDisclosure && <ChevronDown className="profile-disclosure" size={18} aria-hidden="true" />}
           </summary>
           <div className="council-biography-text">{biography}</div>
         </details>
@@ -191,12 +194,12 @@ export function InstitutionalOrganizationPage() {
     <div className="container page-content institutional-organization">
       <nav className="organization-section-nav" aria-label="Secciones de Organización institucional">
         <a href="#estructura-institucional">Estructura institucional</a>
+        <a href="#direccion-secretaria">Dirección y Secretaría General</a>
         <a href="#alto-consejo">Alto Consejo</a>
-        <a href="#direccion-secretaria">Dirección y Secretaría</a>
       </nav>
 
-      <section id="estructura-institucional" className="organization-section" aria-labelledby="structure-title">
-        <div className="council-directory-heading">
+      <section className="organization-section" aria-labelledby="structure-title">
+        <div id="estructura-institucional" className="council-directory-heading organization-anchor">
           <div><Eyebrow>Gobierno institucional</Eyebrow><h2 id="structure-title">Estructura institucional</h2></div>
         </div>
         <p className="organ-intro">Una estructura jerárquica que articula la conducción institucional con el funcionamiento del centro.</p>
@@ -210,8 +213,33 @@ export function InstitutionalOrganizationPage() {
         </div>
       </section>
 
-      <section id="alto-consejo" className="organization-section council-gallery" aria-labelledby="council-title">
-        <div className="council-directory-heading">
+      <section className="organization-section council-gallery" aria-labelledby="management-title">
+        <div id="direccion-secretaria" className="council-directory-heading organization-anchor">
+          <div><Eyebrow>Dirección y gestión</Eyebrow><h2 id="management-title">Dirección y Secretaría General</h2></div>
+        </div>
+        <div className="management-editorial">
+            <div className="organization-management-grid">
+              <div>
+                <h3 className="organization-office-title">Dirección</h3>
+                <InstitutionalProfile id="director-name" name={secretary.name} role={secretary.role} image="/assets/team/angel-alcala-contreras.webp" subheading showDisclosure biography={<><p>{secretary.intro}</p>{secretary.sections.map((section) => <section className="institutional-bio-section" key={section.title}><h5>{section.title}</h5><p>{section.text}</p></section>)}</>} />
+              </div>
+              <div>
+                <h3 className="organization-office-title">Secretaría General</h3>
+                <InstitutionalProfile id="secretary-name" name={secretary.technical.name} role={secretary.technical.role} image="/assets/team/angel-alcala-contreras.webp" placeholder subheading rolePreview showDisclosure description="La secretaría arbitral brinda apoyo al tribunal en la tramitación del arbitraje y facilita la coordinación de las actuaciones y comunicaciones del proceso." biography={<>
+                  <p className="profile-role-sample">Funciones generales · texto provisional</p>
+                  <p>Esta descripción sirve para visualizar el diseño. No es una biografía de Elizabeth ni una relación de funciones aprobada por CENARD.</p>
+                  <section className="institutional-bio-section"><h5>Apoyo en la tramitación</h5><p>La secretaría arbitral asiste al tribunal en el desarrollo de las actuaciones del arbitraje y contribuye a su gestión administrativa.</p></section>
+                  <section className="institutional-bio-section"><h5>Coordinación y comunicaciones</h5><p>De forma general, puede apoyar la organización de audiencias y mantener las comunicaciones entre las partes y el tribunal, según las reglas de la institución correspondiente.</p></section>
+                </>} />
+              </div>
+            </div>
+        </div>
+        <p className="caption organization-profile-note">Contenido provisional: la fotografía del secretario general se repite provisionalmente en la tarjeta de Elizabeth. Su texto describe el rol de secretaría arbitral y está pendiente de validación institucional.</p>
+        <a href={`mailto:${site.emails[1]}`} className="button button-secondary">Contactar a Secretaría</a>
+      </section>
+
+      <section className="organization-section council-gallery" aria-labelledby="council-title">
+        <div id="alto-consejo" className="council-directory-heading organization-anchor">
           <div><Eyebrow>Integrantes</Eyebrow><h2 id="council-title">Alto Consejo</h2></div>
           <span className="council-count">{council.length} integrantes</span>
         </div>
@@ -220,45 +248,6 @@ export function InstitutionalOrganizationPage() {
             <InstitutionalProfile key={person.name} id={`council-name-${index}`} name={person.name} role="Alto Consejo · CENARD" image={person.image} specialties={councilSpecialties[index]} biography={<><p className="council-biography-label">Trayectoria y formación</p><p>{person.bio}</p></>} />
           ))}
         </div>
-      </section>
-
-      <section id="direccion-secretaria" className="organization-section council-gallery" aria-labelledby="management-title">
-        <div className="council-directory-heading">
-          <div><Eyebrow>Dirección y gestión</Eyebrow><h2 id="management-title">Dirección y Secretaría General</h2></div>
-        </div>
-        <nav className="management-options-nav" aria-label="Comparar diseños de Dirección y Secretaría">
-          {[1, 2, 3].map((number) => <a key={number} href={`#direccion-propuesta-${number}`}>Propuesta {number}</a>)}
-        </nav>
-        {[
-          { id: 1, style: "portrait", title: "Retratos protagonistas", description: "Fotografía amplia sobre fondo blanco, con una presentación cercana y ordenada." },
-          { id: 2, style: "editorial", title: "Composición editorial", description: "Retrato lateral y bloque verde para dar fuerza a la identidad institucional." },
-          { id: 3, style: "round", title: "Perfiles circulares", description: "Retratos circulares y composición centrada, con un tratamiento más ligero." },
-        ].map((proposal) => (
-          <section key={proposal.id} id={`direccion-propuesta-${proposal.id}`} className={`management-choice management-choice--${proposal.style}`} aria-labelledby={`management-choice-title-${proposal.id}`}>
-            <div className="management-choice-heading">
-              <span className="management-choice-label">Propuesta {proposal.id}</span>
-              <h3 id={`management-choice-title-${proposal.id}`}>{proposal.title}</h3>
-              <p>{proposal.description}</p>
-            </div>
-            <div className="organization-management-grid">
-              <div>
-                <p className="organization-office-title">Dirección</p>
-                <InstitutionalProfile id={`director-name-${proposal.id}`} name={secretary.name} role={secretary.role} image="/assets/team/angel-alcala-contreras.webp" subheading biography={<><p>{secretary.intro}</p>{secretary.sections.map((section) => <section className="institutional-bio-section" key={section.title}><h5>{section.title}</h5><p>{section.text}</p></section>)}</>} />
-              </div>
-              <div>
-                <p className="organization-office-title">Secretaría General</p>
-                <InstitutionalProfile id={`secretary-name-${proposal.id}`} name={secretary.technical.name} role={secretary.technical.role} image="/assets/team/angel-alcala-contreras.webp" placeholder subheading rolePreview description="La secretaría arbitral brinda apoyo al tribunal en la tramitación del arbitraje y facilita la coordinación de las actuaciones y comunicaciones del proceso." biography={<>
-                  <p className="profile-role-sample">Funciones generales · texto provisional</p>
-                  <p>Esta descripción sirve para visualizar el diseño. No es una biografía de Elizabeth ni una relación de funciones aprobada por CENARD.</p>
-                  <section className="institutional-bio-section"><h5>Apoyo en la tramitación</h5><p>La secretaría arbitral asiste al tribunal en el desarrollo de las actuaciones del arbitraje y contribuye a su gestión administrativa.</p></section>
-                  <section className="institutional-bio-section"><h5>Coordinación y comunicaciones</h5><p>De forma general, puede apoyar la organización de audiencias y mantener las comunicaciones entre las partes y el tribunal, según las reglas de la institución correspondiente.</p></section>
-                </>} />
-              </div>
-            </div>
-          </section>
-        ))}
-        <p className="caption organization-profile-note">Vista de comparación: la fotografía del secretario general se repite provisionalmente en la tarjeta de Elizabeth. Su texto describe el rol de secretaría arbitral y está pendiente de validación institucional.</p>
-        <a href={`mailto:${site.emails[1]}`} className="button button-secondary">Contactar a Secretaría</a>
       </section>
     </div>
   );

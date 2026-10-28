@@ -1,0 +1,30 @@
+[
+  {
+    "anchorTop": 114.75,
+    "hash": "#direccion-secretaria",
+    "headerBottom": 93,
+    "titleTop": 147.75,
+    "width": 1440
+  },
+  {
+    "anchorTop": 114.640625,
+    "hash": "#alto-consejo",
+    "headerBottom": 93,
+    "titleTop": 147.640625,
+    "width": 1440
+  },
+  {
+    "anchorTop": 114.90625,
+    "hash": "#direccion-secretaria",
+    "headerBottom": 77,
+    "titleTop": 147.90625,
+    "width": 390
+  },
+  {
+    "anchorTop": 115.46875,
+    "hash": "#alto-consejo",
+    "headerBottom": 77,
+    "titleTop": 148.46875,
+    "width": 390
+  }
+]
