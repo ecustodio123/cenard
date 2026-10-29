@@ -48,7 +48,7 @@ export function AdminPage() {
     void auth.logout();
   }
 
-  if (showPanel) return <AdminDashboard key={access.userId} onExit={exit} />;
+  if (showPanel) return <AdminDashboard key={access.userId} onExit={exit} userId={access.userId} onAccessLost={auth.retry} />;
   if (access.status === "checking" || access.status === "error") return <main className="admin-shell">
     <section className="admin-card" aria-labelledby="admin-state-title" aria-busy={access.status === "checking"}>
       <img className="admin-logo" src="/images/logo.png" width="1600" height="624" alt="CNR CENARD Arbitraje" />
