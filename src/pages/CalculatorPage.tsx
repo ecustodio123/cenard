@@ -121,11 +121,6 @@ export function CalculatorPage() {
   }
   return (
     <div className="container page-content">
-      <InfoNote title="Vista previa · Cálculo pendiente de validación">
-        Puedes explorar las seis modalidades y revisar los datos del formulario.
-        Los resultados monetarios se habilitarán después de aprobar las reglas
-        tarifarias con CENARD.
-      </InfoNote>
       <div className="calculator-top">
         <Eyebrow>Elige una modalidad</Eyebrow>
         <Controller name="currency" control={control} render={({ field }) => <Combobox className="currency-select" label="Moneda" value={field.value ?? "PEN"} name={field.name} form="calculator-form" onValueChange={value => { field.onChange(value); setReviewed(null); }} onBlur={field.onBlur} triggerRef={field.ref} options={[{ value: "PEN", label: "PEN · Soles" }, { value: "USD", label: "USD · Dólares" }]} />} />
@@ -157,13 +152,6 @@ export function CalculatorPage() {
             <span className="eyebrow">DATOS DE LA CONSULTA</span>
             <h2>{modes.find((m) => m.id === mode)?.name}</h2>
           </div>
-          {currency === "USD" && (
-            <InfoNote>
-              La fuente indica que los cálculos en moneda extranjera se
-              solicitan directamente a CENARD. No se aplicará un tipo de cambio
-              automático.
-            </InfoNote>
-          )}
           {mode === "regular" && (
             <>
               {moneyInput("amount", "Cuantía reclamada")}
@@ -326,7 +314,6 @@ export function CalculatorPage() {
             </div>
           )}
           <div className="summary-note">
-            <Info size={17} aria-hidden="true" />
             <p>
               {availability.reason} La liquidación definitiva corresponde a
               Secretaría General.
