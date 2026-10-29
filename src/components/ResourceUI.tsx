@@ -4,8 +4,8 @@ import { Eyebrow } from "./UI";
 import "./resource-ui.css";
 
 // Compositional visual pieces: content, filtering and row rendering stay with each page.
-export function ResourceHeader({ label, title, description }: { label: string; title: string; description: string }) {
-  return <section className="resource-header"><div className="container"><Eyebrow>{label}</Eyebrow><h1 tabIndex={-1}>{title}</h1><p>{description}</p></div></section>;
+export function ResourceHeader({ label, title, description, children }: { label: string; title: string; description: string; children?: ReactNode }) {
+  return <section className="resource-header"><div className="container"><Eyebrow>{label}</Eyebrow><h1 tabIndex={-1}>{title}</h1><p>{description}</p>{children}</div></section>;
 }
 export function ResourceFilterPanel({ id, label, children }: { id: string; label: string; children: ReactNode }) {
   return <section id={id} tabIndex={-1} className="resource-filter-panel" aria-label={label}>{children}</section>;
