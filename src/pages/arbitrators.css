@@ -1,5 +1,5 @@
 /* Scoped directory layout; Documentos and adjudicadores keep their approved styles. */
-.arb-directory .resource-header .container > p:not(.eyebrow) { font-size: 19px; max-width: 65ch; }
+.arb-directory .resource-header .container > p:not(.eyebrow) { font-size: 19px;}
 .arb-period { display: block; margin-top: 16px; font-size: 13px; color: var(--muted); }
 .arb-content { padding-bottom: 60px; }
 .arb-search-heading { display: flex; align-items: center; justify-content: space-between; min-height: 44px; gap: 16px; }

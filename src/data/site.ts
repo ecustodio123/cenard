@@ -90,7 +90,7 @@ const allPages = [
       "Consulta las modalidades de costos de arbitraje y JPRD. Interfaz de estimación en revisión institucional.",
   },
   {
-    slug: "servicio-de-arbitraje",
+    slug: "preguntas-frecuentes",
     title: "Preguntas frecuentes",
     section: "Recursos",
     description:
@@ -133,7 +133,7 @@ export const navigation = [
       "listado-de-arbitros",
       "nomina-de-adjudicadores",
       "calculadora",
-      "servicio-de-arbitraje",
+      "preguntas-frecuentes",
     ].filter((slug) => features.tariffCalculator || slug !== "calculadora"),
   },
 ];

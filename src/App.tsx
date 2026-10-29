@@ -5,6 +5,7 @@ import { pages } from "./data/site";
 import { HomePage } from "./pages/HomePage";
 import { ArbitrationPage } from "./pages/Arbitration";
 import { JprdPage } from "./pages/Jprd";
+import { FaqPage } from "./pages/Faq";
 import { DocumentsPage } from "./pages/Documents";
 import { ArbitratorsPage } from "./pages/Arbitrators";
 import { AdjudicatorsPage } from "./pages/Adjudicators";
@@ -16,7 +17,6 @@ import {
 import {
   AboutPage,
   ContactPage,
-  FaqPage,
   IntegrityPage,
   InstitutionalOrganizationPage,
 } from "./pages/Institution";
@@ -31,7 +31,7 @@ const components: Record<string, ReactNode> = {
   "listado-de-arbitros": <ArbitratorsPage />,
   "nomina-de-adjudicadores": <AdjudicatorsPage />,
   calculadora: <CalculatorPage />,
-  "servicio-de-arbitraje": <FaqPage />,
+  "preguntas-frecuentes": <FaqPage />,
   "atalaya-de-integridad": <IntegrityPage />,
   contacto: <ContactPage />,
 };
@@ -49,7 +49,7 @@ export default function App() {
               path={`web/${p.slug}/`}
               element={
                 <>
-                  {p.slug !== "arbitraje" && p.slug !== "jprd" && p.slug !== "documentos" && p.slug !== "listado-de-arbitros" && p.slug !== "nomina-de-adjudicadores" && <PageIntro
+                  {p.slug !== "arbitraje" && p.slug !== "jprd" && p.slug !== "documentos" && p.slug !== "listado-de-arbitros" && p.slug !== "nomina-de-adjudicadores" && p.slug !== "preguntas-frecuentes" && <PageIntro
                     title={p.title}
                     description={p.description}
                     section={p.section}

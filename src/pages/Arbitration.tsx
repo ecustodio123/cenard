@@ -71,7 +71,7 @@ export function ArbitrationPage() {
       <section className="container arbitration-accompaniment" aria-labelledby="arbitration-accompaniment-title">
         <div className="arbitration-section-heading">
           <div><Eyebrow>El servicio</Eyebrow><h2 id="arbitration-accompaniment-title">Acompañamiento institucional</h2></div>
-          <ArrowLink to={pathFor("servicio-de-arbitraje")}>Consultar preguntas frecuentes</ArrowLink>
+          <ArrowLink to={pathFor("preguntas-frecuentes")}>Consultar preguntas frecuentes</ArrowLink>
         </div>
         <div className="arbitration-accompaniment-grid">
           {accompaniment.map((item, i) => <article key={item.title}><span className="arbitration-number">0{i + 1}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}

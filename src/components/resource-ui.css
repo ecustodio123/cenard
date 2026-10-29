@@ -1,7 +1,7 @@
 /* Shared visual pieces for institutional Resources; no data or row layout. */
 .resource-header { background: var(--cream); border-bottom: 1px solid var(--line); padding-block: 42px 56px; }
 .resource-header h1 { font-size: clamp(36px, 4.3vw, 58px); margin-block: 20px 18px; }
-.resource-header > .container > p:last-child { font-size: 19px; max-width: 65ch; }
+.resource-header > .container > p:last-child { font-size: 19px; }
 .resource-filter-panel { position: relative; margin-top: -24px; padding: 26px 30px 20px; background: white; border: 1px solid var(--line); border-top: 3px solid var(--green); }
 .resource-results { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-block: 38px 24px; }
 .resource-count { font-size: 21px; color: var(--ink); }

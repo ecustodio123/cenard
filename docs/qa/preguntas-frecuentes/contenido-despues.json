@@ -1,0 +1,36 @@
+[
+  {
+    "q": "¿Cuáles son las ventajas de contratar a CENARD para la resolución de controversias?",
+    "a": "Árbitros altamente calificados y registrados. Reglamentos que aseguran la celeridad y correcto funcionamiento del proceso. Supervisión institucional especializada y transparente. Asistencia administrativa y tecnológica eficiente. Costos predecibles y accesibles. Herramientas digitales seguras.",
+    "items": [
+      "Árbitros altamente calificados y registrados.",
+      "Reglamentos que aseguran la celeridad y correcto funcionamiento del proceso.",
+      "Supervisión institucional especializada y transparente.",
+      "Asistencia administrativa y tecnológica eficiente.",
+      "Costos predecibles y accesibles.",
+      "Herramientas digitales seguras."
+    ]
+  },
+  {
+    "q": "¿Qué tipo de controversias se pueden resolver a través del arbitraje en CENARD?",
+    "a": "En CENARD se pueden resolver controversias de carácter civil, comercial y contractual que sean susceptibles de transacción según la ley. Esto incluye disputas entre empresas, incumplimientos contractuales, conflictos societarios, entre otros, siempre que las partes hayan pactado someterse al arbitraje."
+  },
+  {
+    "q": "¿Cómo se inicia un proceso arbitral en CENARD?",
+    "a": "El proceso se inicia mediante la presentación de una solicitud de arbitraje dirigida a CENARD, acompañada de una copia del convenio arbitral y los documentos señalados en el artículo 11 del Reglamento Procesal.",
+    "documentId": "reglamento-procesal-apendices-2025"
+  },
+  {
+    "q": "¿Qué ventajas ofrece el arbitraje frente a un proceso judicial?",
+    "a": "Celeridad y flexibilidad en el procedimiento. Especialización de los árbitros en la materia. Confidencialidad del proceso y sus actuaciones.",
+    "items": [
+      "Celeridad y flexibilidad en el procedimiento.",
+      "Especialización de los árbitros en la materia.",
+      "Confidencialidad del proceso y sus actuaciones."
+    ]
+  },
+  {
+    "q": "¿Es obligatoria la presencia de abogados durante el proceso arbitral?",
+    "a": "Aunque no es obligatorio, se recomienda contar con asesoría legal durante el proceso arbitral. La participación de un abogado puede asegurar una adecuada defensa de los intereses de las partes y el cumplimiento de los requisitos procesales establecidos por CENARD."
+  }
+]

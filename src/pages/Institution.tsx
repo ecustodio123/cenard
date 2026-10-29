@@ -21,7 +21,6 @@ import {
 import { features, notice, pathFor, site } from "../data/site";
 import council from "../data/council.json";
 import secretary from "../data/secretary.json";
-import faq from "../data/faq.json";
 import { documents as docs, sourceGroupingLabel } from "../data/documents";
 
 export function AboutPage() {
@@ -428,61 +427,6 @@ export function ServicePage({ jprd = false }: { jprd?: boolean }) {
           </div>
         )}
       </section>
-    </div>
-  );
-}
-
-export function FaqPage() {
-  return (
-    <div className="container page-content faq-layout">
-      <aside>
-        <Eyebrow>Orientación institucional</Eyebrow>
-        <h2>Información para dar el primer paso.</h2>
-        <p>
-          Estas respuestas recogen la orientación general publicada por CENARD.
-        </p>
-        <h3 className="faq-specific-title">Consulta específica</h3>
-        <p>
-          Para una consulta sobre tu caso, comunícate con Secretaría General.
-        </p>
-        <ArrowLink to={pathFor("contacto")}>Ver canales de atención</ArrowLink>
-        <p className="caption">
-          Base editorial sujeta a revisión institucional y jurídica antes de
-          publicar.
-        </p>
-      </aside>
-      <div className="faq-list">
-        {faq.map((f, i) => (
-          <details key={f.q}>
-            <summary>
-              <span className="faq-number">0{i + 1}</span>
-              <span>{f.q}</span>
-            </summary>
-            <div>
-              {f.items?.length ? (
-                <ul>
-                  {f.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              ) : (
-                <p>{f.a}</p>
-              )}
-              {f.documentId &&
-                docs.find((document) => document.id === f.documentId) && (
-                  <ExternalLink
-                    href={
-                      docs.find((document) => document.id === f.documentId)!
-                        .urlPublic
-                    }
-                  >
-                    Consultar Reglamento Procesal y Apéndices (PDF)
-                  </ExternalLink>
-                )}
-            </div>
-          </details>
-        ))}
-      </div>
     </div>
   );
 }
