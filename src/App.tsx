@@ -4,11 +4,12 @@ import { PageIntro } from "./components/UI";
 import { pages } from "./data/site";
 import { HomePage } from "./pages/HomePage";
 import { ArbitrationPage } from "./pages/Arbitration";
+import { JprdPage } from "./pages/Jprd";
+import { DocumentsPage } from "./pages/Documents";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { CalculatorPage } from "./pages/CalculatorPage";
 import {
   CertificationsPage,
-  DocumentsPage,
   ProfessionalsPage,
 } from "./pages/Resources";
 import {
@@ -17,7 +18,6 @@ import {
   FaqPage,
   IntegrityPage,
   InstitutionalOrganizationPage,
-  ServicePage,
 } from "./pages/Institution";
 import type { ReactNode } from "react";
 const components: Record<string, ReactNode> = {
@@ -25,7 +25,7 @@ const components: Record<string, ReactNode> = {
   "organizacion-institucional": <InstitutionalOrganizationPage />,
   certificaciones: <CertificationsPage />,
   arbitraje: <ArbitrationPage />,
-  jprd: <ServicePage jprd />,
+  jprd: <JprdPage />,
   documentos: <DocumentsPage />,
   "listado-de-arbitros": <ProfessionalsPage key="arbitro" kind="arbitro" />,
   "nomina-de-adjudicadores": (
@@ -50,7 +50,7 @@ export default function App() {
               path={`web/${p.slug}/`}
               element={
                 <>
-                  {p.slug !== "arbitraje" && <PageIntro
+                  {p.slug !== "arbitraje" && p.slug !== "jprd" && p.slug !== "documentos" && <PageIntro
                     title={p.title}
                     description={p.description}
                     section={p.section}

@@ -24,6 +24,12 @@ for (const path of pages) {
   assert.equal((html.match(/<meta\b(?=[^>]*\bname="robots")[^>]*>/g) || []).length, 1, `One robots directive: ${path}`)
   titles.add(title); descriptions.add(description)
   for (const match of html.matchAll(/href="(\/web\/[^"?&#]*)(?:[?&#][^"]*)?"/g)) {
+    // JPRD explicitly retains this literal destination while its page is disabled.
+    // Do not create a route or enable the calculator merely to satisfy link checks.
+    if (path === join('dist', 'web', 'jprd', 'index.html') && match[1] === '/web/calculadora') {
+      console.warn('JPRD: requested href /web/calculadora is retained; destination is not enabled.')
+      continue
+    }
     assert.ok((await stat(join('dist', match[1], 'index.html'))).isFile(), `Route destination ${match[1]} from ${path}`)
   }
 }

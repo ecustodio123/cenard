@@ -1,166 +1,19 @@
 import { useMemo, useState } from "react";
-import { useSearchParams } from "react-router";
 import {
   FileCheck2,
   Search,
-  SlidersHorizontal,
   X,
 } from "lucide-react";
 import {
-  DocumentRow,
   EmptyState,
-  InfoNote,
 } from "../components/UI";
-import { documents as docs, sourceGroupingLabel } from "../data/documents";
 import professionals from "../data/professionals.json";
 import certificates from "../data/certifications.json";
 import { pathFor, site } from "../data/site";
 import { Link } from "react-router";
 
+import { Combobox } from "../components/Combobox";
 import { normalize } from "../lib/search";
-import { useHydrated } from "../lib/use-hydrated";
-
-export function DocumentsPage() {
-  const [params, setParams] = useSearchParams();
-  const hydrated = useHydrated();
-  const query = hydrated ? (params.get("q") ?? "") : "",
-    service = hydrated ? (params.get("servicio") ?? "") : "",
-    type = hydrated ? (params.get("tipo") ?? "") : "",
-    status = hydrated ? (params.get("estado") ?? "") : "";
-  function update(key: string, value: string) {
-    const next = new URLSearchParams(params);
-    if (value) next.set(key, value);
-    else next.delete(key);
-    setParams(next, { replace: true, preventScrollReset: true });
-  }
-  const filtered = docs.filter(
-    (d) =>
-      normalize(d.title).includes(normalize(query)) &&
-      (!service || d.services.includes(service)) &&
-      (!type || d.type === type) &&
-      (!status ||
-        (status === "historico"
-          ? d.sourceGrouping.kind === "historico"
-          : d.sourceGrouping.kind !== "historico")),
-  );
-  return (
-    <div className="container page-content">
-      <InfoNote title="Consulta con contexto">
-        Las agrupaciones temporales reproducen lo publicado por CENARD. La
-        vigencia y versión de cada documento requieren confirmación
-        institucional.
-      </InfoNote>
-      <div className="filter-panel">
-        <label className="search-field">
-          <span>Buscar un documento</span>
-          <div>
-            <Search size={20} aria-hidden="true" />
-            <input
-              type="search"
-              value={query}
-              onChange={(e) => update("q", e.target.value)}
-              placeholder="Reglamento, directiva, código de ética…"
-            />
-          </div>
-        </label>
-        <div className="filter-row">
-          <label>
-            Servicio
-            <select
-              value={service}
-              onChange={(e) => update("servicio", e.target.value)}
-            >
-              <option value="">Todos los servicios</option>
-              <option>Arbitraje</option>
-              <option>JPRD</option>
-            </select>
-          </label>
-          <label>
-            Tipo de documento
-            <select
-              value={type}
-              onChange={(e) => update("tipo", e.target.value)}
-            >
-              <option value="">Todos los tipos</option>
-              {[...new Set(docs.map((d) => d.type))].map((t) => (
-                <option key={t}>{t}</option>
-              ))}
-            </select>
-          </label>
-          <label>
-            Agrupación de origen
-            <select
-              value={status}
-              onChange={(e) => update("estado", e.target.value)}
-            >
-              <option value="">Todos los documentos</option>
-              <option value="reciente">
-                Desde el 04/08/2025 · Aplicación por confirmar
-              </option>
-              <option value="historico">
-                Histórico hasta el 03/08/2025 · Por validar
-              </option>
-            </select>
-          </label>
-          <button className="reset-button" onClick={() => setParams({})}>
-            <X size={16} aria-hidden="true" />
-            Restablecer
-          </button>
-        </div>
-      </div>
-      <div className="results-header">
-        <p role="status">
-          <strong>{filtered.length}</strong>{" "}
-          {filtered.length === 1
-            ? "documento encontrado"
-            : "documentos encontrados"}
-        </p>
-        <span>
-          <SlidersHorizontal size={15} aria-hidden="true" />
-          Catálogo de normativa
-        </span>
-      </div>
-      <p className="caption catalogue-unit">
-        El contador indica documentos o versiones, no referencias por servicio.
-        Un documento compartido se muestra una sola vez.
-      </p>
-      <div className="document-list">
-        {filtered.map((d) => (
-          <DocumentRow
-            key={d.id}
-            href={d.urlPublic}
-            title={d.title}
-            services={d.services}
-            subtitle={`${d.type} · ${sourceGroupingLabel(d)} · PDF`}
-          />
-        ))}
-      </div>
-      {!filtered.length && <EmptyState reset={() => setParams({})} />}
-      <p className="caption source-caption">
-        Se conservan los archivos en sus URLs públicas originales. Las
-        directivas de Arbitraje y JPRD se muestran como referencias separadas.
-      </p>
-      <section
-        className="related-information"
-        aria-label="Recursos relacionados"
-      >
-        <h2>Recursos relacionados</h2>
-        <p>
-          Certificaciones y reclamaciones se consultan fuera de este catálogo
-          normativo.
-        </p>
-        <div>
-          <Link className="text-link" to={pathFor("certificaciones")}>
-            Certificaciones y constancias
-          </Link>
-          <a className="text-link" href={site.claimsForm}>
-            Formato de reclamaciones (DOCX)
-          </a>
-        </div>
-      </section>
-    </div>
-  );
-}
 
 export function ProfessionalsPage({
   kind,
@@ -196,11 +49,6 @@ export function ProfessionalsPage({
   ].sort();
   return (
     <div className="container page-content">
-      <InfoNote title="Periodo publicado: 2025">
-        Esta nómina conserva el periodo indicado en la fuente. Su vigencia
-        actual está pendiente de confirmación; no se presenta como nómina
-        vigente de 2026.
-      </InfoNote>
       <div className="filter-panel">
         <label className="search-field">
           <span>Buscar por nombre o apellido</span>
@@ -215,31 +63,8 @@ export function ProfessionalsPage({
           </div>
         </label>
         <div className="filter-row">
-          {groups.length > 1 && (
-            <label>
-              Grupo
-              <select value={group} onChange={(e) => setGroup(e.target.value)}>
-                <option value="">Todos los grupos</option>
-                {groups.map((t) => (
-                  <option key={t}>{t}</option>
-                ))}
-              </select>
-            </label>
-          )}
-          <label>
-            Profesión publicada
-            <select
-              value={profession}
-              onChange={(e) => setProfession(e.target.value)}
-            >
-              <option value="">Todas las profesiones</option>
-              {[...new Set(all.map((p) => p.profession).filter(Boolean))].map(
-                (t) => (
-                  <option key={t}>{t}</option>
-                ),
-              )}
-            </select>
-          </label>
+          {groups.length > 1 && <Combobox label="Grupo" value={group} onValueChange={setGroup} options={[{ value: "", label: "Todos los grupos" }, ...groups.map(value => ({ value, label: value }))]} />}
+          <Combobox label="Profesión publicada" value={profession} onValueChange={setProfession} options={[{ value: "", label: "Todas las profesiones" }, ...[...new Set(all.map(person => person.profession).filter(Boolean))].map(value => ({ value, label: value }))]} />
           <button className="reset-button" onClick={reset}>
             <X size={16} aria-hidden="true" />
             Limpiar filtros

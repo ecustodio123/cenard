@@ -1,0 +1,103 @@
+/* Biblioteca documental: estilos locales, sin alterar los componentes de servicios. */
+.doclib-hero { background: var(--cream); border-bottom: 1px solid var(--line); padding-block: 42px 56px; }
+.doclib-hero h1 { font-size: clamp(36px, 4.3vw, 58px); margin-block: 20px 18px; }
+.doclib-hero > .container > p:last-child { font-size: 19px; max-width: 65ch; }
+.doclib-content { padding-bottom: 64px; }
+.doclib-panel { position: relative; margin-top: -24px; padding: 26px 30px 20px; background: white; border: 1px solid var(--line); border-top: 3px solid var(--green); }
+.doclib-search-heading { display: flex; justify-content: space-between; align-items: center; min-height: 44px; gap: 16px; }
+.doclib-search-heading label, .doclib-service legend, .doclib-select { font-size: 14px; font-weight: 600; color: var(--ink); }
+.doclib-search-input { display: flex; gap: 12px; align-items: center; border: 1px solid #acbeb3; background: var(--paper); padding-inline: 16px; margin-top: 8px; }
+.doclib-search-input:focus-within { outline: 2px solid var(--green); outline-offset: 3px; }
+.doclib-search-input svg { color: var(--muted); }
+.doclib-search-input input { width: 100%; border: 0; background: transparent; min-height: 54px; padding-block: 12px; font-size: 17px; color: var(--ink); }
+.doclib-search-input input:focus { outline: none; }
+.doclib-search-input input::placeholder { color: #64766d; }
+.doclib-text-action { font-size: 14px; text-decoration: underline; text-underline-offset: 4px; font-weight: 600; min-height: 44px; padding-block: 8px; }
+.doclib-text-action:disabled { color: #747e78; text-decoration: none; cursor: default; }
+.doclib-text-action:not(:disabled):hover { color: #6c552b; }
+.doclib-filters { display: grid; grid-template-columns: 1.1fr 1fr 1.25fr; gap: 24px; border-top: 1px solid var(--line); padding-top: 22px; margin-top: 22px; align-items: end; }
+.doclib-service { border: 0; min-width: 0; margin: 0; padding: 0; }
+.doclib-service legend { padding: 0; margin-bottom: 8px; }
+.doclib-service > div { display: flex; border: 1px solid #becdc4; }
+.doclib-service button { flex: 1; padding: 10px 9px; min-height: 47px; font-size: 15px; }
+.doclib-service button + button { border-left: 1px solid #becdc4; }
+.doclib-service button[aria-pressed="true"] { background: var(--green); color: white; font-weight: 600; text-decoration: underline; text-underline-offset: 5px; }
+.doclib-service button[aria-pressed="false"]:hover { background: #edf2e9; }
+.doclib-select { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.doclib-select select { width: 100%; min-height: 49px; color: var(--ink); border: 1px solid #becdc4; padding: 10px 12px; background: white; font-size: 15px; font-weight: 400; border-radius: 0; }
+.doclib-panel-foot { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-top: 14px; }
+.doclib-panel-foot p { font-size: 13px; }
+.doclib-panel-foot button { flex-shrink: 0; }
+.doclib-result-heading { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-block: 38px 24px; }
+.doclib-count { font-size: 21px; color: var(--ink); }
+.doclib-count strong { font-weight: 600; }
+.doclib-result-heading p + p { margin-top: 4px; font-size: 14px; }
+.doclib-pdf-note { font-size: 13px; color: var(--muted); }
+.doclib-active { display: flex; gap: 10px; flex-wrap: wrap; margin: -8px 0 24px; }
+.doclib-active button { display: inline-flex; gap: 12px; align-items: center; max-width: 100%; min-height: 44px; padding: 8px 12px; background: #e9eee5; border: 1px solid #c8d3c5; border-radius: 6px; font-size: 13px; text-align: left; }
+.doclib-active button span { overflow-wrap: anywhere; min-width: 0; }
+.doclib-active button:hover { background: #dce5d6; }
+.doclib-group + .doclib-group { margin-top: 32px; }
+.doclib-group-heading { display: flex; align-items: center; justify-content: space-between; gap: 24px; border-top: 2px solid var(--green); background: #e8ece3; padding: 18px 22px; }
+.doclib-group-heading h2 { font-size: 25px; letter-spacing: -.02em; }
+.doclib-group-heading > span { font-size: 13px; color: var(--muted); flex-shrink: 0; }
+.doclib-rows { border-inline: 1px solid var(--line); background: white; }
+.doclib-row { display: grid; grid-template-columns: 36px minmax(0, 1fr) auto; gap: 20px; align-items: center; min-height: 100px; padding: 20px 22px; border-bottom: 1px solid var(--line); }
+.doclib-row:hover, .doclib-row:focus-visible { background: #f0f4ec; }
+.doclib-file { color: var(--green); align-self: center; }
+.doclib-document-title { display: block; font-size: 18px; font-weight: 600; line-height: 1.4; overflow-wrap: anywhere; }
+.doclib-document-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 18px; margin-top: 9px; font-size: 13px; color: var(--muted); }
+.doclib-services { display: inline-flex; gap: 6px; flex-wrap: wrap; }
+.doclib-services > span { display: inline-block; font-size: 11px; line-height: 1.5; padding: 2px 7px; color: var(--green); background: #eaf0e6; }
+.doclib-observation { display: block; font-size: 13px; margin-top: 8px; color: var(--muted); }
+.doclib-open { font-size: 14px; text-decoration: underline; text-underline-offset: 5px; padding-block: 12px; }
+.doclib-source { border-left: 2px solid var(--accent); padding: 4px 0 4px 20px; margin-top: 32px; max-width: 92ch; }
+.doclib-source h2 { font-family: var(--sans); font-size: 16px; font-weight: 600; letter-spacing: 0; margin-bottom: 10px; }
+.doclib-source p { font-size: 15px; line-height: 1.7; }
+.doclib-source .doclib-pending { font-size: 13px; margin-top: 12px; }
+.doclib-related { padding-top: 40px; margin-top: 44px; border-top: 1px solid var(--line); }
+.doclib-related-heading h2 { font-size: 34px; margin-top: 14px; }
+.doclib-related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 26px; }
+.doclib-related-grid article { border-top: 1px solid #a8b9aa; padding-top: 20px; }
+.doclib-related-grid h3 { font-size: 25px; }
+.doclib-related-grid p { font-size: 16px; margin-top: 10px; }
+.doclib-related-grid a { display: inline-block; padding-block: 12px; margin-top: 8px; font-size: 15px; text-decoration: underline; text-underline-offset: 5px; }
+.doclib-related-grid a:hover { color: #705628; }
+.doclib-empty { padding: 34px 28px; border: 1px solid var(--line); background: white; }
+.doclib-empty svg { color: var(--green); margin-bottom: 16px; }
+.doclib-empty h2 { font-size: 28px; margin-bottom: 12px; }
+.doclib-empty p { font-size: 16px; margin-bottom: 20px; }
+@media (max-width: 1100px) {
+  .doclib-filters { grid-template-columns: 1fr 1fr; }
+  .doclib-service { grid-column: 1 / -1; }
+  .doclib-service > div { max-width: 440px; }
+}
+@media (max-width: 767px) {
+  .doclib-hero { padding-block: 32px 48px; }
+  .doclib-hero h1 { font-size: 38px; }
+  .doclib-hero > .container > p:last-child { font-size: 18px; }
+  .doclib-panel { padding: 20px 18px 16px; }
+  .doclib-filters { grid-template-columns: 1fr; gap: 18px; }
+  .doclib-search-heading { flex-wrap: wrap; gap: 0 16px; }
+  .doclib-search-input { padding-inline: 10px; gap: 8px; }
+  .doclib-search-input input { font-size: 16px; }
+  .doclib-panel-foot { flex-direction: column; gap: 6px; align-items: start; margin-top: 18px; }
+  .doclib-result-heading { flex-direction: column; align-items: start; gap: 12px; margin-top: 30px; }
+  .doclib-group-heading { padding: 16px; align-items: start; gap: 10px; flex-direction: column; }
+  .doclib-group-heading h2 { font-size: 23px; }
+  .doclib-row { grid-template-columns: 24px minmax(0, 1fr); gap: 10px 12px; padding: 18px 14px 12px; }
+  .doclib-file { align-self: start; padding-top: 2px; }
+  .doclib-document-title { font-size: 17px; }
+  .doclib-document-meta { gap: 8px; }
+  .doclib-open { grid-column: 2; justify-self: start; }
+  .doclib-source { padding-left: 16px; }
+  .doclib-related-grid { grid-template-columns: 1fr; gap: 24px; }
+  .doclib-related-heading h2 { font-size: 30px; }
+}
+
+@media (max-width: 380px) {
+  .doclib-panel { padding-inline: 10px; }
+  .doclib-search-input { padding-inline: 6px; }
+  .doclib-search-input svg { display: none; }
+  .doclib-select select { padding-inline: 8px; font-size: 14px; }
+}

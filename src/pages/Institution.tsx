@@ -16,7 +16,6 @@ import {
   DocumentRow,
   ExternalLink,
   Eyebrow,
-  InfoNote,
   SectionHeading,
 } from "../components/UI";
 import { features, notice, pathFor, site } from "../data/site";
@@ -529,10 +528,6 @@ export function IntegrityPage() {
           ),
         )}
       </div>
-      <InfoNote>
-        El estado de disponibilidad describe el acceso al recurso publicado y no
-        implica afirmar la existencia o inexistencia de sanciones o decisiones.
-      </InfoNote>
     </div>
   );
 }

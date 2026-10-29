@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useForm, useWatch } from "react-hook-form";
+import { Controller, useForm, useWatch } from "react-hook-form";
 import {
   Calculator,
   CheckCircle2,
@@ -8,6 +8,7 @@ import {
   RotateCcw,
 } from "lucide-react";
 import { Link } from "react-router";
+import { Combobox } from "../components/Combobox";
 import { Eyebrow, InfoNote } from "../components/UI";
 import {
   getTariffAvailability,
@@ -127,16 +128,7 @@ export function CalculatorPage() {
       </InfoNote>
       <div className="calculator-top">
         <Eyebrow>Elige una modalidad</Eyebrow>
-        <label className="currency-select">
-          Moneda
-          <select
-            form="calculator-form"
-            {...register("currency", { onChange: () => setReviewed(null) })}
-          >
-            <option value="PEN">PEN · Soles</option>
-            <option value="USD">USD · Dólares</option>
-          </select>
-        </label>
+        <Controller name="currency" control={control} render={({ field }) => <Combobox className="currency-select" label="Moneda" value={field.value ?? "PEN"} name={field.name} form="calculator-form" onValueChange={value => { field.onChange(value); setReviewed(null); }} onBlur={field.onBlur} triggerRef={field.ref} options={[{ value: "PEN", label: "PEN · Soles" }, { value: "USD", label: "USD · Dólares" }]} />} />
       </div>
       <div
         className="mode-selector"
@@ -230,24 +222,14 @@ export function CalculatorPage() {
           {mode === "adicionales" && (
             <>
               <div className="form-field">
-                <label htmlFor="additional-service">Servicio adicional</label>
-                <select
-                  id="additional-service"
-                  {...register("service")}
-                  aria-invalid={!!errors.service}
-                  aria-describedby={
-                    errors.service ? "service-error" : undefined
-                  }
-                >
-                  <option value="">Selecciona un servicio</option>
-                  <option value="appointment">Nombramiento de árbitro</option>
-                  <option value="recusation">
-                    Recusación y remoción de árbitro
-                  </option>
-                  <option value="custody">Custodia de actuaciones</option>
-                  <option value="secretary">Secretaría arbitral ad hoc</option>
-                  <option value="copy">Copia certificada</option>
-                </select>
+                <Controller name="service" control={control} render={({ field }) => <Combobox id="additional-service" label="Servicio adicional" value={field.value ?? ""} name={field.name} onValueChange={field.onChange} onBlur={field.onBlur} triggerRef={field.ref} invalid={!!errors.service} describedBy={errors.service ? "service-error" : undefined} options={[
+                  { value: "", label: "Selecciona un servicio" },
+                  { value: "appointment", label: "Nombramiento de árbitro" },
+                  { value: "recusation", label: "Recusación y remoción de árbitro" },
+                  { value: "custody", label: "Custodia de actuaciones" },
+                  { value: "secretary", label: "Secretaría arbitral ad hoc" },
+                  { value: "copy", label: "Copia certificada" },
+                ]} />} />
                 {errors.service && (
                   <p id="service-error" role="alert" className="field-error">
                     {errors.service}
