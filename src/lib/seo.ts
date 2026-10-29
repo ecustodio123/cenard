@@ -1,4 +1,4 @@
-import { pages, pathFor, site } from "../data/site";
+import { pages, previewPages, pathFor, site } from "../data/site";
 import { officialOrigin } from "../data/seo-config";
 
 const titles: Record<string, string> = {
@@ -33,14 +33,14 @@ const descriptions: Record<string, string> = {
 export function getPageSeo(pathname: string, indexable: boolean) {
   const path = pathname.split(/[?#]/)[0];
   const normalized = path === "/" ? pathFor() : path.endsWith("/") ? path : `${path}/`;
-  const page = pages.find((entry) => pathFor(entry.slug) === normalized);
+  const page = [...pages, ...previewPages].find((entry) => pathFor(entry.slug) === normalized);
   const title = page ? titles[page.slug] || `${page.title} | CENARD` : "Página no encontrada | CENARD";
   const description = page ? descriptions[page.slug] || page.description : "Esta página no existe en el sitio de CENARD. Consulta los servicios y recursos institucionales desde el inicio.";
   const canonical = page ? new URL(pathFor(page.slug), officialOrigin).href : null;
   const image = `${officialOrigin}/images/logo.png`;
   const meta: Record<string, string> = {
     description,
-    robots: indexable && page ? "index,follow,max-image-preview:large" : "noindex,follow",
+    robots: indexable && page && !previewPages.some(entry => entry.slug === page.slug) ? "index,follow,max-image-preview:large" : "noindex,follow",
     "og:title": title,
     "og:description": description,
     "og:type": "website",

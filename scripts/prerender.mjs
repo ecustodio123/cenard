@@ -14,10 +14,10 @@ const template = (await readFile("dist/index.html", "utf8"))
 const server = await createServer({ mode: "production", server: { middlewareMode: true }, appType: "custom" });
 const escape = (value) => value.replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]);
 try {
-  const { routes, render } = await server.ssrLoadModule("/src/entry-server.tsx");
+  const { routes, previewRoutes, render } = await server.ssrLoadModule("/src/entry-server.tsx");
   const { getPageSeo } = await server.ssrLoadModule("/src/lib/seo.ts");
   const indexable = productionIndexable({ ...loadEnv("production", process.cwd(), ""), ...process.env });
-  for (const route of [...routes, { path: "/" }, { path: "/404.html" }]) {
+  for (const route of [...routes, ...previewRoutes, { path: "/" }, { path: "/404.html" }]) {
     const seo = getPageSeo(route.path, indexable);
     const meta = Object.entries(seo.meta).map(([key, value]) =>
       `<meta ${key.startsWith("og:") ? "property" : "name"}="${escape(key)}" content="${escape(value)}" />`
@@ -43,11 +43,11 @@ try {
   // Keep the existing /web/ paths and consolidate the duplicate root homepage.
   const redirects = [
     "/ /web/ 301",
-    ...routes.map((r) => `${r.path.slice(0, -1)} ${r.path} 301`),
+    ...[...routes, ...previewRoutes].map((r) => `${r.path.slice(0, -1)} ${r.path} 301`),
     ...legacyRedirects.flatMap(([from, to]) => [`${from} ${to} 301`, `${from.slice(0, -1)} ${to} 301`]),
   ];
   await writeFile("dist/_redirects", redirects.join("\n") + "\n");
-  console.log(`Prerendered ${routes.length} institutional routes, root alias and 404. Canonical origin: ${officialOrigin}. Indexable: ${indexable}.`);
+  console.log(`Prerendered ${routes.length} institutional routes, ${previewRoutes.length} design previews, root alias and 404. Canonical origin: ${officialOrigin}. Indexable: ${indexable}.`);
 } finally {
   await server.close();
 }

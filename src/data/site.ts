@@ -115,6 +115,14 @@ export const pages = allPages.filter(
   (page) => features.tariffCalculator || page.slug !== "calculadora",
 );
 
+// Accessible design previews are rendered as HTML, but excluded from navigation and sitemap.
+export const previewPages = features.tariffCalculator ? [] : [{
+  slug: "calculadora",
+  title: "Calculadora de costos",
+  section: "Herramientas institucionales",
+  description: "Vista de diseño de la calculadora de costos de CENARD. Selecciona una modalidad e ingresa datos de referencia. El cálculo de importes no está habilitado.",
+}];
+
 export const pathFor = (slug = "") => `/web/${slug ? `${slug}/` : ""}`;
 export const navigation = [
   {

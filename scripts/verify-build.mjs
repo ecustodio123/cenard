@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { readdir, readFile, stat } from 'node:fs/promises'
 import { join } from 'node:path'
-import { pages as visiblePages } from '../src/data/site.ts'
+import { pages as visiblePages, previewPages } from '../src/data/site.ts'
 import { legacyRedirects, productionIndexable } from '../src/data/seo-config.ts'
 
 async function files(directory) {
@@ -14,7 +14,7 @@ async function files(directory) {
   return output
 }
 const pages = await files('dist/web')
-assert.equal(pages.length, visiblePages.length, 'All institutional routes must be prerendered')
+assert.equal(pages.length, visiblePages.length + previewPages.length, 'All institutional and design routes must be prerendered')
 const titles = new Set(), descriptions = new Set(), headings = new Set()
 for (const path of pages) {
   const html = await readFile(path, 'utf8')
@@ -26,19 +26,13 @@ for (const path of pages) {
   titles.add(title); descriptions.add(description)
   headings.add(html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1])
   for (const match of html.matchAll(/href="(\/web\/[^"?&#]*)(?:[?&#][^"]*)?"/g)) {
-    // JPRD explicitly retains this literal destination while its page is disabled.
-    // Do not create a route or enable the calculator merely to satisfy link checks.
-    if (path === join('dist', 'web', 'jprd', 'index.html') && match[1] === '/web/calculadora') {
-      console.warn('JPRD: requested href /web/calculadora is retained; destination is not enabled.')
-      continue
-    }
     assert.ok((await stat(join('dist', match[1], 'index.html'))).isFile(), `Route destination ${match[1]} from ${path}`)
   }
 }
-assert.equal(headings.size, visiblePages.length, 'Each route retains its own rendered content')
-assert.equal(titles.size, visiblePages.length, 'Unique titles per route')
-assert.equal(descriptions.size, visiblePages.length, 'Unique descriptions per route')
-console.log(`Verified ${visiblePages.length} static pages: content, unique metadata, robots directives and internal route destinations.`)
+assert.equal(headings.size, pages.length, 'Each route retains its own rendered content')
+assert.equal(titles.size, pages.length, 'Unique titles per route')
+assert.equal(descriptions.size, pages.length, 'Unique descriptions per route')
+console.log(`Verified ${pages.length} static pages: content, unique metadata, robots directives and internal route destinations.`)
 
 const origin = 'https://cenardarbitraje.com'
 const canonicalUrls = new Set()
@@ -64,11 +58,12 @@ for (const path of pages) {
   assert.ok(graph['@graph'].some(node => node['@type'] === 'WebSite'))
   assert.ok(graph['@graph'].some(node => node.url === canonical.href && ['WebPage', 'AboutPage', 'ContactPage'].includes(node['@type'])))
 }
-assert.equal(canonicalUrls.size, visiblePages.length, 'Unique canonical per visible page')
+assert.equal(canonicalUrls.size, pages.length, 'Unique canonical per rendered page')
 const sitemap = await readFile('dist/sitemap.xml', 'utf8')
 const locations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1])
-assert.deepEqual(new Set(locations), canonicalUrls, 'Sitemap contains exactly the canonical pages')
-assert.equal(locations.length, canonicalUrls.size, 'No duplicate sitemap entries')
+const publicCanonicals = new Set(visiblePages.map(page => `${origin}/web/${page.slug ? `${page.slug}/` : ''}`))
+assert.deepEqual(new Set(locations), publicCanonicals, 'Sitemap contains exactly the public canonical pages')
+assert.equal(locations.length, publicCanonicals.size, 'No duplicate sitemap entries')
 const notFound = await readFile('dist/404.html', 'utf8')
 assert.ok(notFound.includes('name="robots" content="noindex,follow"'), '404 excluded from indexing')
 assert.ok(!notFound.includes('rel="canonical"'), '404 does not canonicalize to an existing page')
@@ -104,3 +99,15 @@ if (indexable) {
   for (const path of pages) assert.ok((await readFile(path, 'utf8')).includes('name="robots" content="noindex,follow"'))
 }
 console.log(`Verified robots.txt and HTTP indexing headers for ${indexable ? 'production' : 'preview'}.`)
+
+for (const page of previewPages) {
+  const html = await readFile(join('dist', 'web', page.slug, 'index.html'), 'utf8')
+  assert.ok(html.includes('name="robots" content="noindex,follow"'), `Design preview excluded from indexing: ${page.slug}`)
+  assert.ok(!locations.includes(`${origin}/web/${page.slug}/`), `Design preview excluded from sitemap: ${page.slug}`)
+  if (page.slug === 'calculadora') {
+    assert.ok(html.includes('Calculadora de costos'), 'Calculator renders its own page')
+    assert.match(html, /<button[^>]*disabled[^>]*>Calcular costos<\/button>/, 'Calculator stays disabled')
+    assert.ok(!html.includes('Este camino no lleva'), 'Calculator does not render the 404 page')
+  }
+}
+console.log(`Verified ${previewPages.length} design previews: rendered HTML, noindex and sitemap exclusion.`)

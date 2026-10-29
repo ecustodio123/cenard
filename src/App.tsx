@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router";
 import { Layout } from "./components/Layout";
 import { PageIntro } from "./components/UI";
-import { features, pages } from "./data/site";
+import { pages, previewPages } from "./data/site";
 import { HomePage } from "./pages/HomePage";
 import { ArbitrationPage } from "./pages/Arbitration";
 import { JprdPage } from "./pages/Jprd";
@@ -59,7 +59,7 @@ export default function App() {
               }
             />
           ))}
-        {!features.tariffCalculator && <Route path="web/calculadora/" element={<CalculatorPage />} />}
+        {previewPages.map(page => <Route key={page.slug} path={`web/${page.slug}/`} element={components[page.slug]} />)}
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
