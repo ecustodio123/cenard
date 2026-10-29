@@ -1,19 +1,23 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import type { FormEvent } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { updatePageSeo } from "../lib/seo";
 import { AdminDashboard } from "../components/admin/AdminDashboard";
+import { AdminAuthController, initialAdminAuth } from "../lib/admin/auth";
 import "./admin.css";
 
 type LoginErrors = { email?: string; password?: string };
 
-// Demonstration only: no identity verification, protected data or persistent session.
+// Every administrative route shares this authentication and authorization gate.
 export function AdminPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState<LoginErrors>({});
-  const [showPanel, setShowPanel] = useState(false);
+  const [auth] = useState(() => new AdminAuthController(async () => (await import("../lib/supabase")).getPublicSupabaseClient()));
+  const access = useSyncExternalStore(auth.subscribe, auth.getSnapshot, () => initialAdminAuth);
+  const showPanel = access.status === "authorized";
+  useEffect(() => { void auth.start(); return () => auth.stop(); }, [auth]);
   const emailInput = useRef<HTMLInputElement>(null);
   const passwordInput = useRef<HTMLInputElement>(null);
   const hasOpenedPanel = useRef(false);
@@ -28,35 +32,46 @@ export function AdminPage() {
     event.preventDefault();
     const nextErrors: LoginErrors = {};
     if (!email.trim()) nextErrors.email = "Ingresa tu correo electrónico.";
-    else if (!emailInput.current?.validity.valid) nextErrors.email = "Ingresa un correo electrónico válido.";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) nextErrors.email = "Ingresa un correo electrónico válido.";
     if (!password.length) nextErrors.password = "Ingresa una contraseña.";
     setErrors(nextErrors);
     if (nextErrors.email) { emailInput.current?.focus(); return; }
     if (nextErrors.password) { passwordInput.current?.focus(); return; }
-    // Discard both fields immediately; the panel only keeps an in-memory boolean.
+    const request = auth.login(email.trim(), password);
     setEmail("");
     setPassword("");
     setShowPassword(false);
-    setShowPanel(true);
+    void request;
   }
   function exit() {
-    setShowPanel(false);
-    setEmail("");
-    setPassword("");
-    setShowPassword(false);
-    setErrors({});
+    setEmail(""); setPassword(""); setShowPassword(false); setErrors({});
+    void auth.logout();
   }
 
-  if (showPanel) return <AdminDashboard onExit={exit} />;
+  if (showPanel) return <AdminDashboard key={access.userId} onExit={exit} />;
+  if (access.status === "checking" || access.status === "error") return <main className="admin-shell">
+    <section className="admin-card" aria-labelledby="admin-state-title" aria-busy={access.status === "checking"}>
+      <img className="admin-logo" src="/images/logo.png" width="1600" height="624" alt="CNR CENARD Arbitraje" />
+      <h1 id="admin-state-title">Administración CENARD</h1>
+      <div role={access.status === "error" ? "alert" : "status"}>
+        <p className="admin-introduction">{access.message ?? "Verificando sesión y permisos…"}</p>
+      </div>
+      {access.status === "error" && <div className="admin-auth-actions">
+        {!access.exitOnly && <button className="button" type="button" onClick={auth.retry}>Reintentar verificación</button>}
+        <button className="button button-secondary" type="button" onClick={exit}>Salir</button>
+      </div>}
+    </section>
+  </main>;
   return <main className="admin-shell">
     <section className="admin-card" aria-labelledby="admin-login-title">
       <img className="admin-logo" src="/images/logo.png" width="1600" height="624" alt="CNR CENARD Arbitraje" />
         <h1 id="admin-login-title">Administración CENARD</h1>
         <p className="admin-introduction">Ingresa para administrar las nóminas</p>
-        <form className="admin-login-form" noValidate autoComplete="off" onSubmit={submit}>
+        {access.message && <p className="admin-field-error" role="alert">{access.message}</p>}
+        <form className="admin-login-form" noValidate onSubmit={submit}>
           <div className="admin-field">
             <label htmlFor="admin-email">Correo electrónico</label>
-            <input id="admin-email" ref={emailInput} type="email" inputMode="email" autoComplete="off" autoCapitalize="none" spellCheck={false} required
+            <input id="admin-email" ref={emailInput} type="email" inputMode="email" autoComplete="username" autoCapitalize="none" spellCheck={false} required
               value={email} onChange={event => { setEmail(event.target.value); setErrors(current => ({ ...current, email: undefined })); }}
               aria-invalid={!!errors.email || undefined} aria-describedby={errors.email ? "admin-email-error" : undefined} />
             {errors.email && <p className="admin-field-error" id="admin-email-error" role="alert">{errors.email}</p>}
@@ -64,7 +79,7 @@ export function AdminPage() {
           <div className="admin-field">
             <label htmlFor="admin-password">Contraseña</label>
             <div className="admin-password-field">
-              <input id="admin-password" ref={passwordInput} type={showPassword ? "text" : "password"} autoComplete="off" required
+              <input id="admin-password" ref={passwordInput} type={showPassword ? "text" : "password"} autoComplete="current-password" required
                 value={password} onChange={event => { setPassword(event.target.value); setErrors(current => ({ ...current, password: undefined })); }}
                 aria-invalid={!!errors.password || undefined} aria-describedby={errors.password ? "admin-password-error" : undefined} />
               <button className="admin-password-toggle" type="button" onClick={() => setShowPassword(current => !current)}
@@ -75,12 +90,9 @@ export function AdminPage() {
             </div>
             {errors.password && <p className="admin-field-error" id="admin-password-error" role="alert">{errors.password}</p>}
           </div>
-          <button className="button admin-submit" type="submit">Ingresar</button>
+          <button className="button admin-submit" type="submit" disabled={access.status !== "signed-out" && access.status !== "unauthorized"}>Ingresar</button>
         </form>
-      <div className="admin-demo-note">
-        <p>Modo demostración: acceso simulado</p>
-        <p>Esta demostración no verifica credenciales ni protege información.</p>
-      </div>
+
     </section>
   </main>;
 }

@@ -119,7 +119,8 @@ assert.equal((admin.match(/<h1[\s>]/g) || []).length, 1, 'Admin has one heading'
 assert.ok(admin.includes('name="robots" content="noindex,nofollow"'), 'Admin excluded from indexing before JavaScript')
 assert.ok(!admin.includes('rel="canonical"'), 'Admin has no public canonical')
 assert.ok(!admin.includes('id="cenard-structured-data"'), 'Admin has no public structured data')
-assert.ok(admin.includes('Modo demostración: acceso simulado'), 'Admin explicitly identifies simulation')
+assert.ok(admin.includes('Verificando sesión y permisos'), 'Admin verifies access before showing login or panel')
+assert.ok(!admin.includes('acceso simulado'), 'Admin no longer uses simulated login')
 assert.ok(admin.includes('Administración CENARD'), 'Admin initial view is the login')
 assert.ok(!admin.includes('id="admin-roster-nav"'), 'Roster panel is not pre-authenticated in static HTML')
 assert.ok(!/<header[\s>]|<footer[\s>]/.test(admin), 'Admin has an independent layout')
@@ -128,6 +129,7 @@ assert.ok(!sitemap.includes('/admin'), 'Admin excluded from sitemap')
 if (indexable) {
   assert.ok(headers.includes('/admin\n  X-Robots-Tag: noindex, nofollow'), 'Admin clean URL has HTTP noindex')
   assert.ok(headers.includes('/admin.html\n  X-Robots-Tag: noindex, nofollow'), 'Admin HTML file has HTTP noindex')
+  assert.ok(headers.includes('/admin/*\n  X-Robots-Tag: noindex, nofollow'), 'Administrative subroutes have HTTP noindex')
 }
 for (const path of [...pages, 'dist/index.html']) {
   const html = await readFile(path, 'utf8')
@@ -135,7 +137,7 @@ for (const path of [...pages, 'dist/index.html']) {
     assert.ok(!['/admin', '/admin/', '/admin.html'].includes(href.split(/[?#]/)[0]), `No admin link in public HTML: ${path}`)
   }
 }
-console.log('Verified standalone admin HTML, initial simulated login, noindex and absence from public navigation and sitemap.')
+console.log('Verified standalone admin HTML, initial access verification, noindex and absence from public navigation and sitemap.')
 
 const arbitratorsHtml = await readFile('dist/web/listado-de-arbitros/index.html', 'utf8')
 assert.ok(arbitratorsHtml.includes('Cargando nómina de árbitros'), 'Static arbitrators page starts with an explicit loading state')
@@ -150,3 +152,5 @@ assert.ok(!adjudicatorsHtml.includes('data-record-id='), 'No hardcoded adjudicat
 assert.ok(!adjudicatorsHtml.includes('0</strong> registros encontrados'), 'Adjudicators loading does not flash zero records')
 assert.ok(!adjudicatorsHtml.includes('Periodo publicado: 2025'), 'No period inferred for Supabase adjudicators')
 console.log('Verified public adjudicators loading state, no hardcoded rows and no inferred period.')
+
+assert.ok((await readFile('dist/_redirects', 'utf8')).includes('/admin/* /admin.html 200'), 'Administrative deep links serve the protected standalone shell')

@@ -33,10 +33,10 @@ const descriptions: Record<string, string> = {
 export function getPageSeo(pathname: string, indexable: boolean) {
   const path = pathname.split(/[?#]/)[0];
   const normalized = path === "/" ? pathFor() : path.endsWith("/") ? path : `${path}/`;
-  if (normalized === "/admin/") return {
+  if (normalized.startsWith("/admin/")) return {
     title: "Administración CENARD",
     canonical: null,
-    meta: { description: "Modo demostración del panel de administración de CENARD. Acceso simulado, sin autenticación real.", robots: "noindex,nofollow" } as Record<string, string>,
+    meta: { description: "Acceso administrativo de CENARD.", robots: "noindex,nofollow" } as Record<string, string>,
     structuredData: null,
   };
   const page = [...pages, ...previewPages].find((entry) => pathFor(entry.slug) === normalized);

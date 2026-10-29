@@ -40,11 +40,12 @@ try {
     : "User-agent: *\nDisallow: /\n");
   await writeFile("dist/sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${routes.map((r) => `  <url><loc>${escape(new URL(r.path, officialOrigin).href)}</loc></url>`).join("\n")}\n</urlset>\n`);
   await writeFile("dist/_headers", indexable
-    ? "/404.html\n  X-Robots-Tag: noindex, follow\n/admin\n  X-Robots-Tag: noindex, nofollow\n/admin.html\n  X-Robots-Tag: noindex, nofollow\n"
+    ? "/404.html\n  X-Robots-Tag: noindex, follow\n/admin\n  X-Robots-Tag: noindex, nofollow\n/admin.html\n  X-Robots-Tag: noindex, nofollow\n/admin/*\n  X-Robots-Tag: noindex, nofollow\n"
     : "/*\n  X-Robots-Tag: noindex, nofollow\n");
   // Keep the existing /web/ paths and consolidate the duplicate root homepage.
   const redirects = [
     "/ /web/ 301",
+    "/admin/* /admin.html 200",
     ...[...routes, ...previewRoutes].map((r) => `${r.path.slice(0, -1)} ${r.path} 301`),
     ...legacyRedirects.flatMap(([from, to]) => [`${from} ${to} 301`, `${from.slice(0, -1)} ${to} 301`]),
   ];

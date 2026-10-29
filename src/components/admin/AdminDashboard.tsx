@@ -80,6 +80,7 @@ function RosterSection({ kind, records, onRecordsChange }: { kind: RosterKind; r
   }
   return <div className="admin-roster-content">
     <h2 className="admin-roster-title" id={id("title")}>{sectionLabels[kind]}</h2>
+    <p className="admin-dashboard-demo">Gestión de nóminas en demostración: los cambios aún no se guardan en la base de datos</p>
     <section className="admin-roster-form-panel" aria-labelledby={id("form-title")}>
       <h3 id={id("form-title")}>{editingId ? `Editar ${noun}` : `Agregar ${noun}`}</h3>
       {editingId && <p className="admin-edit-context">Editando el registro de {ownRecords.find(record => record.id === editingId)?.name}. Su estado se conservará.</p>}
@@ -147,7 +148,7 @@ export function AdminDashboard({ onExit }: { onExit: () => void }) {
         <div><img className="admin-logo" src="/images/logo.png" width="1600" height="624" alt="CNR CENARD Arbitraje" /><h1 ref={heading} tabIndex={-1}>Administración CENARD</h1></div>
         <button className="button button-secondary" type="button" onClick={onExit}>Salir</button>
       </header>
-      <div className="admin-dashboard-demo"><p><strong>Modo demostración: acceso simulado</strong></p><p>Los cambios de esta demostración se perderán al recargar</p><p>La visibilidad solo se simula en este panel; las nóminas públicas no se modifican. No hay autenticación real.</p></div>
+      <div className="admin-dashboard-demo"><p>Los cambios locales se perderán al salir o recargar. Las nóminas públicas no se modifican.</p></div>
       <nav id="admin-roster-nav" className="admin-roster-nav" aria-label="Nóminas administrativas">
         {(["arbitrators", "adjudicators"] as const).map(kind => <button key={kind} type="button" aria-pressed={section === kind} aria-controls={`admin-section-${kind}`} onClick={() => setSection(kind)}>{sectionLabels[kind]}</button>)}
       </nav>

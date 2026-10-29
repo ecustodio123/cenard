@@ -112,3 +112,6 @@
   .admin-empty-state { padding: 22px 20px; }
   .admin-delete-dialog { padding: 24px 20px; }
 }
+
+.admin-auth-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+.admin-shell button:disabled { opacity: .65; cursor: wait; }
