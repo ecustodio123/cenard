@@ -77,3 +77,28 @@
   .cost-design-mode-grid { grid-template-columns: minmax(0, 1fr); }
   .cost-design-mode { min-height: 64px; padding-inline: 16px; }
 }
+.cost-design-error { color: #963a29; font-size: 14px; line-height: 1.6; }
+.cost-design-page input[aria-invalid="true"] { border-color: #963a29; }
+.cost-engine-result-region { min-width: 0; }
+.cost-engine-result-region:focus-visible { outline: 3px solid #b58a38; outline-offset: 4px; }
+.cost-engine-result .cost-engine-review { color: var(--green); border-left: 2px solid var(--accent); padding-left: 12px; margin-block: 14px; }
+.cost-engine-line { border-top: 1px solid var(--line); padding-top: 16px; margin-top: 18px; }
+.cost-engine-line h4 { font: 600 16px/1.5 var(--sans); overflow-wrap: anywhere; }
+.cost-engine-line dl { margin-top: 10px; }
+.cost-engine-line dl > div { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 5px 12px; padding-block: 6px; border: 0; }
+.cost-engine-line dt { margin: 0; }
+.cost-engine-line dd { font-size: 15px; }
+.cost-engine-line .cost-engine-amount { margin-block: 10px 6px; font-weight: 600; color: var(--green); }
+.cost-engine-line .cost-engine-source { font-size: 12px; line-height: 1.5; margin-top: 10px; }
+.cost-engine-sum { border-top: 2px solid var(--green); margin-top: 22px; padding-top: 16px; }
+.cost-engine-sum strong { display: block; font: 400 clamp(24px, 2.5vw, 32px)/1.4 var(--serif); margin-block: 8px; color: var(--green); overflow-wrap: anywhere; }
+.cost-engine-notes { border-top: 1px solid var(--line); padding-top: 16px; margin-top: 20px; }
+.cost-engine-notes p, .cost-engine-sources p { font-size: 13px; line-height: 1.65; }
+.cost-engine-sources { margin-top: 18px; }
+.cost-engine-sources summary { list-style: none; min-height: 44px; padding-block: 10px; font-size: 14px; text-decoration: underline; text-underline-offset: 4px; }
+.cost-engine-sources summary::-webkit-details-marker { display: none; }
+.cost-engine-sources summary::marker { content: ""; }
+.cost-engine-sources summary:focus-visible { outline: 3px solid #b58a38; outline-offset: 3px; }
+.cost-engine-sources p { margin-top: 12px; }
+.cost-engine-changed { padding: 16px 20px; border: 1px solid var(--line); border-top: 0; background: var(--cream); }
+.cost-engine-errors { list-style: disc; padding-left: 18px; color: #963a29; font-size: 15px; }

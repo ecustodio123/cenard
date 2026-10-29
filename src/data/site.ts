@@ -120,7 +120,7 @@ export const previewPages = features.tariffCalculator ? [] : [{
   slug: "calculadora",
   title: "Calculadora de costos",
   section: "Herramientas institucionales",
-  description: "Vista de diseño de la calculadora de costos de CENARD. Selecciona una modalidad e ingresa datos de referencia. El cálculo de importes no está habilitado.",
+  description: "Borrador de estimación local de costos de CENARD. Consulta reglas definidas y casos que requieren evaluación. Supuestos y resultados sujetos a confirmación institucional.",
 }];
 
 export const pathFor = (slug = "") => `/web/${slug ? `${slug}/` : ""}`;

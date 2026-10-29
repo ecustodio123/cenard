@@ -11,6 +11,8 @@ import {
 import { navigation, pages, pathFor, site } from "../data/site";
 import { updatePageSeo } from "../lib/seo";
 import { officialOrigin } from "../data/seo-config";
+import { InstitutionalIdentityBand } from "./InstitutionalIdentityBand";
+import { revealInstitutionalNotice } from "../lib/institutional-notice";
 
 const headerServices = [
   { label: "Atenea", href: "https://sistema.cenardarbitraje.com/login" },
@@ -48,9 +50,10 @@ export function Layout() {
       .querySelectorAll("header details[open]")
       .forEach((el) => el.removeAttribute("open"));
     if (location.hash)
-      requestAnimationFrame(() =>
-        document.getElementById(location.hash.slice(1))?.scrollIntoView(),
-      );
+      requestAnimationFrame(() => {
+        if (location.hash === "#identidad-institucional") revealInstitutionalNotice();
+        else document.getElementById(location.hash.slice(1))?.scrollIntoView();
+      });
     else window.scrollTo({ top: 0, behavior: "instant" });
   }, [location.pathname, location.hash]);
   useEffect(() => {
@@ -217,6 +220,7 @@ export function Layout() {
           </nav>
         )}
       </header>
+      <InstitutionalIdentityBand />
       <main id="contenido" tabIndex={-1}>
         <Outlet />
       </main>

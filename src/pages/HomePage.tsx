@@ -1,4 +1,4 @@
-import { BookOpenText, FileCheck2, FileText, UsersRound } from "lucide-react";
+import { BookOpenText, FileCheck2, UsersRound } from "lucide-react";
 import { Link } from "react-router";
 import { ArrowLink, ButtonLink, Eyebrow, SectionHeading } from "../components/UI";
 import { notice, pathFor } from "../data/site";
@@ -40,6 +40,26 @@ export function HomePage() {
         </div>
       </section>
 
+      <section className="home-notice-section" id="identidad-institucional" aria-labelledby="identidad-institucional-titulo">
+        <div className="container">
+          <div className="home-identity-intro">
+            <h2 id="identidad-institucional-titulo" tabIndex={-1}>Nuestra identidad institucional</h2>
+            <p>El Centro Nacional para la Resolución de Disputas — CENARD forma parte de la Asociación para la Promoción Cultural de los Mecanismos Alternativos de Solución de Controversias. No constituye una entidad distinta ni independiente de la Asociación.</p>
+          </div>
+          <details className="home-notice">
+            <summary>
+              <span className="home-notice-action">
+                <span className="home-notice-read">Leer comunicado completo</span>
+                <span className="home-notice-close">Cerrar comunicado</span>
+              </span>
+            </summary>
+            <div className="home-notice-content">
+              {notice.map((p) => <p key={p}>{p}</p>)}
+            </div>
+          </details>
+        </div>
+      </section>
+
       <section className="home-shortcuts" id="recursos" aria-labelledby="home-shortcuts-title">
         <div className="container">
           <h2 id="home-shortcuts-title">Accesos rápidos</h2>
@@ -56,7 +76,7 @@ export function HomePage() {
 
       <section id="servicios" className="home-services home-section">
         <div className="container">
-          <SectionHeading label="Nuestros servicios" title="Arbitraje y JPRD">
+          <SectionHeading label="Nuestros servicios" title="Nuestros servicios">
             <p>Conoce nuestros servicios de solución de controversias y prevención de disputas.</p>
           </SectionHeading>
           <div className="home-service-grid">
@@ -80,6 +100,18 @@ export function HomePage() {
                 <Link to={pathFor("documentos") + "?servicio=JPRD"}>Normativa de JPRD</Link>
                 <Link to={pathFor("nomina-de-adjudicadores")}>Nómina de adjudicadores</Link>
               </div>
+            </article>
+          </div>
+          <div className="home-secondary-services">
+            <article>
+              <h3>Dispute Boards</h3>
+              <p>Consulta el alcance y las modalidades de este servicio.</p>
+              <ArrowLink to={pathFor("contacto")}>Consultar información</ArrowLink>
+            </article>
+            <article>
+              <h3>Mediación</h3>
+              <p>Consulta información sobre el servicio de mediación.</p>
+              <ArrowLink to={pathFor("contacto")}>Consultar información</ArrowLink>
             </article>
           </div>
         </div>
@@ -127,30 +159,7 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="home-notice-section">
-        <div className="container">
-          <details className="home-notice">
-            <summary>
-              <FileText size={22} strokeWidth={1.4} aria-hidden="true" />
-              <span className="home-notice-heading">
-                <span className="home-notice-title">Nuestra identidad institucional</span>
-                <span>CENARD forma parte de la Asociación para la Promoción Cultural de los Mecanismos Alternativos de Solución de Controversias.</span>
-              </span>
-              <span className="home-notice-action">
-                <span className="home-notice-read">Leer comunicado</span>
-                <span className="home-notice-close">Cerrar comunicado</span>
-              </span>
-            </summary>
-            <div className="home-notice-content">
-              {notice.map((p) => <p key={p}>{p}</p>)}
-              <a className="text-link" href="/images/notice.png" target="_blank" rel="noopener noreferrer">
-                Ver comunicado original<span className="sr-only"> (abre en otra pestaña)</span>
-              </a>
-              <p className="caption">Transcripción para revisión institucional antes de publicar.</p>
-            </div>
-          </details>
-        </div>
-      </section>
+
     </div>
   );
 }

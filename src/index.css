@@ -252,9 +252,6 @@ section[id] {
   gap: 48px;
   margin-bottom: 40px;
 }
-.section-heading h2 {
-  max-width: 680px;
-}
 .heading-aside {
   max-width: 300px;
   font-size: 16px;
@@ -4311,4 +4308,28 @@ figcaption,
 @media (max-width: 1199px) {
   .mobile-nav .header-service-links { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 18px; }
   .mobile-nav .header-service-button { flex: 1 1 140px; }
+}
+
+/* Alineación editorial compartida en todas las páginas. */
+#contenido :is(p, li, blockquote),
+.site-footer p {
+  text-align: justify;
+  text-align-last: start;
+  text-justify: inter-word;
+}
+#contenido :is(p, li, blockquote) {
+  hyphens: auto;
+}
+
+/* Región informativa en el flujo de la página, fuera del header sticky. */
+.institutional-identity-band { background: var(--cream); border-bottom: 1px solid var(--line); border-top: 2px solid var(--accent); padding-block: 14px; }
+.institutional-identity-band-inner { display: flex; align-items: center; gap: 28px; }
+.institutional-identity-band p { flex: 1; min-width: 0; color: var(--green); font-size: 14px; line-height: 1.65; text-align: justify; text-align-last: start; hyphens: auto; }
+.institutional-identity-band strong { font-weight: 600; }
+.institutional-identity-band a { flex-shrink: 0; display: inline-flex; align-items: center; min-height: 44px; padding-block: 10px; font-size: 14px; font-weight: 600; color: var(--green); text-decoration: underline; text-underline-offset: 4px; }
+.institutional-identity-band a:hover { color: #705628; }
+.institutional-identity-band a:focus-visible { outline: 3px solid #b58a38; outline-offset: 4px; }
+@media (max-width: 767px) {
+  .institutional-identity-band-inner { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .institutional-identity-band { padding-block: 12px; }
 }

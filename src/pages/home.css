@@ -59,7 +59,7 @@
 .cenard-home .home-guidance-grid p { font-size: 17px; line-height: 1.65; max-width: 49ch; margin-bottom: 12px; }
 .cenard-home .home-guidance-grid .text-link { min-height: 44px; padding-block: 10px; font-size: 16px; }
 .cenard-home .home-notice-section { background: white; border-top: 1px solid var(--line); padding-block: 26px; }
-.cenard-home .home-notice summary { display: flex; align-items: center; gap: 20px; list-style: none; min-height: 60px; padding: 12px; }
+.cenard-home .home-notice summary { display: flex; align-items: center; gap: 12px; list-style: none; min-height: 44px; padding: 10px 0; }
 .cenard-home .home-notice summary::-webkit-details-marker { display: none; }
 .cenard-home .home-notice summary::marker { content: ""; }
 .cenard-home .home-notice summary:hover { background: var(--paper); }
@@ -112,9 +112,27 @@
   .cenard-home .home-guidance-grid { gap: 26px; }
   .cenard-home .home-notice summary { flex-wrap: wrap; align-items: flex-start; gap: 14px; padding: 10px 0; }
   .cenard-home .home-notice-heading { flex-basis: calc(100% - 40px); }
-  .cenard-home .home-notice-action { margin-left: 36px; padding-block: 8px; }
+  .cenard-home .home-notice-action { margin-left: 0; padding-block: 4px; }
   .cenard-home .home-notice-content { padding-inline: 0; font-size: 16px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .cenard-home .button { transition: none; }
+}
+
+.cenard-home #identidad-institucional { scroll-margin-top: 0; border-bottom: 1px solid var(--line); }
+.cenard-home .home-identity-intro { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.65fr); align-items: start; gap: 40px; border-top: 2px solid var(--green); padding-top: 22px; }
+.cenard-home .home-identity-intro h2 { font-size: clamp(26px, 2.5vw, 32px); line-height: 1.25; }
+.cenard-home .home-identity-intro > p { max-width: 74ch; font-size: 16px; line-height: 1.7; }
+.cenard-home .home-notice { margin-top: 12px; }
+.cenard-home .home-notice-content { padding-inline: 0; }
+.cenard-home .home-secondary-services { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 24px; }
+.cenard-home .home-secondary-services article { min-width: 0; background: white; border: 1px solid var(--line); padding: 24px; }
+.cenard-home .home-secondary-services h3 { font-size: 27px; line-height: 1.3; margin-bottom: 12px; }
+.cenard-home .home-secondary-services p { font-size: 16px; line-height: 1.65; }
+.cenard-home .home-secondary-services .text-link { display: inline-flex; align-items: center; min-height: 44px; margin-top: 12px; padding-block: 10px; font-size: 15px; }
+@media (max-width: 767px) {
+  .cenard-home .home-identity-intro { grid-template-columns: minmax(0, 1fr); gap: 16px; padding-top: 20px; }
+  .cenard-home .home-secondary-services { grid-template-columns: minmax(0, 1fr); gap: 16px; margin-top: 20px; }
+  .cenard-home .home-secondary-services article { padding: 20px; }
+  .cenard-home .home-secondary-services h3 { font-size: 25px; }
 }

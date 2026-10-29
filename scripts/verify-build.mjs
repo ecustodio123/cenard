@@ -106,7 +106,8 @@ for (const page of previewPages) {
   assert.ok(!locations.includes(`${origin}/web/${page.slug}/`), `Design preview excluded from sitemap: ${page.slug}`)
   if (page.slug === 'calculadora') {
     assert.ok(html.includes('Calculadora de costos'), 'Calculator renders its own page')
-    assert.match(html, /<button[^>]*disabled[^>]*>Calcular costos<\/button>/, 'Calculator stays disabled')
+    assert.match(html, /<button[^>]*type="submit"[^>]*>Calcular costos<\/button>/, 'Local calculator form is available')
+    assert.ok(html.includes('Borrador de estimación local'), 'Calculator retains its draft status')
     assert.ok(!html.includes('Este camino no lleva'), 'Calculator does not render the 404 page')
   }
 }
