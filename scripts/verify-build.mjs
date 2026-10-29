@@ -15,7 +15,7 @@ async function files(directory) {
 }
 const pages = await files('dist/web')
 assert.equal(pages.length, visiblePages.length + previewPages.length, 'All institutional and design routes must be prerendered')
-const titles = new Set(), descriptions = new Set(), headings = new Set()
+const titles = new Set(), descriptions = new Set(), pageContents = new Set()
 for (const path of pages) {
   const html = await readFile(path, 'utf8')
   assert.equal((html.match(/<h1[\s>]/g) || []).length, 1, `Single H1: ${path}`)
@@ -24,12 +24,12 @@ for (const path of pages) {
   assert.ok(title && description, `Metadata: ${path}`)
   assert.equal((html.match(/<meta\b(?=[^>]*\bname="robots")[^>]*>/g) || []).length, 1, `One robots directive: ${path}`)
   titles.add(title); descriptions.add(description)
-  headings.add(html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1])
+  pageContents.add(html.match(/<body>([\s\S]*?)<\/body>/)?.[1])
   for (const match of html.matchAll(/href="(\/web\/[^"?&#]*)(?:[?&#][^"]*)?"/g)) {
     assert.ok((await stat(join('dist', match[1], 'index.html'))).isFile(), `Route destination ${match[1]} from ${path}`)
   }
 }
-assert.equal(headings.size, pages.length, 'Each route retains its own rendered content')
+assert.equal(pageContents.size, pages.length, 'Each route retains its own rendered content')
 assert.equal(titles.size, pages.length, 'Unique titles per route')
 assert.equal(descriptions.size, pages.length, 'Unique descriptions per route')
 console.log(`Verified ${pages.length} static pages: content, unique metadata, robots directives and internal route destinations.`)

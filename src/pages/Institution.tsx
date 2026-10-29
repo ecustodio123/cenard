@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { ResourceHeader } from "../components/ResourceUI";
-import "./integrity.css";
 import "./contact.css";
 import { contactLocation } from "../data/contact";
 import {
@@ -21,7 +20,7 @@ import {
 } from "../components/UI";
 import { features, notice, pathFor, site } from "../data/site";
 import council from "../data/council.json";
-import secretary from "../data/secretary.json";
+import { ManagementProposals } from "../components/institution/ManagementProposals";
 import { documents as docs, sourceGroupingLabel } from "../data/documents";
 
 export function AboutPage() {
@@ -220,26 +219,7 @@ export function InstitutionalOrganizationPage() {
         <div id="direccion-secretaria" className="council-directory-heading organization-anchor">
           <div><Eyebrow>Dirección y gestión</Eyebrow><h2 id="management-title">Dirección y Secretaría General</h2></div>
         </div>
-        <p className="management-role-context">Se conserva la denominación conjunta «{secretary.role}». La relación funcional con la «{secretary.technical.role}» está pendiente de confirmación institucional.</p>
-        <div className="management-editorial">
-            <div className="organization-management-grid">
-              <div>
-                <h3 className="organization-office-title">Dirección y Secretaría General</h3>
-                <InstitutionalProfile id="director-name" name={secretary.name} role={secretary.role} image="/assets/team/angel-alcala-contreras.webp" subheading showDisclosure biography={<><p>{secretary.intro}</p>{secretary.sections.map((section) => <section className="institutional-bio-section" key={section.title}><h5>{section.title}</h5><p>{section.text}</p></section>)}</>} />
-              </div>
-              <div>
-                <h3 className="organization-office-title">Secretaría arbitral / técnica</h3>
-                <InstitutionalProfile id="secretary-name" name={secretary.technical.name} role={secretary.technical.role} image="/assets/team/angel-alcala-contreras.webp" placeholder subheading rolePreview showDisclosure description="La secretaría arbitral brinda apoyo al tribunal en la tramitación del arbitraje y facilita la coordinación de las actuaciones y comunicaciones del proceso." biography={<>
-                  <p className="profile-role-sample">Funciones generales · texto provisional</p>
-                  <p>Esta descripción sirve para visualizar el diseño. No es una biografía de Elizabeth ni una relación de funciones aprobada por CENARD.</p>
-                  <section className="institutional-bio-section"><h5>Apoyo en la tramitación</h5><p>La secretaría arbitral asiste al tribunal en el desarrollo de las actuaciones del arbitraje y contribuye a su gestión administrativa.</p></section>
-                  <section className="institutional-bio-section"><h5>Coordinación y comunicaciones</h5><p>De forma general, puede apoyar la organización de audiencias y mantener las comunicaciones entre las partes y el tribunal, según las reglas de la institución correspondiente.</p></section>
-                </>} />
-              </div>
-            </div>
-        </div>
-        <p className="caption organization-profile-note">Contenido provisional: la fotografía del secretario general se repite provisionalmente en la tarjeta de Elizabeth. Su texto describe el rol de secretaría arbitral y está pendiente de validación institucional.</p>
-        <a href={`mailto:${site.emails[1]}`} className="button button-secondary">Contactar a Secretaría</a>
+        <ManagementProposals />
       </section>
 
       <section className="organization-section council-gallery" aria-labelledby="council-title">
@@ -316,7 +296,7 @@ export function ServicePage({ jprd = false }: { jprd?: boolean }) {
           {features.tariffCalculator && (
             <ArrowLink to={pathFor("calculadora")}>Consultar tarifas</ArrowLink>
           )}
-          <ArrowLink to={pathFor("atalaya-de-integridad")}>
+          <ArrowLink to={pathFor(`atalaya-de-integridad/${jprd ? "jprd" : "arbitraje"}`)}>
             Atalaya de Integridad
           </ArrowLink>
           <ArrowLink to={pathFor("contacto")}>
@@ -428,54 +408,6 @@ export function ServicePage({ jprd = false }: { jprd?: boolean }) {
           </div>
         )}
       </section>
-    </div>
-  );
-}
-
-export function IntegrityPage() {
-  return (
-    <div className="integrity-resource-page">
-      <ResourceHeader
-        label="Integridad"
-        title="Atalaya de Integridad"
-        description="Consulta los laudos arbitrales publicados por CENARD y la disponibilidad de otras categorías de información institucional."
-      />
-      <div className="container integrity-resource-content">
-        <section className="integrity-resource-primary" aria-labelledby="integrity-laudos-title">
-          <div className="integrity-resource-copy">
-            <p className="integrity-resource-label">Disponible para consulta</p>
-            <h2 id="integrity-laudos-title">Laudos arbitrales</h2>
-            <p className="integrity-resource-description">Accede a la carpeta pública de laudos arbitrales de CENARD.</p>
-          </div>
-          <div className="integrity-resource-access">
-            <a
-              className="button integrity-resource-action"
-              href={site.laudos}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Consultar laudos
-              <span className="sr-only"> (se abre en otra pestaña)</span>
-            </a>
-            <p className="integrity-resource-external-note">Carpeta pública en Google Drive · Se abre en otra pestaña.</p>
-          </div>
-        </section>
-        <section className="integrity-resource-categories" aria-labelledby="integrity-categories-title">
-          <h2 id="integrity-categories-title">Otras categorías de información</h2>
-          <div className="integrity-resource-category-grid">
-            {[
-              { id: "integrity-centre-title", title: "Sanciones / Decisiones del Centro" },
-              { id: "integrity-jprd-title", title: "Decisiones de JPRD" },
-            ].map(category => (
-              <article className="integrity-resource-category" key={category.id} aria-labelledby={category.id}>
-                <h3 id={category.id}>{category.title}</h3>
-                <p>Consulta no habilitada actualmente en esta web.</p>
-                <p className="integrity-resource-status">No disponible por ahora</p>
-              </article>
-            ))}
-          </div>
-        </section>
-      </div>
     </div>
   );
 }

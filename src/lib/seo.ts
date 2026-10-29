@@ -12,7 +12,7 @@ const titles: Record<string, string> = {
   "listado-de-arbitros": "Nómina de árbitros: registros publicados | CENARD",
   "nomina-de-adjudicadores": "Nómina de adjudicadores de JPRD | CENARD",
   "preguntas-frecuentes": "Preguntas frecuentes sobre arbitraje | CENARD",
-  "atalaya-de-integridad": "Atalaya de Integridad: laudos arbitrales | CENARD",
+  "atalaya-de-integridad": "Atalaya de Integridad: Arbitraje y JPRD | CENARD",
   contacto: "Contacto y ubicación en Magdalena del Mar, Lima | CENARD",
 };
 const descriptions: Record<string, string> = {
@@ -26,7 +26,7 @@ const descriptions: Record<string, string> = {
   "listado-de-arbitros": "Consulta las nóminas de árbitros nacionales y de contratación pública publicadas por CENARD. Busca por nombre y filtra los registros disponibles.",
   "nomina-de-adjudicadores": "Consulta la nómina de adjudicadores de JPRD publicada por CENARD. Busca por nombre y revisa las profesiones y especialidades consignadas en los registros.",
   "preguntas-frecuentes": "Consulta respuestas generales sobre el arbitraje, sus modalidades y el inicio de un proceso en CENARD, con acceso al reglamento publicado.",
-  "atalaya-de-integridad": "Accede a la carpeta pública de laudos arbitrales de CENARD y consulta la disponibilidad de otras categorías de información institucional.",
+  "atalaya-de-integridad": "Selecciona Arbitraje o JPRD para consultar sus categorías de información en la Atalaya de Integridad de CENARD y conocer su disponibilidad.",
   contacto: "Encuentra los canales de atención de CENARD: WhatsApp, teléfono y correos institucionales. Consulta dirección, horario y ubicación en Magdalena del Mar, Lima.",
 };
 

@@ -36,6 +36,10 @@ export function Layout() {
   const [menuLocation, setMenuLocation] = useState<string | null>(null);
   const location = useLocation();
   const open = menuLocation === location.key;
+  const currentPath = location.pathname.endsWith("/") ? location.pathname : `${location.pathname}/`;
+  const isGroupActive = (group: (typeof navigation)[number]) =>
+    group.slugs.some(slug => currentPath === pathFor(slug)) ||
+    !!(group.sectionSlug && currentPath === pathFor(group.sectionSlug));
   const previousPath = useRef(location.pathname);
   const menuButton = useRef<HTMLButtonElement>(null);
   const panel = useRef<HTMLElement>(null);
@@ -112,7 +116,11 @@ export function Layout() {
         return;
       document
         .querySelectorAll("header details[open]")
-        .forEach((el) => el.removeAttribute("open"));
+        .forEach((el) => {
+          const restoreFocus = event.type === "keydown" && el.contains(document.activeElement);
+          el.removeAttribute("open");
+          if (restoreFocus) el.querySelector<HTMLElement>("summary")?.focus();
+        });
     };
     document.addEventListener("pointerdown", closeDetails);
     document.addEventListener("keydown", closeDetails);
@@ -160,7 +168,7 @@ export function Layout() {
               >
                 <summary
                   className={
-                    group.slugs.some((s) => location.pathname === pathFor(s))
+                    isGroupActive(group)
                       ? "is-active"
                       : ""
                   }
@@ -169,14 +177,13 @@ export function Layout() {
                 </summary>
                 <div className="dropdown-content">
                   {group.slugs.map((slug) => (
-                    <NavLink key={slug} to={pathFor(slug)}>
-                      {pages.find((p) => p.slug === slug)?.title}
+                    <NavLink key={slug} to={pathFor(slug)} onClick={event => event.currentTarget.closest("details")?.removeAttribute("open")}>
+                      {group.labels?.[slug] ?? pages.find((p) => p.slug === slug)?.title}
                     </NavLink>
                   ))}
                 </div>
               </details>
             ))}
-            <NavLink to={pathFor("atalaya-de-integridad")}>Integridad</NavLink>
             <NavLink className="nav-contact" to={pathFor("contacto")}>
               Contáctanos
             </NavLink>
@@ -203,17 +210,14 @@ export function Layout() {
             <div className="container">
               {navigation.map((group) => (
                 <div className="mobile-group" key={group.label}>
-                  <span>{group.label}</span>
+                  <span className={isGroupActive(group) ? "is-active" : undefined}>{group.label}</span>
                   {group.slugs.map((slug) => (
-                    <NavLink key={slug} to={pathFor(slug)}>
-                      {pages.find((p) => p.slug === slug)?.title}
+                    <NavLink key={slug} to={pathFor(slug)} onClick={() => setMenuLocation(null)}>
+                      {group.labels?.[slug] ?? pages.find((p) => p.slug === slug)?.title}
                     </NavLink>
                   ))}
                 </div>
               ))}
-              <NavLink to={pathFor("atalaya-de-integridad")}>
-                Atalaya de Integridad
-              </NavLink>
               <NavLink to={pathFor("contacto")}>Contacto</NavLink>
               <HeaderServiceLinks />
             </div>

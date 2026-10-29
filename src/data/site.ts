@@ -104,6 +104,18 @@ const allPages = [
       "Acceso a la información pública y a las categorías de transparencia institucional.",
   },
   {
+    slug: "atalaya-de-integridad/arbitraje",
+    title: "Atalaya de Integridad · Arbitraje",
+    section: "Integridad",
+    description: "Consulta los laudos arbitrales y la disponibilidad de Sanciones / Decisiones del Centro para Arbitraje.",
+  },
+  {
+    slug: "atalaya-de-integridad/jprd",
+    title: "Atalaya de Integridad · JPRD",
+    section: "Integridad",
+    description: "Consulta la disponibilidad de Sanciones / Decisiones del Centro y Decisiones de JPRD.",
+  },
+  {
     slug: "contacto",
     title: "Contacto",
     section: "Atención",
@@ -124,7 +136,7 @@ export const previewPages = features.tariffCalculator ? [] : [{
 }];
 
 export const pathFor = (slug = "") => `/web/${slug ? `${slug}/` : ""}`;
-export const navigation = [
+export const navigation: { label: string; slugs: string[]; labels?: Record<string, string>; sectionSlug?: string }[] = [
   {
     label: "Institución",
     slugs: [
@@ -143,6 +155,12 @@ export const navigation = [
       "calculadora",
       "preguntas-frecuentes",
     ].filter((slug) => features.tariffCalculator || slug !== "calculadora"),
+  },
+  {
+    label: "Integridad",
+    sectionSlug: "atalaya-de-integridad",
+    slugs: ["atalaya-de-integridad/arbitraje", "atalaya-de-integridad/jprd"],
+    labels: { "atalaya-de-integridad/arbitraje": "Arbitraje", "atalaya-de-integridad/jprd": "JPRD" },
   },
 ];
 export const notice = [

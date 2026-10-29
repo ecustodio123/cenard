@@ -86,3 +86,9 @@
   .arb-page-numbers { order: -1; flex-basis: 100%; justify-content: center; margin-bottom: 8px; }
   .arb-membership h2 { font-size: 27px; }
 }
+
+.arb-directory .arb-col-name { width: 27%; }
+.arb-directory .arb-col-profession { width: 14%; }
+.arb-directory .arb-col-group { width: 17%; }
+.arb-directory .arb-col-specialty { width: 28%; }
+.arb-directory .arb-col-qualifications { width: 14%; }

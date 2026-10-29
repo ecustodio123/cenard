@@ -15,7 +15,7 @@ const heroImage = {
 
 const resources = [
   { title: "Cálculo de tarifas", text: "Accede a la herramienta de cálculo de tarifas.", action: "Calcular tarifas", href: "/web/calculadora", icon: Calculator },
-  { title: "Atalaya de Integridad", text: "Consulta la información pública de integridad institucional.", action: "Consultar Atalaya", href: "/web/atalaya-de-integridad", icon: FileCheck2 },
+  { title: "Atalaya de Integridad", text: "Consulta la información pública de integridad institucional.", action: "Consultar Atalaya", href: "/web/atalaya-de-integridad/arbitraje/", icon: FileCheck2 },
   { title: "Nómina de árbitros", text: "Consulta la nómina de profesionales publicada por CENARD.", action: "Consultar nómina", href: "/web/listado-de-arbitros", icon: UsersRound },
   { title: "Portal Atenea", text: "Accede al portal Atenea.", action: "Ingresar a Atenea", href: "https://sistema.cenardarbitraje.com/login", icon: PanelsTopLeft, external: true },
 ];
@@ -56,7 +56,7 @@ export function ArbitrationPage() {
             {resources.map(resource => (
               <article key={resource.href}>
                 <resource.icon size={27} strokeWidth={1.3} aria-hidden="true" />
-                <h3>{resource.title}</h3>
+                <h3 className="uppercase">{resource.title}</h3>
                 <p>{resource.text}</p>
                 <a href={resource.href} {...(resource.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
                   {resource.action}

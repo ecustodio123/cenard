@@ -15,7 +15,7 @@ const heroImage = {
 };
 const resources = [
   { title: "Cálculo de tarifas", text: "Accede a la herramienta de cálculo de tarifas.", action: "Calcular tarifas", href: "/web/calculadora", icon: Calculator },
-  { title: "Atalaya de Integridad", text: "Consulta la información pública de integridad institucional.", action: "Consultar Atalaya", href: "/web/atalaya-de-integridad", icon: FileCheck2 },
+  { title: "Atalaya de Integridad", text: "Consulta la información pública de integridad institucional.", action: "Consultar Atalaya", href: "/web/atalaya-de-integridad/jprd/", icon: FileCheck2 },
   { title: "Nómina de adjudicadores", text: "Consulta la nómina de adjudicadores publicada por CENARD.", action: "Consultar nómina", href: "/web/nomina-de-adjudicadores", icon: UsersRound },
   { title: "Portal Atenea", text: "Accede al portal Atenea.", action: "Ingresar a Atenea", href: "https://sistema.cenardarbitraje.com/login", icon: PanelsTopLeft, external: true },
 ];
@@ -60,7 +60,7 @@ export function JprdPage() {
           <div className="arbitration-tools-grid">
             {resources.map(resource => <article key={resource.href}>
               <resource.icon size={27} strokeWidth={1.3} aria-hidden="true" />
-              <h3>{resource.title}</h3><p>{resource.text}</p>
+              <h3 className="uppercase">{resource.title}</h3><p>{resource.text}</p>
               <a href={resource.href} {...(resource.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
                 {resource.action}
                 {resource.external && <span className="arbitration-external">Sitio externo<span className="sr-only"> · abre en otra pestaña</span></span>}
