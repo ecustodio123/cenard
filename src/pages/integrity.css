@@ -1,0 +1,33 @@
+.integrity-resource-page .resource-header { padding-block: 36px 40px; }
+.integrity-resource-content { padding-block: 32px 64px; }
+.integrity-resource-primary { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 48px; align-items: center; padding: 36px 40px; background: var(--green); color: white; border-top: 2px solid #c5ab70; }
+.integrity-resource-label { color: #e0c995; font-size: 12px; font-weight: 600; line-height: 1.6; letter-spacing: .1em; text-transform: uppercase; margin: 0 0 14px; }
+.integrity-resource-primary h2 { font-size: clamp(32px, 3.4vw, 44px); color: white; margin-bottom: 16px; }
+.integrity-resource-description { max-width: 50ch; color: #dbe7e0; font-size: 18px; line-height: 1.65; }
+.integrity-resource-access { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; max-width: 330px; }
+.integrity-resource-page .integrity-resource-action { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 24px; background: var(--cream); border: 1px solid var(--cream); border-radius: 6px; color: var(--green); font-size: 15px; font-weight: 600; line-height: 1.5; text-align: center; transform: none; box-shadow: none; transition: none; }
+.integrity-resource-page .integrity-resource-action:hover { background: white; border-color: white; color: var(--green-deep); transform: none; box-shadow: none; }
+.integrity-resource-page .integrity-resource-action:focus-visible { outline: 3px solid #e0c995; outline-offset: 5px; }
+.integrity-resource-external-note { color: #dbe7e0; font-size: 13px; line-height: 1.6; margin: 0; }
+.integrity-resource-categories { margin-top: 36px; }
+.integrity-resource-categories > h2 { font-size: clamp(27px, 2.6vw, 34px); margin-bottom: 22px; }
+.integrity-resource-category-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.integrity-resource-category { background: white; border: 1px solid var(--line); padding: 26px 28px; cursor: default; }
+.integrity-resource-category h3 { color: var(--ink); font-size: 26px; line-height: 1.3; overflow-wrap: anywhere; }
+.integrity-resource-category > p { color: var(--muted); font-size: 16px; line-height: 1.65; margin-top: 14px; }
+.integrity-resource-category .integrity-resource-status { border-top: 1px solid var(--line); margin-top: 22px; padding-top: 14px; font-size: 13px; font-weight: 600; line-height: 1.6; }
+@media (max-width: 900px) {
+  .integrity-resource-primary { grid-template-columns: minmax(0, 1fr); gap: 24px; padding: 30px; }
+  .integrity-resource-access { max-width: none; }
+}
+@media (max-width: 767px) {
+  .integrity-resource-page .resource-header { padding-block: 32px; }
+  .integrity-resource-content { padding-block: 24px 44px; }
+  .integrity-resource-primary { padding: 26px 22px; }
+  .integrity-resource-description { font-size: 17px; }
+  .integrity-resource-access { align-items: stretch; }
+  .integrity-resource-category-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .integrity-resource-category { padding: 22px; }
+  .integrity-resource-category h3 { font-size: 24px; }
+  .integrity-resource-categories { margin-top: 30px; }
+}

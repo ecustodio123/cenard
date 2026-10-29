@@ -1,4 +1,6 @@
 import type { ReactNode } from "react";
+import { ResourceHeader } from "../components/ResourceUI";
+import "./integrity.css";
 import {
   BookOpenText,
   Compass,
@@ -7,14 +9,12 @@ import {
   MapPin,
   Phone,
   Scale,
-  ShieldCheck,
   UsersRound,
 } from "lucide-react";
 import {
   ArrowLink,
   ButtonLink,
   DocumentRow,
-  ExternalLink,
   Eyebrow,
   SectionHeading,
 } from "../components/UI";
@@ -433,44 +433,47 @@ export function ServicePage({ jprd = false }: { jprd?: boolean }) {
 
 export function IntegrityPage() {
   return (
-    <div className="container page-content">
-      <div className="integrity-lead">
-        <ShieldCheck size={44} strokeWidth={1} aria-hidden="true" />
-        <h2>
-          Información pública.
-          <br />
-          Acceso transparente.
-        </h2>
-        <p>
-          Consulta los recursos publicados por CENARD. Cada categoría muestra su
-          disponibilidad, sin sustituir documentos ni anticipar decisiones.
-        </p>
-      </div>
-      <div className="integrity-list">
-        <article>
-          <span>01</span>
-          <div>
-            <span className="tag">Recurso público</span>
-            <h2>Laudos arbitrales</h2>
-            <p>Carpeta pública de laudos enlazada por la institución.</p>
+    <div className="integrity-resource-page">
+      <ResourceHeader
+        label="Integridad"
+        title="Atalaya de Integridad"
+        description="Consulta los laudos arbitrales publicados por CENARD y la disponibilidad de otras categorías de información institucional."
+      />
+      <div className="container integrity-resource-content">
+        <section className="integrity-resource-primary" aria-labelledby="integrity-laudos-title">
+          <div className="integrity-resource-copy">
+            <p className="integrity-resource-label">Disponible para consulta</p>
+            <h2 id="integrity-laudos-title">Laudos arbitrales</h2>
+            <p className="integrity-resource-description">Accede a la carpeta pública de laudos arbitrales de CENARD.</p>
           </div>
-          <ExternalLink href={site.laudos}>Consultar laudos</ExternalLink>
-        </article>
-        {["Sanciones / Decisiones del Centro", "Decisiones de JPRD"].map(
-          (title, i) => (
-            <article key={title}>
-              <span>0{i + 2}</span>
-              <div>
-                <h2>{title}</h2>
-                <p>
-                  El sitio de origen no proporciona un destino de consulta para
-                  esta categoría.
-                </p>
-              </div>
-              <span className="unpublished">Contenido no publicado</span>
-            </article>
-          ),
-        )}
+          <div className="integrity-resource-access">
+            <a
+              className="button integrity-resource-action"
+              href={site.laudos}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Consultar laudos
+              <span className="sr-only"> (se abre en otra pestaña)</span>
+            </a>
+            <p className="integrity-resource-external-note">Carpeta pública en Google Drive · Se abre en otra pestaña.</p>
+          </div>
+        </section>
+        <section className="integrity-resource-categories" aria-labelledby="integrity-categories-title">
+          <h2 id="integrity-categories-title">Otras categorías de información</h2>
+          <div className="integrity-resource-category-grid">
+            {[
+              { id: "integrity-centre-title", title: "Sanciones / Decisiones del Centro" },
+              { id: "integrity-jprd-title", title: "Decisiones de JPRD" },
+            ].map(category => (
+              <article className="integrity-resource-category" key={category.id} aria-labelledby={category.id}>
+                <h3 id={category.id}>{category.title}</h3>
+                <p>Consulta no habilitada actualmente en esta web.</p>
+                <p className="integrity-resource-status">No disponible por ahora</p>
+              </article>
+            ))}
+          </div>
+        </section>
       </div>
     </div>
   );

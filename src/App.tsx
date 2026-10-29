@@ -49,7 +49,7 @@ export default function App() {
               path={`web/${p.slug}/`}
               element={
                 <>
-                  {p.slug !== "arbitraje" && p.slug !== "jprd" && p.slug !== "documentos" && p.slug !== "listado-de-arbitros" && p.slug !== "nomina-de-adjudicadores" && p.slug !== "preguntas-frecuentes" && <PageIntro
+                  {p.slug !== "arbitraje" && p.slug !== "jprd" && p.slug !== "documentos" && p.slug !== "listado-de-arbitros" && p.slug !== "nomina-de-adjudicadores" && p.slug !== "preguntas-frecuentes" && p.slug !== "atalaya-de-integridad" && <PageIntro
                     title={p.title}
                     description={p.description}
                     section={p.section}
