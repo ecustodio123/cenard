@@ -8,6 +8,7 @@ export const routes = pages.map((page) => ({
   path: pathFor(page.slug),
 }));
 export const previewRoutes = previewPages.map(page => ({ ...page, path: pathFor(page.slug) }));
+export const standaloneRoutes = [{ path: "/admin" }];
 export function render(url: string) {
   return renderToString(
     <StaticRouter location={url}>

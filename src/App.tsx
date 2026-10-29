@@ -3,6 +3,7 @@ import { Layout } from "./components/Layout";
 import { PageIntro } from "./components/UI";
 import { pages, previewPages } from "./data/site";
 import { HomePage } from "./pages/HomePage";
+import { AdminPage } from "./pages/AdminPage";
 import { ArbitrationPage } from "./pages/Arbitration";
 import { JprdPage } from "./pages/Jprd";
 import { FaqPage } from "./pages/Faq";
@@ -40,6 +41,7 @@ const components: Record<string, ReactNode> = {
 export default function App() {
   return (
     <Routes>
+      <Route path="/admin" element={<AdminPage />} />
       <Route element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="web/" element={<HomePage />} />

@@ -33,6 +33,12 @@ const descriptions: Record<string, string> = {
 export function getPageSeo(pathname: string, indexable: boolean) {
   const path = pathname.split(/[?#]/)[0];
   const normalized = path === "/" ? pathFor() : path.endsWith("/") ? path : `${path}/`;
+  if (normalized === "/admin/") return {
+    title: "Administración CENARD",
+    canonical: null,
+    meta: { description: "Modo demostración del panel de administración de CENARD. Acceso simulado, sin autenticación real.", robots: "noindex,nofollow" } as Record<string, string>,
+    structuredData: null,
+  };
   const page = [...pages, ...previewPages].find((entry) => pathFor(entry.slug) === normalized);
   const title = page ? titles[page.slug] || `${page.title} | CENARD` : "Página no encontrada | CENARD";
   const description = page ? descriptions[page.slug] || page.description : "Esta página no existe en el sitio de CENARD. Consulta los servicios y recursos institucionales desde el inicio.";
@@ -82,6 +88,10 @@ export function getPageSeo(pathname: string, indexable: boolean) {
 export function updatePageSeo(pathname: string, indexable: boolean) {
   const seo = getPageSeo(pathname, indexable);
   document.title = seo.title;
+  document.head.querySelectorAll<HTMLMetaElement>('meta[property^="og:"], meta[name^="twitter:"]').forEach(element => {
+    const key = element.getAttribute("property") ?? element.getAttribute("name") ?? "";
+    if (!(key in seo.meta)) element.remove();
+  });
   for (const [key, content] of Object.entries(seo.meta)) {
     const attribute = key.startsWith("og:") ? "property" : "name";
     let element = document.head.querySelector<HTMLMetaElement>(`meta[${attribute}="${key}"]`);

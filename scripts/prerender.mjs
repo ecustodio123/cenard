@@ -14,10 +14,10 @@ const template = (await readFile("dist/index.html", "utf8"))
 const server = await createServer({ mode: "production", server: { middlewareMode: true }, appType: "custom" });
 const escape = (value) => value.replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]);
 try {
-  const { routes, previewRoutes, render } = await server.ssrLoadModule("/src/entry-server.tsx");
+  const { routes, previewRoutes, standaloneRoutes, render } = await server.ssrLoadModule("/src/entry-server.tsx");
   const { getPageSeo } = await server.ssrLoadModule("/src/lib/seo.ts");
   const indexable = productionIndexable({ ...loadEnv("production", process.cwd(), ""), ...process.env });
-  for (const route of [...routes, ...previewRoutes, { path: "/" }, { path: "/404.html" }]) {
+  for (const route of [...routes, ...previewRoutes, ...standaloneRoutes, { path: "/" }, { path: "/404.html" }]) {
     const seo = getPageSeo(route.path, indexable);
     const meta = Object.entries(seo.meta).map(([key, value]) =>
       `<meta ${key.startsWith("og:") ? "property" : "name"}="${escape(key)}" content="${escape(value)}" />`
@@ -29,7 +29,9 @@ try {
       .replace(/<title>.*?<\/title>/, `<title>${escape(seo.title)}</title>`)
       .replace("</head>", `${meta}\n${canonical}\n${structuredData}\n</head>`)
       .replace('<div id="root"></div>', `<div id="root">${render(route.path)}</div>`);
-    const target = route.path === "/404.html" ? resolve("dist/404.html") : resolve("dist", "." + route.path, "index.html");
+    const target = route.path === "/404.html" ? resolve("dist/404.html")
+      : route.path === "/admin" ? resolve("dist/admin.html")
+      : resolve("dist", "." + route.path, "index.html");
     await mkdir(resolve(target, ".."), { recursive: true });
     await writeFile(target, html);
   }
@@ -38,7 +40,7 @@ try {
     : "User-agent: *\nDisallow: /\n");
   await writeFile("dist/sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${routes.map((r) => `  <url><loc>${escape(new URL(r.path, officialOrigin).href)}</loc></url>`).join("\n")}\n</urlset>\n`);
   await writeFile("dist/_headers", indexable
-    ? "/404.html\n  X-Robots-Tag: noindex, follow\n"
+    ? "/404.html\n  X-Robots-Tag: noindex, follow\n/admin\n  X-Robots-Tag: noindex, nofollow\n/admin.html\n  X-Robots-Tag: noindex, nofollow\n"
     : "/*\n  X-Robots-Tag: noindex, nofollow\n");
   // Keep the existing /web/ paths and consolidate the duplicate root homepage.
   const redirects = [
@@ -47,7 +49,7 @@ try {
     ...legacyRedirects.flatMap(([from, to]) => [`${from} ${to} 301`, `${from.slice(0, -1)} ${to} 301`]),
   ];
   await writeFile("dist/_redirects", redirects.join("\n") + "\n");
-  console.log(`Prerendered ${routes.length} institutional routes, ${previewRoutes.length} design previews, root alias and 404. Canonical origin: ${officialOrigin}. Indexable: ${indexable}.`);
+  console.log(`Prerendered ${routes.length} institutional routes, ${previewRoutes.length} design previews, ${standaloneRoutes.length} standalone routes, root alias and 404. Canonical origin: ${officialOrigin}. Indexable: ${indexable}.`);
 } finally {
   await server.close();
 }

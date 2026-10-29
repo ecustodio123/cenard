@@ -44,12 +44,12 @@ export function calculateCosts(mode: CostMode, input: CostInputs, currency: stri
     "Criterio técnico provisional: redondeo decimal half-up a dos decimales por concepto. Se redondea la base antes de aplicar IGV y después el impuesto; cada árbitro se trata como un concepto separado y se suman los importes mostrados. Pendiente de aprobación institucional.",
   ];
   const references: RuleSource[] = [sources.assignment];
-  const useSource = (source: RuleSource) => { if (!references.includes(source)) references.push(source); };
+  const recordSource = (source: RuleSource) => { if (!references.includes(source)) references.push(source); };
   const details = () => ({ lines, notes: [...new Set(notes)], sources: [...references] });
   const review = (reason: string): CostResult => ({ ...details(), status: "requiresReview", reason });
-  const included = (label: string, cents: bigint, source: RuleSource) => { useSource(source); lines.push(line(label, cents, "included", source)); };
+  const included = (label: string, cents: bigint, source: RuleSource) => { recordSource(source); lines.push(line(label, cents, "included", source)); };
   const taxable = (label: string, exact: Fraction, source: RuleSource) => {
-    useSource(source);
+    recordSource(source);
     const rate = taxRate(config.igvRate);
     if (!rate) throw new ReviewRequired("La tasa de IGV no está configurada de forma válida. Debe confirmarse antes de calcular los conceptos gravados.", source);
     notes.push(`IGV configurado: ${config.igvRate === "0.18" ? "18%" : `${config.igvRate} como fracción decimal`}. ${config.igvAssumption ? "Supuesto del borrador pendiente de confirmación antes de publicar; el PDF no fija este porcentaje." : "Tasa configurada externamente; no extraída del PDF."}`);
@@ -96,12 +96,12 @@ export function calculateCosts(mode: CostMode, input: CostInputs, currency: stri
         if (service === "secretary") {
           const f = regularScale(amount(input, "amount"));
           taxable("Secretaría arbitral ad hoc · proceso no administrado por el Centro", multiply(f, fraction(1n, 2n)), sources.secretary);
-          useSource(sources.regular);
+          recordSource(sources.regular);
         }
         return calculated();
       }
       case "junta": {
-        useSource(sources.jprd);
+        recordSource(sources.jprd);
         const q = amount(input, "contractAmount");
         const composition = choice(input, "adjudicators", ["1", "3"]);
         if (q === 10000000000n) return review("En S/ 100,000,000 las filas del Centro se solapan en el PDF. Secretaría General debe confirmar el importe aplicable.");
@@ -114,16 +114,16 @@ export function calculateCosts(mode: CostMode, input: CostInputs, currency: stri
         return { ...details(), status: "referenceOnly", sum: { label: "Suma neta de referencia", cents: sum }, perPartyCents: (BigInt(sum) / 2n).toString() };
       }
       case "indeterminada":
-        useSource(sources.indeterminate);
+        recordSource(sources.indeterminate);
         return review("El artículo 3 requiere determinar la base y las excepciones aplicables. Solicita evaluación de Secretaría General.");
       case "devolucion": {
-        useSource(sources.refunds);
+        recordSource(sources.refunds);
         const base = amount(input, "paid");
         const stage = refundStages.find(option => option.value === input.stage);
         if (!stage) throw new InputError("stage", "Selecciona una subetapa de devolución.");
         const result = roundHalfUp(multiply(fraction(base), fraction(stage.numerator, 1000n)));
         const source = { ...sources.refunds, printedPages: stage.pages };
-        useSource(source);
+        recordSource(source);
         lines.push(line(`Simulación: ${stage.label} · ${stage.percentage}`, result, "unchangedBase", source));
         notes.push("Base susceptible de devolución ingresada: debe ser confirmada por Secretaría General y no necesariamente equivale a todos los pagos. Se aplica el porcentaje de la subetapa sin añadir ni descontar IGV de nuevo. La normativa especial puede sustituir el artículo 5. Esta simulación no acredita derecho ni aprobación de devolución.");
         return { ...details(), status: "referenceOnly", sum: { label: "Simulación condicionada de devolución", cents: result.toString() } };
@@ -132,7 +132,7 @@ export function calculateCosts(mode: CostMode, input: CostInputs, currency: stri
     }
   } catch (error) {
     if (error instanceof InputError) return { ...details(), lines: [], status: "invalidInput", errors: { [error.field]: error.message } };
-    if (error instanceof ReviewRequired) { useSource(error.source); return review(error.message); }
+    if (error instanceof ReviewRequired) { recordSource(error.source); return review(error.message); }
     throw error;
   }
 }
