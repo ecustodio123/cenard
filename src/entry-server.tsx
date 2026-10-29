@@ -1,3 +1,4 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router";
 import App from "./App";
@@ -11,8 +12,10 @@ export const previewRoutes = previewPages.map(page => ({ ...page, path: pathFor(
 export const standaloneRoutes = [{ path: "/admin" }];
 export function render(url: string) {
   return renderToString(
-    <StaticRouter location={url}>
-      <App />
-    </StaticRouter>,
+    <QueryClientProvider client={new QueryClient()}>
+      <StaticRouter location={url}>
+        <App />
+      </StaticRouter>
+    </QueryClientProvider>,
   );
 }

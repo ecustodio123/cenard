@@ -92,3 +92,12 @@
 .arb-directory .arb-col-group { width: 17%; }
 .arb-directory .arb-col-specialty { width: 28%; }
 .arb-directory .arb-col-qualifications { width: 14%; }
+
+.arb-directory .arb-group-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.arb-directory .arb-qualification-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.arb-directory .arb-qualification-list li { font-size: 14px; line-height: 1.6; overflow-wrap: anywhere; }
+.arb-directory .arb-load-state { padding: 30px; margin-top: 24px; background: white; border: 1px solid var(--line); border-top: 2px solid var(--green); }
+.arb-directory .arb-load-state h2 { font-size: 28px; margin-bottom: 14px; }
+.arb-directory .arb-load-state p { font-size: 16px; line-height: 1.7; }
+.arb-directory .arb-load-state button { margin-top: 20px; min-height: 44px; }
+.arb-directory .arb-groups button:disabled, .arb-directory .arb-alphabet button:disabled { cursor: default; opacity: .65; }

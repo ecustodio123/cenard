@@ -136,3 +136,17 @@ for (const path of [...pages, 'dist/index.html']) {
   }
 }
 console.log('Verified standalone admin HTML, initial simulated login, noindex and absence from public navigation and sitemap.')
+
+const arbitratorsHtml = await readFile('dist/web/listado-de-arbitros/index.html', 'utf8')
+assert.ok(arbitratorsHtml.includes('Cargando nómina de árbitros'), 'Static arbitrators page starts with an explicit loading state')
+assert.ok(!arbitratorsHtml.includes('data-record-id='), 'No hardcoded arbitrator rows in static HTML')
+assert.ok(!arbitratorsHtml.includes('0</strong> registros encontrados'), 'Loading does not flash an empty count')
+assert.ok(!arbitratorsHtml.includes('Periodo publicado: 2025'), 'No period invented for Supabase records')
+console.log('Verified public arbitrators loading state, no hardcoded rows and no inferred period.')
+
+const adjudicatorsHtml = await readFile('dist/web/nomina-de-adjudicadores/index.html', 'utf8')
+assert.ok(adjudicatorsHtml.includes('Cargando nómina de adjudicadores'), 'Static adjudicators page starts with loading')
+assert.ok(!adjudicatorsHtml.includes('data-record-id='), 'No hardcoded adjudicator rows in static HTML')
+assert.ok(!adjudicatorsHtml.includes('0</strong> registros encontrados'), 'Adjudicators loading does not flash zero records')
+assert.ok(!adjudicatorsHtml.includes('Periodo publicado: 2025'), 'No period inferred for Supabase adjudicators')
+console.log('Verified public adjudicators loading state, no hardcoded rows and no inferred period.')
