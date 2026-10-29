@@ -7,11 +7,11 @@ import { ArbitrationPage } from "./pages/Arbitration";
 import { JprdPage } from "./pages/Jprd";
 import { DocumentsPage } from "./pages/Documents";
 import { ArbitratorsPage } from "./pages/Arbitrators";
+import { AdjudicatorsPage } from "./pages/Adjudicators";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { CalculatorPage } from "./pages/CalculatorPage";
 import {
   CertificationsPage,
-  ProfessionalsPage,
 } from "./pages/Resources";
 import {
   AboutPage,
@@ -29,9 +29,7 @@ const components: Record<string, ReactNode> = {
   jprd: <JprdPage />,
   documentos: <DocumentsPage />,
   "listado-de-arbitros": <ArbitratorsPage />,
-  "nomina-de-adjudicadores": (
-    <ProfessionalsPage key="adjudicador" kind="adjudicador" />
-  ),
+  "nomina-de-adjudicadores": <AdjudicatorsPage />,
   calculadora: <CalculatorPage />,
   "servicio-de-arbitraje": <FaqPage />,
   "atalaya-de-integridad": <IntegrityPage />,
@@ -51,7 +49,7 @@ export default function App() {
               path={`web/${p.slug}/`}
               element={
                 <>
-                  {p.slug !== "arbitraje" && p.slug !== "jprd" && p.slug !== "documentos" && p.slug !== "listado-de-arbitros" && <PageIntro
+                  {p.slug !== "arbitraje" && p.slug !== "jprd" && p.slug !== "documentos" && p.slug !== "listado-de-arbitros" && p.slug !== "nomina-de-adjudicadores" && <PageIntro
                     title={p.title}
                     description={p.description}
                     section={p.section}

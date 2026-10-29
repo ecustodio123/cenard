@@ -8,8 +8,8 @@ export interface DirectoryCriteria { query: string; group: string; profession: s
 export const DIRECTORY_PAGE_SIZE = 20;
 const collator = new Intl.Collator("es");
 
-export function arbitratorResults(records: ArbitratorRecord[], criteria: DirectoryCriteria, pageParameter = "") {
-  const filtered = records.filter(record => record.kind === "arbitro"
+export function professionalResults(records: ArbitratorRecord[], criteria: DirectoryCriteria, pageParameter = "", kind: "arbitro" | "adjudicador" = "arbitro") {
+  const filtered = records.filter(record => record.kind === kind
     && normalize(record.name).includes(normalize(criteria.query.trim()))
     && (!criteria.group || record.group === criteria.group)
     && (!criteria.profession || record.profession === criteria.profession)
@@ -21,6 +21,10 @@ export function arbitratorResults(records: ArbitratorRecord[], criteria: Directo
   const start = (page - 1) * DIRECTORY_PAGE_SIZE;
   return { filtered, page, pageCount, items: filtered.slice(start, start + DIRECTORY_PAGE_SIZE),
     from: filtered.length ? start + 1 : 0, to: Math.min(start + DIRECTORY_PAGE_SIZE, filtered.length) };
+}
+
+export function arbitratorResults(records: ArbitratorRecord[], criteria: DirectoryCriteria, pageParameter = "") {
+  return professionalResults(records, criteria, pageParameter, "arbitro");
 }
 
 export function directoryPageNumbers(page: number, total: number, compact = false): (number | "…")[] {

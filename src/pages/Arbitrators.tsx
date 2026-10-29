@@ -1,4 +1,4 @@
-import { useEffect, useRef, useSyncExternalStore } from "react";
+import { useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate, useSearchParams } from "react-router";
 import { Search, UsersRound } from "lucide-react";
 import { Combobox } from "../components/Combobox";
@@ -8,7 +8,9 @@ import professionals from "../data/professionals.json";
 import { documents } from "../data/documents";
 import { pathFor, site } from "../data/site";
 import { normalize } from "../lib/search";
-import { arbitratorResults, directoryPageNumbers } from "../lib/arbitrator-directory";
+import { arbitratorResults } from "../lib/arbitrator-directory";
+import { DirectoryPagination } from "../components/DirectoryPagination";
+import { useDirectoryMobile } from "../lib/use-directory-mobile";
 import { useHydrated } from "../lib/use-hydrated";
 import "./arbitrators.css";
 
@@ -18,13 +20,6 @@ const professions = [...new Set(all.map(person => person.profession).filter(Bool
 const letters = [...new Set(all.map(person => normalize(person.name[0]).toUpperCase()))].sort();
 const keys = ["q", "grupo", "profesion", "inicial", "pagina"];
 const directive = documents.find(document => document.id === "directiva-01-arbitraje")!;
-const subscribeMobile = (callback: () => void) => {
-  const media = window.matchMedia("(max-width: 767px)");
-  media.addEventListener("change", callback);
-  return () => media.removeEventListener("change", callback);
-};
-const mobileSnapshot = () => window.matchMedia("(max-width: 767px)").matches;
-const serverSnapshot = () => false;
 const displaySpecialty = (value: string) =>
   value.replace(/\p{L}/u, letter => letter.toLocaleUpperCase("es")) || "—";
 
@@ -33,7 +28,7 @@ export function ArbitratorsPage() {
   const navigate = useNavigate();
   const { hash } = useLocation();
   const hydrated = useHydrated();
-  const mobile = useSyncExternalStore(subscribeMobile, mobileSnapshot, serverSnapshot);
+  const mobile = useDirectoryMobile();
   const read = (key: string) => hydrated ? params.get(key) ?? "" : "";
   const query = read("q"), group = read("grupo"), profession = read("profesion"), letter = normalize(read("inicial")).toUpperCase();
   const rawPage = read("pagina");
@@ -108,7 +103,7 @@ export function ArbitratorsPage() {
           <h2><HighlightedText text={person.name} query={query} /></h2>
           <dl><div><dt>Grupo</dt><dd><span className="arb-group-tag">{person.group}</span></dd></div><div><dt>Profesión publicada</dt><dd>{person.profession || "—"}</dd></div><div><dt>Especialidad publicada</dt><dd>{displaySpecialty(person.specialty)}</dd></div></dl>
         </article>)}</div> : <div className="arb-table"><table><caption className="sr-only">Registros de las nóminas de árbitros · Periodo publicado 2025</caption><colgroup><col className="arb-col-name" /><col className="arb-col-profession" /><col className="arb-col-group" /><col className="arb-col-specialty" /></colgroup><thead><tr><th scope="col">Apellidos y nombres</th><th scope="col">Profesión publicada</th><th scope="col">Grupo</th><th scope="col">Especialidad publicada</th></tr></thead><tbody>{result.items.map(person => <tr key={person.id} data-record-id={person.id}><th scope="row"><HighlightedText text={person.name} query={query} /></th><td>{person.profession || "—"}</td><td><span className="arb-group-tag">{person.group}</span></td><td>{displaySpecialty(person.specialty)}</td></tr>)}</tbody></table></div>}
-        <nav className="arb-pagination" aria-label="Páginas de la nómina"><p>Mostrando {result.from}–{result.to} de {result.filtered.length} registros</p><div><button disabled={result.page === 1} onClick={() => changePage(result.page - 1)}>Anterior</button><div className="arb-page-numbers">{directoryPageNumbers(result.page, result.pageCount, mobile).map((number, index) => number === "…" ? <span key={`gap-${index}`} aria-hidden="true">…</span> : <button key={number} aria-label={`Página ${number}`} aria-current={number === result.page ? "page" : undefined} disabled={number === result.page} onClick={() => changePage(number)}>{number}</button>)}</div><button disabled={result.page === result.pageCount} onClick={() => changePage(result.page + 1)}>Siguiente</button></div></nav>
+        <DirectoryPagination page={result.page} pageCount={result.pageCount} from={result.from} to={result.to} total={result.filtered.length} compact={mobile} onPageChange={changePage} />
       </> : <ResourceEmpty icon={<UsersRound size={30} strokeWidth={1.3} aria-hidden="true" />} title="No encontramos registros con estos criterios" message="Prueba con otro nombre o elimina alguno de los filtros." action={<button className="button button-secondary" onClick={reset}>Restablecer filtros</button>} />}
       <section className="arb-membership" aria-labelledby="arb-membership-title"><div><h2 id="arb-membership-title">Incorporación y renovación</h2><p>Consulta las fichas y la directiva correspondiente en nuestra biblioteca documental.</p></div><div className="arb-membership-links"><Link to={pathFor("documentos") + "?servicio=Arbitraje&tipo=Ficha"}>Consultar fichas</Link><a href={directive.urlPublic} target="_blank" rel="noopener noreferrer">Consultar Directiva 01 de Arbitraje<span className="sr-only"> · PDF, abre en otra pestaña</span></a></div><p>Para información sobre incorporación, escribe a <a href={`mailto:${site.emails[0]}`}>{site.emails[0]}</a>.</p></section>
       <p className="arb-validation">Periodo publicado: 2025. Su vigencia actual está pendiente de confirmación de CENARD. Los registros de distintos grupos se conservan por separado.</p>

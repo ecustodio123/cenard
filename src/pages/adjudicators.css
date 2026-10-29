@@ -1,0 +1,15 @@
+/* Sibling of Arbitrators: same visual family, only local adaptations. */
+.adj-directory .adj-filter-row { display: flex; justify-content: space-between; align-items: end; gap: 24px; border-top: 1px solid var(--line); padding-top: 22px; margin-top: 22px; }
+.adj-directory .adj-filter-row .cenard-combobox { flex: 0 1 420px; }
+.adj-directory .adj-filter-row > button { flex-shrink: 0; }
+.adj-directory .arb-col-name { width: 36%; }
+.adj-directory .arb-col-profession { width: 24%; }
+.adj-directory .arb-col-specialty { width: 40%; }
+.adj-directory .arb-alphabet button[aria-pressed="false"] { border-color: #dce3dc; }
+.adj-directory #resultados-adjudicadores, .adj-directory #filtros-adjudicadores { scroll-margin-top: 20px; }
+.adj-directory #resultados-adjudicadores:focus-visible { outline: 3px solid #b58a38; outline-offset: 5px; }
+@media(max-width:767px) {
+  .adj-directory .adj-filter-row { flex-direction: column; align-items: stretch; gap: 10px; }
+  .adj-directory .adj-filter-row .cenard-combobox { flex: none; }
+  .adj-directory .adj-filter-row > button { align-self: start; }
+}
