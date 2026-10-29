@@ -3,13 +3,12 @@ import { Controller, useForm, useWatch } from "react-hook-form";
 import {
   Calculator,
   CheckCircle2,
-  Info,
   LockKeyhole,
   RotateCcw,
 } from "lucide-react";
 import { Link } from "react-router";
 import { Combobox } from "../components/Combobox";
-import { Eyebrow, InfoNote } from "../components/UI";
+import { Eyebrow } from "../components/UI";
 import {
   getTariffAvailability,
   modes,
