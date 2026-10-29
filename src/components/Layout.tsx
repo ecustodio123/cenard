@@ -9,6 +9,26 @@ import {
   X,
 } from "lucide-react";
 import { navigation, pages, pathFor, site } from "../data/site";
+import { updatePageSeo } from "../lib/seo";
+import { officialOrigin } from "../data/seo-config";
+
+const headerServices = [
+  { label: "Atenea", href: "https://sistema.cenardarbitraje.com/login" },
+  { label: "Mesa de partes", href: "https://sistema.cenardarbitraje.com/mesa-partes" },
+];
+
+function HeaderServiceLinks() {
+  return (
+    <div className="header-service-links">
+      {headerServices.map(({ label, href }) => (
+        <a key={label} className="header-service-button" href={href} target="_blank" rel="noopener noreferrer">
+          {label}
+          <span className="sr-only"> (se abre en una pestaña nueva)</span>
+        </a>
+      ))}
+    </div>
+  );
+}
 
 export function Layout() {
   const [menuLocation, setMenuLocation] = useState<string | null>(null);
@@ -27,29 +47,16 @@ export function Layout() {
     document
       .querySelectorAll("header details[open]")
       .forEach((el) => el.removeAttribute("open"));
-    const page = pages.find(
-      (p) =>
-        pathFor(p.slug) ===
-          (location.pathname.endsWith("/")
-            ? location.pathname
-            : location.pathname + "/") ||
-        (location.pathname === "/" && !p.slug),
-    );
-    document.title = page
-      ? `${page.title === "Inicio" ? site.name : page.title} | CENARD`
-      : "Página no encontrada | CENARD";
-    document
-      .querySelector('meta[name="description"]')
-      ?.setAttribute(
-        "content",
-        page?.description ?? "Página no encontrada en CENARD.",
-      );
     if (location.hash)
       requestAnimationFrame(() =>
         document.getElementById(location.hash.slice(1))?.scrollIntoView(),
       );
     else window.scrollTo({ top: 0, behavior: "instant" });
   }, [location.pathname, location.hash]);
+  useEffect(() => {
+    const isOfficialHost = window.location.origin === officialOrigin;
+    updatePageSeo(location.pathname, import.meta.env.PROD && import.meta.env.VITE_SITE_INDEXABLE === "true" && isOfficialHost);
+  }, [location.pathname]);
   useEffect(() => {
     if (!open) return;
     const previous = document.body.style.overflow;
@@ -170,6 +177,7 @@ export function Layout() {
             <NavLink className="nav-contact" to={pathFor("contacto")}>
               Contáctanos
             </NavLink>
+            <HeaderServiceLinks />
           </nav>
           <button
             ref={menuButton}
@@ -204,6 +212,7 @@ export function Layout() {
                 Atalaya de Integridad
               </NavLink>
               <NavLink to={pathFor("contacto")}>Contacto</NavLink>
+              <HeaderServiceLinks />
             </div>
           </nav>
         )}
@@ -215,7 +224,9 @@ export function Layout() {
         pathFor("contacto").replace(/\/$/, "") && (
         <section className="contact-band contact-band-compact">
           <div className="container">
-            <h2>Conversemos sobre el siguiente paso.</h2>
+            <h2>{location.pathname === "/" || location.pathname === "/web" || location.pathname === "/web/"
+              ? "¿Necesitas orientación sobre nuestros servicios?"
+              : "Conversemos sobre el siguiente paso."}</h2>
             <Link className="button button-light" to={pathFor("contacto")}>
               Contactar a CENARD
             </Link>

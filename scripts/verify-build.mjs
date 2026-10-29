@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import { readdir, readFile, stat } from 'node:fs/promises'
 import { join } from 'node:path'
 import { pages as visiblePages } from '../src/data/site.ts'
+import { legacyRedirects, productionIndexable } from '../src/data/seo-config.ts'
 
 async function files(directory) {
   const output = []
@@ -14,7 +15,7 @@ async function files(directory) {
 }
 const pages = await files('dist/web')
 assert.equal(pages.length, visiblePages.length, 'All institutional routes must be prerendered')
-const titles = new Set(), descriptions = new Set()
+const titles = new Set(), descriptions = new Set(), headings = new Set()
 for (const path of pages) {
   const html = await readFile(path, 'utf8')
   assert.equal((html.match(/<h1[\s>]/g) || []).length, 1, `Single H1: ${path}`)
@@ -23,6 +24,7 @@ for (const path of pages) {
   assert.ok(title && description, `Metadata: ${path}`)
   assert.equal((html.match(/<meta\b(?=[^>]*\bname="robots")[^>]*>/g) || []).length, 1, `One robots directive: ${path}`)
   titles.add(title); descriptions.add(description)
+  headings.add(html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1])
   for (const match of html.matchAll(/href="(\/web\/[^"?&#]*)(?:[?&#][^"]*)?"/g)) {
     // JPRD explicitly retains this literal destination while its page is disabled.
     // Do not create a route or enable the calculator merely to satisfy link checks.
@@ -33,6 +35,72 @@ for (const path of pages) {
     assert.ok((await stat(join('dist', match[1], 'index.html'))).isFile(), `Route destination ${match[1]} from ${path}`)
   }
 }
+assert.equal(headings.size, visiblePages.length, 'Each route retains its own rendered content')
 assert.equal(titles.size, visiblePages.length, 'Unique titles per route')
 assert.equal(descriptions.size, visiblePages.length, 'Unique descriptions per route')
 console.log(`Verified ${visiblePages.length} static pages: content, unique metadata, robots directives and internal route destinations.`)
+
+const origin = 'https://cenardarbitraje.com'
+const canonicalUrls = new Set()
+for (const path of pages) {
+  const html = await readFile(path, 'utf8')
+  const canonicals = [...html.matchAll(/<link rel="canonical" href="([^"]+)"/g)]
+  assert.equal(canonicals.length, 1, `One canonical per page: ${path}`)
+  const canonical = new URL(canonicals[0][1])
+  assert.equal(canonical.origin, origin, `Official canonical origin: ${path}`)
+  assert.equal(canonical.search + canonical.hash, '', `Clean canonical: ${path}`)
+  assert.ok(canonical.pathname.endsWith('/'), `Canonical trailing slash: ${path}`)
+  canonicalUrls.add(canonical.href)
+  for (const property of ['og:title', 'og:description', 'og:url', 'og:image', 'og:locale']) {
+    assert.equal([...html.matchAll(new RegExp(`<meta property="${property}" content="([^"]+)"`, 'g'))].length, 1, `Social property ${property}: ${path}`)
+  }
+  assert.ok(html.includes(`property="og:url" content="${canonical.href}"`), `Social/canonical agreement: ${path}`)
+  assert.ok(html.includes('name="twitter:card" content="summary_large_image"'), `Sharing card: ${path}`)
+  const scripts = [...html.matchAll(/<script id="cenard-structured-data" type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+  assert.equal(scripts.length, 1, `One structured data graph: ${path}`)
+  const graph = JSON.parse(scripts[0][1])
+  assert.equal(graph['@context'], 'https://schema.org')
+  assert.ok(graph['@graph'].some(node => node['@type'] === 'Organization'))
+  assert.ok(graph['@graph'].some(node => node['@type'] === 'WebSite'))
+  assert.ok(graph['@graph'].some(node => node.url === canonical.href && ['WebPage', 'AboutPage', 'ContactPage'].includes(node['@type'])))
+}
+assert.equal(canonicalUrls.size, visiblePages.length, 'Unique canonical per visible page')
+const sitemap = await readFile('dist/sitemap.xml', 'utf8')
+const locations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1])
+assert.deepEqual(new Set(locations), canonicalUrls, 'Sitemap contains exactly the canonical pages')
+assert.equal(locations.length, canonicalUrls.size, 'No duplicate sitemap entries')
+const notFound = await readFile('dist/404.html', 'utf8')
+assert.ok(notFound.includes('name="robots" content="noindex,follow"'), '404 excluded from indexing')
+assert.ok(!notFound.includes('rel="canonical"'), '404 does not canonicalize to an existing page')
+assert.ok(!notFound.includes('id="cenard-structured-data"'), '404 has no institutional page graph')
+console.log('Verified canonical URLs, social metadata, JSON-LD, sitemap consistency and 404 exclusion.')
+
+const redirects = await readFile('dist/_redirects', 'utf8')
+for (const [from, to] of legacyRedirects) {
+  assert.ok(redirects.includes(`${from} ${to} 301`), `Legacy redirect: ${from}`)
+  const [path, fragment] = to.split('#')
+  const html = await readFile(join('dist', path, 'index.html'), 'utf8')
+  if (fragment) assert.ok(html.includes(`id="${fragment}"`), `Redirect section exists: ${to}`)
+}
+assert.equal(productionIndexable({}), true)
+assert.equal(productionIndexable({ SITE_INDEXABLE: 'false' }), false)
+assert.equal(productionIndexable({ CF_PAGES_BRANCH: 'preview', SITE_INDEXABLE: 'true' }), false)
+assert.equal(productionIndexable({ CF_PAGES_BRANCH: 'main' }), true)
+assert.equal(productionIndexable({ CF_PAGES_BRANCH: 'release', PRODUCTION_BRANCH: 'release' }), true)
+assert.throws(() => productionIndexable({ SITE_INDEXABLE: 'yes' }))
+console.log('Verified legacy redirect destinations and environment indexing controls.')
+
+const home = await readFile('dist/web/index.html', 'utf8')
+const indexable = home.includes('name="robots" content="index,follow,max-image-preview:large"')
+const robots = await readFile('dist/robots.txt', 'utf8')
+const headers = await readFile('dist/_headers', 'utf8')
+if (indexable) {
+  assert.ok(robots.includes(`Sitemap: ${origin}/sitemap.xml`))
+  assert.ok(!robots.includes('Disallow: /'))
+  assert.ok(!headers.startsWith('/*'))
+} else {
+  assert.ok(robots.includes('Disallow: /'))
+  assert.ok(headers.includes('/*\n  X-Robots-Tag: noindex, nofollow'))
+  for (const path of pages) assert.ok((await readFile(path, 'utf8')).includes('name="robots" content="noindex,follow"'))
+}
+console.log(`Verified robots.txt and HTTP indexing headers for ${indexable ? 'production' : 'preview'}.`)

@@ -1,308 +1,156 @@
-import {
-  BookOpenText,
-  Calculator,
-  FileCheck2,
-  FileText,
-  Scale,
-  ShieldCheck,
-  UsersRound,
-} from "lucide-react";
+import { BookOpenText, FileCheck2, FileText, UsersRound } from "lucide-react";
 import { Link } from "react-router";
-import {
-  ArrowLink,
-  ButtonLink,
-  Eyebrow,
-  SectionHeading,
-} from "../components/UI";
-import { features, notice, pathFor } from "../data/site";
+import { ArrowLink, ButtonLink, Eyebrow, SectionHeading } from "../components/UI";
+import { notice, pathFor } from "../data/site";
+import "./home.css";
 
 const shortcuts = [
-  {
-    icon: BookOpenText,
-    title: "Normativa y documentos",
-    text: "Reglamentos y recursos institucionales.",
-    slug: "documentos",
-    n: "01",
-  },
-  {
-    icon: UsersRound,
-    title: "Nómina de árbitros",
-    text: "Consulta nuestros profesionales.",
-    slug: "listado-de-arbitros",
-    n: "02",
-  },
-  {
-    icon: FileCheck2,
-    title: "Nómina de adjudicadores",
-    text: "Especialistas en resolución de disputas.",
-    slug: "nomina-de-adjudicadores",
-    n: "03",
-  },
-  {
-    icon: Calculator,
-    title: "Calculadora de tarifas",
-    text: "Información sobre costos y modalidades.",
-    slug: "calculadora",
-    n: "04",
-  },
-].filter((shortcut) => features.tariffCalculator || shortcut.slug !== "calculadora");
+  { icon: BookOpenText, title: "Normativa y documentos", text: "Reglamentos, directivas y fichas.", slug: "documentos" },
+  { icon: UsersRound, title: "Nómina de árbitros", text: "Consulta los registros publicados.", slug: "listado-de-arbitros" },
+  { icon: FileCheck2, title: "Nómina de adjudicadores", text: "Consulta los registros publicados.", slug: "nomina-de-adjudicadores" },
+];
+
 export function HomePage() {
   return (
-    <>
-      <section className="hero">
-        <div className="container hero-layout">
-          <div className="hero-copy">
-            <Eyebrow>Diálogo que construye soluciones</Eyebrow>
-            <h1 tabIndex={-1}>
-              Centro Nacional
-              <br />
-              para la Resolución
-              <br />
-              de <em>Disputas.</em>
-            </h1>
-            <p>
-              Promovemos la cultura de solución de controversias a través del
-              arbitraje y la prevención de disputas.
+    <div className="cenard-home">
+      <section className="home-hero">
+        <div className="container home-hero-grid">
+          <div className="home-hero-copy">
+            <Eyebrow>CENARD · Centro Nacional para la Resolución de Disputas</Eyebrow>
+            <h1 tabIndex={-1}>Arbitraje y prevención de disputas.</h1>
+            <p className="home-hero-description">
+              Promovemos la solución de controversias mediante el arbitraje y
+              las Juntas de Prevención y Resolución de Disputas.
             </p>
-            <div className="hero-actions">
-              <ButtonLink to="/web/#servicios">Conocer servicios</ButtonLink>
-              <ButtonLink secondary to={pathFor("documentos")}>
-                Consultar normativa
-              </ButtonLink>
+            <div className="home-hero-actions">
+              <a className="button" href="#servicios">Conocer servicios</a>
+              <ButtonLink secondary to={pathFor("contacto")}>Contactar a CENARD</ButtonLink>
             </div>
-            <div className="hero-footnote">
-              <span className="small-rule" />
-              Imparcialidad. Especialización. Transparencia.
-            </div>
+            <p className="home-hero-values">Imparcialidad. Especialización. Transparencia.</p>
           </div>
-          <div className="hero-visual">
+          <div className="home-hero-image">
             <img
-              className="hero-photo"
               src="/images/hero-1400.webp"
               srcSet="/images/hero-640.webp 640w, /images/hero-1400.webp 1400w"
-              sizes="(min-width: 1200px) 40vw, (min-width: 768px) 45vw, 100vw"
-              width="1400"
-              height="876"
-              fetchPriority="high"
+              sizes="(min-width: 1200px) 540px, (min-width: 768px) 45vw, 100vw"
+              width="1400" height="876" fetchPriority="high"
               alt="Balanza de justicia y documentos sobre un escritorio jurídico. Imagen ilustrativa."
             />
-            <div className="hero-image-shade" />
-            <div className="hero-image-caption">
-              <Scale size={28} strokeWidth={1.2} aria-hidden="true" />
-              <span>
-                Una cultura de diálogo.
-                <br />
-                <strong>Un camino hacia la solución.</strong>
-              </span>
-            </div>
-            <span className="hero-vertical">CENARD · ARBITRAJE Y JPRD</span>
           </div>
-        </div>
-        <div className="hero-bottom container">
-          <span>Institución · Servicios · Recursos</span>
-          <a href="#recursos" aria-label="Explorar recursos">
-            Explora CENARD
-          </a>
         </div>
       </section>
-      <section className="quick-access" id="recursos">
+
+      <section className="home-shortcuts" id="recursos" aria-labelledby="home-shortcuts-title">
         <div className="container">
-          <div className="quick-label">
-            <span>Tu consulta, más cerca</span>
-            <span>ACCESOS RÁPIDOS</span>
-          </div>
-          <div className={`shortcut-grid ${shortcuts.length === 3 ? "shortcut-grid-three" : ""}`}>
-            {shortcuts.map((s) => (
-              <Link className="shortcut" key={s.slug} to={pathFor(s.slug)}>
-                <div className="shortcut-top">
-                  <s.icon size={25} strokeWidth={1.4} aria-hidden="true" />
-                  <span>{s.n}</span>
-                </div>
-                <h2>{s.title}</h2>
-                <p>{s.text}</p>
+          <h2 id="home-shortcuts-title">Accesos rápidos</h2>
+          <div className="home-shortcut-grid">
+            {shortcuts.map(({ icon: Icon, title, text, slug }) => (
+              <Link className="home-shortcut" key={slug} to={pathFor(slug)}>
+                <Icon size={25} strokeWidth={1.4} aria-hidden="true" />
+                <div><h3>{title}</h3><p>{text}</p></div>
               </Link>
             ))}
           </div>
         </div>
       </section>
-      <section id="servicios" className="section services-section">
+
+      <section id="servicios" className="home-services home-section">
         <div className="container">
-          <SectionHeading
-            label="Nuestros servicios"
-            title="Distintos caminos. Un mismo propósito."
-          >
-            <p>
-              Mecanismos especializados para abordar controversias y acompañar
-              la ejecución de contratos.
-            </p>
+          <SectionHeading label="Nuestros servicios" title="Arbitraje y JPRD">
+            <p>Conoce nuestros servicios de solución de controversias y prevención de disputas.</p>
           </SectionHeading>
-          <div className="services-grid">
-            <article className="service-panel">
-              <div className="service-number">01 / ARBITRAJE</div>
-              <Scale
-                className="service-icon"
-                size={48}
-                strokeWidth={1}
-                aria-hidden="true"
-              />
+          <div className="home-service-grid">
+            <article className="home-service">
+              <p className="home-service-label">Solución de controversias</p>
               <h3>Arbitraje</h3>
-              <p>
-                Un mecanismo de solución de controversias con administración
-                institucional y profesionales especializados.
-              </p>
-              <ArrowLink to={pathFor("arbitraje")}>
-                Conocer el servicio
-              </ArrowLink>
-              <div className="service-bottom">
-                <Link to={pathFor("documentos") + "?servicio=Arbitraje"}>
-                  Normativa
-                </Link>
-                <Link to={pathFor("listado-de-arbitros")}>
-                  Nómina de árbitros
-                </Link>
+              <p className="home-service-description">Administración institucional de procesos arbitrales para la solución de controversias.</p>
+              <ArrowLink className="home-service-primary" to={pathFor("arbitraje")}>Conocer Arbitraje</ArrowLink>
+              <div className="home-service-secondary">
+                <Link to={pathFor("documentos") + "?servicio=Arbitraje"}>Normativa de Arbitraje</Link>
+                <Link to={pathFor("listado-de-arbitros")}>Nómina de árbitros</Link>
               </div>
             </article>
-            <article className="service-panel service-panel-light">
-              <div className="service-number">02 / PREVENCIÓN Y RESOLUCIÓN</div>
-              <ShieldCheck
-                className="service-icon"
-                size={48}
-                strokeWidth={1}
-                aria-hidden="true"
-              />
+            <article className="home-service home-service-light">
+              <p className="home-service-label">Prevención y resolución de disputas</p>
               <h3>JPRD</h3>
-              <p>
-                Juntas de Prevención y Resolución de Disputas para acompañar la
-                ejecución de contratos de obras y de suministro.
-              </p>
-              <ArrowLink to={pathFor("jprd")}>Conocer el servicio</ArrowLink>
-              <div className="service-bottom">
-                <Link to={pathFor("documentos") + "?servicio=JPRD"}>
-                  Normativa
-                </Link>
-                <Link to={pathFor("nomina-de-adjudicadores")}>
-                  Nómina de adjudicadores
-                </Link>
+              <p className="home-service-full-name">Juntas de Prevención y Resolución de Disputas</p>
+              <p className="home-service-description">Prevención y resolución de disputas durante la ejecución de contratos de obras y de suministro.</p>
+              <ArrowLink className="home-service-primary" to={pathFor("jprd")}>Conocer JPRD</ArrowLink>
+              <div className="home-service-secondary">
+                <Link to={pathFor("documentos") + "?servicio=JPRD"}>Normativa de JPRD</Link>
+                <Link to={pathFor("nomina-de-adjudicadores")}>Nómina de adjudicadores</Link>
               </div>
             </article>
           </div>
         </div>
       </section>
-      <section className="section institution-section">
-        <div className="container institution-grid">
-          <div className="institution-image">
+
+      <section className="home-institution home-section" aria-labelledby="home-institution-title">
+        <div className="container home-institution-grid">
+          <div className="home-institution-image">
             <img
               src="/images/meeting-1400.webp"
               srcSet="/images/meeting-640.webp 640w, /images/meeting-1400.webp 1400w"
-              sizes="(min-width: 768px) 45vw, 100vw"
-              width="1400"
-              height="934"
+              sizes="(min-width: 1200px) 540px, (min-width: 768px) 45vw, 100vw"
+              width="1400" height="934" loading="lazy"
               alt="Profesionales dialogando en una reunión. Imagen ilustrativa, no representa al equipo de CENARD."
-              loading="lazy"
             />
-            <span>EL VALOR DEL ENTENDIMIENTO</span>
           </div>
-          <div className="institution-copy">
+          <div className="home-institution-copy">
             <Eyebrow>Nuestra institución</Eyebrow>
-            <h2>El diálogo como punto de partida.</h2>
-            <p>
-              Somos el Centro Nacional para la Resolución de Disputas. Nuestra
-              misión es promover mecanismos de solución de controversias con
-              imparcialidad, transparencia y especialización.
-            </p>
-            <p>
-              Conoce nuestra organización, a las personas que la integran y los
-              documentos que respaldan nuestra actividad.
-            </p>
-            <ArrowLink to={pathFor("conocenos")}>Conoce CENARD</ArrowLink>
-            <div className="institution-links">
-              <Link to={pathFor("organizacion-institucional") + "#alto-consejo"}>
-                Alto Consejo
-              </Link>
-              <Link to={pathFor("organizacion-institucional") + "#estructura-institucional"}>
-                Estructura institucional
-              </Link>
-              <Link to={pathFor("certificaciones")}>
-                Certificaciones y constancias
-              </Link>
+            <h2 id="home-institution-title">Conoce CENARD</h2>
+            <p>Somos el Centro Nacional para la Resolución de Disputas. Conoce nuestra presentación institucional, nuestra organización y los documentos institucionales disponibles.</p>
+            <ArrowLink to={pathFor("conocenos")}>Conocer la institución</ArrowLink>
+            <div className="home-institution-links">
+              <Link to={pathFor("organizacion-institucional")}>Organización institucional</Link>
+              <Link to={pathFor("certificaciones")}>Certificaciones y constancias</Link>
             </div>
           </div>
         </div>
       </section>
-      <section className="section transparency-section">
+
+      <section className="home-guidance home-section">
         <div className="container">
-          <SectionHeading
-            label="Información a tu alcance"
-            title="La confianza se construye con claridad."
-          />
-          <div className="transparency-grid">
+          <SectionHeading label="Información útil" title="Orientación e integridad" />
+          <div className="home-guidance-grid">
             <article>
-              <BookOpenText size={30} strokeWidth={1.3} aria-hidden="true" />
-              <div>
-                <h3>Una biblioteca para consultar.</h3>
-                <p>
-                  Reglamentos, directivas, códigos y fichas organizados para
-                  encontrar lo que necesitas.
-                </p>
-                <ArrowLink to={pathFor("documentos")}>
-                  Explorar documentos
-                </ArrowLink>
-              </div>
+              <h3>Preguntas frecuentes</h3>
+              <p>Consulta respuestas generales sobre el arbitraje y el inicio de un proceso en CENARD.</p>
+              <ArrowLink to={pathFor("preguntas-frecuentes")}>Consultar preguntas frecuentes</ArrowLink>
             </article>
             <article>
-              <ShieldCheck size={30} strokeWidth={1.3} aria-hidden="true" />
-              <div>
-                <h3>Una mirada a la integridad.</h3>
-                <p>
-                  Accede a la información pública de la institución en nuestra
-                  Atalaya de Integridad.
-                </p>
-                <ArrowLink to={pathFor("atalaya-de-integridad")}>
-                  Visitar Atalaya
-                </ArrowLink>
-              </div>
+              <h3>Atalaya de Integridad</h3>
+              <p>Accede a los laudos arbitrales publicados y consulta la disponibilidad de otras categorías de información.</p>
+              <ArrowLink to={pathFor("atalaya-de-integridad")}>Visitar Atalaya</ArrowLink>
             </article>
           </div>
         </div>
       </section>
-      <section className="notice-section">
+
+      <section className="home-notice-section">
         <div className="container">
-          <details className="institutional-notice">
+          <details className="home-notice">
             <summary>
               <FileText size={22} strokeWidth={1.4} aria-hidden="true" />
-              <div>
-                <span className="notice-title">
-                  Nuestra identidad institucional
-                </span>
-                <span>
-                  CENARD forma parte de la Asociación para la Promoción Cultural
-                  de los Mecanismos Alternativos de Solución de Controversias.
-                </span>
-              </div>
-              <span className="notice-open">
-                Leer comunicado
+              <span className="home-notice-heading">
+                <span className="home-notice-title">Nuestra identidad institucional</span>
+                <span>CENARD forma parte de la Asociación para la Promoción Cultural de los Mecanismos Alternativos de Solución de Controversias.</span>
+              </span>
+              <span className="home-notice-action">
+                <span className="home-notice-read">Leer comunicado</span>
+                <span className="home-notice-close">Cerrar comunicado</span>
               </span>
             </summary>
-            <div className="notice-content">
-              {notice.map((p) => (
-                <p key={p}>{p}</p>
-              ))}
-              <a
-                className="text-link"
-                href="/images/notice.png"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Ver comunicado original
-                <span className="sr-only"> (abre en otra pestaña)</span>
+            <div className="home-notice-content">
+              {notice.map((p) => <p key={p}>{p}</p>)}
+              <a className="text-link" href="/images/notice.png" target="_blank" rel="noopener noreferrer">
+                Ver comunicado original<span className="sr-only"> (abre en otra pestaña)</span>
               </a>
-              <p className="caption">
-                Transcripción para revisión institucional antes de publicar.
-              </p>
+              <p className="caption">Transcripción para revisión institucional antes de publicar.</p>
             </div>
           </details>
         </div>
       </section>
-    </>
+    </div>
   );
 }

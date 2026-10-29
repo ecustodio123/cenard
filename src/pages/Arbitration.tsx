@@ -14,7 +14,7 @@ const heroImage = {
 };
 
 const resources = [
-  { title: "Cálculo de tarifas", text: "Accede a la herramienta de cálculo de tarifas.", action: "Calcular tarifas", href: "/calculadora", icon: Calculator },
+  { title: "Cálculo de tarifas", text: "Accede a la herramienta de cálculo de tarifas.", action: "Calcular tarifas", href: "/web/calculadora", icon: Calculator },
   { title: "Atalaya de Integridad", text: "Consulta la información pública de integridad institucional.", action: "Consultar Atalaya", href: "/web/atalaya-de-integridad", icon: FileCheck2 },
   { title: "Nómina de árbitros", text: "Consulta la nómina de profesionales publicada por CENARD.", action: "Consultar nómina", href: "/web/listado-de-arbitros", icon: UsersRound },
   { title: "Portal Atenea", text: "Accede al portal Atenea.", action: "Ingresar a Atenea", href: "https://sistema.cenardarbitraje.com/login", icon: PanelsTopLeft, external: true },

@@ -1,12 +1,13 @@
 import type { ReactNode } from "react";
 import { ResourceHeader } from "../components/ResourceUI";
 import "./integrity.css";
+import "./contact.css";
+import { contactLocation } from "../data/contact";
 import {
   BookOpenText,
   Compass,
   ChevronDown,
   Mail,
-  MapPin,
   Phone,
   Scale,
   UsersRound,
@@ -481,81 +482,107 @@ export function IntegrityPage() {
 
 export function ContactPage() {
   return (
-    <div className="container page-content">
-      <div className="contact-layout">
-        <div>
-          <Eyebrow>Atención institucional</Eyebrow>
-          <h2>
-            Estamos a un
-            <br />
-            mensaje de distancia.
-          </h2>
-          <p>
-            Para consultas sobre los servicios y recursos de CENARD, elige uno
-            de nuestros canales de atención.
-          </p>
-          <div className="contact-address">
-            <MapPin size={25} strokeWidth={1.3} aria-hidden="true" />
-            <div>
-              <h3>Sede central</h3>
-              <p>{site.address}</p>
-              <p>{site.hours}</p>
-            </div>
+    <div className="contact-resource-page">
+      <ResourceHeader
+        label="Atención"
+        title="Contacto"
+        description="Encuentra nuestros canales de atención y la ubicación de la sede."
+      />
+      <div className="container contact-resource-content">
+        <section className="contact-resource-channels" aria-labelledby="contact-channels-title">
+          <div className="contact-resource-intro">
+            <Eyebrow>Atención institucional</Eyebrow>
+            <h2 id="contact-channels-title">Conversemos.</h2>
+            <p>
+              Para consultas sobre los servicios y recursos de CENARD,
+              elige uno de nuestros canales de atención.
+            </p>
           </div>
-          <p className="caption">
-            Dirección, horario y canales reproducidos del sitio institucional.
-            Datos pendientes de confirmación antes de publicar.
-          </p>
-        </div>
-        <div className="contact-channels">
-          {site.emails.map((email, i) => (
-            <a key={email} href={`mailto:${email}`}>
-              <Mail size={25} strokeWidth={1.2} aria-hidden="true" />
+          <div className="contact-resource-channel-list">
+            <a className="contact-resource-whatsapp" href={site.whatsapp} target="_blank" rel="noopener noreferrer">
+              <UsersRound size={24} strokeWidth={1.3} aria-hidden="true" />
               <span>
-                <span className="eyebrow">
-                  {i ? "Secretaría General" : "Correspondencia institucional"}
-                </span>
-                <strong>{email}</strong>
-                <small>Escribir un correo</small>
+                <span className="contact-resource-channel-label">WhatsApp</span>
+                <strong>{site.phone}</strong>
+                <span className="contact-resource-channel-action">Escribir por WhatsApp</span>
+                <span className="sr-only"> (se abre en otra pestaña)</span>
               </span>
             </a>
-          ))}
-          <a href={site.phoneHref}>
-            <Phone size={25} strokeWidth={1.2} aria-hidden="true" />
-            <span>
-              <span className="eyebrow">Atención telefónica</span>
-              <strong>{site.phone}</strong>
-              <small>Llamar a CENARD</small>
-            </span>
+            <a href={site.phoneHref}>
+              <Phone size={24} strokeWidth={1.3} aria-hidden="true" />
+              <span>
+                <span className="contact-resource-channel-label">Atención telefónica</span>
+                <strong>{site.phone}</strong>
+                <span className="contact-resource-channel-action">Llamar a CENARD</span>
+              </span>
+            </a>
+            {site.emails.map((email, i) => (
+              <a key={email} href={`mailto:${email}`}>
+                <Mail size={24} strokeWidth={1.3} aria-hidden="true" />
+                <span>
+                  <span className="contact-resource-channel-label">
+                    {i ? "Secretaría General" : "Correspondencia institucional"}
+                  </span>
+                  <strong>{email}</strong>
+                  <span className="contact-resource-channel-action">Escribir un correo</span>
+                </span>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <section className="contact-resource-location" aria-labelledby="contact-location-title">
+          <div className="contact-resource-location-info">
+            <Eyebrow>Sede central</Eyebrow>
+            <h2 id="contact-location-title">Encuéntranos</h2>
+            <address>
+              <span>{contactLocation.street}</span>
+              <span>{contactLocation.district}</span>
+              <span>{contactLocation.office}</span>
+            </address>
+            <div className="contact-resource-hours">
+              <h3>Horario de atención</h3>
+              <p>{site.hours}</p>
+            </div>
+            <a className="contact-resource-map-link" href={contactLocation.externalUrl} target="_blank" rel="noopener noreferrer">
+              Abrir en Google Maps
+              <span className="sr-only"> (se abre en otra pestaña)</span>
+            </a>
+            <p className="contact-resource-location-note">
+              Dirección, horario y canales reproducidos del sitio institucional.
+              Datos pendientes de confirmación antes de publicar.
+            </p>
+            <p className="contact-resource-location-note">
+              Mapa basado en la dirección del edificio, sin verificación de una ficha
+              oficial de CENARD. La posición exacta del marcador está pendiente de confirmación.
+            </p>
+          </div>
+          <div className="contact-resource-map">
+            <iframe
+              src={contactLocation.embedUrl}
+              title="Google Maps: búsqueda de Av. del Ejército 1180, Magdalena del Mar, Lima"
+              width="800"
+              height="400"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+          </div>
+        </section>
+
+        <section id="reclamaciones" className="contact-resource-claims" aria-labelledby="reclamaciones-titulo">
+          <Eyebrow>Recurso público</Eyebrow>
+          <h2 id="reclamaciones-titulo" tabIndex={-1}>Libro de Reclamaciones</h2>
+          <p>
+            Formato público disponible para descarga. Las instrucciones de
+            presentación, los plazos y los canales de recepción están pendientes
+            de confirmación de CENARD.
+          </p>
+          <a className="contact-resource-claims-link" href={site.claimsForm}>
+            Descargar libro de reclamaciones 
           </a>
-          <a href={site.whatsapp} target="_blank" rel="noreferrer">
-            <UsersRound size={25} strokeWidth={1.2} aria-hidden="true" />
-            <span>
-              <span className="eyebrow">WhatsApp</span>
-              <strong>Conversemos por WhatsApp</strong>
-              <small>Abrir conversación en una nueva pestaña</small>
-            </span>
-          </a>
-        </div>
+        </section>
       </div>
-      <section
-        id="reclamaciones"
-        className="related-information claims-section"
-        aria-labelledby="reclamaciones-titulo"
-      >
-        <Eyebrow>Recurso público</Eyebrow>
-        <h2 id="reclamaciones-titulo" tabIndex={-1}>
-          Libro de Reclamaciones
-        </h2>
-        <p>
-          Formato público disponible para descarga. Las instrucciones de
-          presentación, los plazos y los canales de recepción están pendientes
-          de confirmación de CENARD.
-        </p>
-        <a className="text-link" href={site.claimsForm}>
-          Descargar formato de reclamaciones (DOCX)
-        </a>
-      </section>
     </div>
   );
 }

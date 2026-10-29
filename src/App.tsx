@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router";
 import { Layout } from "./components/Layout";
 import { PageIntro } from "./components/UI";
-import { pages } from "./data/site";
+import { features, pages } from "./data/site";
 import { HomePage } from "./pages/HomePage";
 import { ArbitrationPage } from "./pages/Arbitration";
 import { JprdPage } from "./pages/Jprd";
@@ -49,7 +49,7 @@ export default function App() {
               path={`web/${p.slug}/`}
               element={
                 <>
-                  {p.slug !== "arbitraje" && p.slug !== "jprd" && p.slug !== "documentos" && p.slug !== "listado-de-arbitros" && p.slug !== "nomina-de-adjudicadores" && p.slug !== "preguntas-frecuentes" && p.slug !== "atalaya-de-integridad" && <PageIntro
+                  {p.slug !== "arbitraje" && p.slug !== "jprd" && p.slug !== "documentos" && p.slug !== "listado-de-arbitros" && p.slug !== "nomina-de-adjudicadores" && p.slug !== "preguntas-frecuentes" && p.slug !== "atalaya-de-integridad" && p.slug !== "contacto" && p.slug !== "calculadora" && <PageIntro
                     title={p.title}
                     description={p.description}
                     section={p.section}
@@ -59,6 +59,7 @@ export default function App() {
               }
             />
           ))}
+        {!features.tariffCalculator && <Route path="web/calculadora/" element={<CalculatorPage />} />}
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

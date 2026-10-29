@@ -47,10 +47,11 @@ No incluye CMS ni panel editorial: los cambios se realizan en archivos y requier
 
 ## Prerender y SEO
 
-`npm run build` genera HTML completo para las 14 rutas visibles, el alias raíz y 404. Se hidrata sobre ese HTML para mantener los controles interactivos. Cada página tiene un H1, título y descripción propios. La preview tiene `noindex,nofollow` y `robots.txt` bloqueado.
+`npm run build` genera HTML completo para todas las rutas visibles, el alias raíz y 404. Se hidrata sobre ese HTML para mantener los controles interactivos. Los metadatos se centralizan en `src/lib/seo.ts`: títulos y descripciones únicos, canonical sin filtros ni fragmentos, Open Graph, tarjetas para compartir y JSON-LD de Organization, WebSite y WebPage. No se declaran credenciales, opiniones ni datos de sede pendientes de confirmar.
 
-El dominio final no se presupone. Para una compilación aprobada se proporcionan `SITE_URL` y `SITE_INDEXABLE=true` como variables de entorno del proceso de build. Con SITE_URL se genera canonical, Open Graph y sitemap; la indexación solo se activa si también se establece SITE_INDEXABLE=true. `.env.example` documenta las variables; el prerender lee `process.env`, por lo que deben exportarse en la terminal o CI (no basta con crear `.env`).
+El dominio canónico confirmado es `https://cenardarbitraje.com`, conservando las rutas `/web/`. El build de producción permite indexación por defecto y genera sitemap y robots.txt. Configurar `SITE_INDEXABLE=false` para entornos de prueba; las ramas de Cloudflare distintas de `PRODUCTION_BRANCH` (por defecto `main`) se excluyen automáticamente. Vite y el prerender leen las mismas variables de `.env.production` o del entorno. El navegador mantiene noindex fuera del origen oficial. `_headers` protege previews y 404; `_redirects` consolida la raíz en `/web/` y las rutas sin barra final. Estos archivos están destinados a Cloudflare Pages y requieren equivalencias si cambia el hosting.
 
+La publicación, la verificación de propiedad en Google Search Console y el envío de `https://cenardarbitraje.com/sitemap.xml` son pasos externos posteriores. Se incluyen redirecciones 301 de Organigrama, Secretaría General, Alto Consejo y la antigua página de preguntas frecuentes a sus destinos actuales. Completar cualquier otra equivalencia histórica necesaria y conservar `/web/wp-content/uploads/` antes de sustituir el sitio original.
 Servir los archivos de `dist/`, resolviendo `/web/<ruta>/` a su `index.html`. Servir `404.html` con estado HTTP 404 para rutas desconocidas. No utilizar un fallback universal 200 que oculte errores. La configuración concreta depende del hosting aprobado.
 
 ## Alcance

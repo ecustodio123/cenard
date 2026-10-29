@@ -4298,3 +4298,17 @@ figcaption,
   .about-notice summary { align-items: flex-start; flex-direction: column; gap: 12px; padding: 20px; }
   .about-notice-body { padding: 20px; }
 }
+
+/* Accesos a los servicios externos del header. */
+.desktop-nav { gap: 20px; }
+.desktop-nav .nav-contact { padding-left: 18px; margin-left: 0; }
+.header-service-links { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.site-header .header-service-button { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 16px; border: 1px solid var(--green); border-radius: 8px; color: var(--green); background: white; font-size: 14px; font-weight: 600; line-height: 1.4; text-align: center; }
+.site-header .header-service-button:first-child { background: var(--green); color: white; }
+.site-header .header-service-button:hover { background: #eaf0e9; }
+.site-header .header-service-button:first-child:hover { background: var(--green-deep); }
+.site-header .header-service-button:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+@media (max-width: 1199px) {
+  .mobile-nav .header-service-links { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 18px; }
+  .mobile-nav .header-service-button { flex: 1 1 140px; }
+}
