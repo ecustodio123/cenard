@@ -1,7 +1,7 @@
 import { BookOpenText, FileCheck2, UsersRound } from "lucide-react";
 import { Link } from "react-router";
 import { ArrowLink, ButtonLink, Eyebrow, SectionHeading } from "../components/UI";
-import { notice, pathFor } from "../data/site";
+import { pathFor } from "../data/site";
 import "./home.css";
 
 const shortcuts = [
@@ -19,14 +19,14 @@ export function HomePage() {
             <Eyebrow>CENARD · Centro Nacional para la Resolución de Disputas</Eyebrow>
             <h1 tabIndex={-1}>Arbitraje y prevención de disputas.</h1>
             <p className="home-hero-description">
-              Promovemos la solución de controversias mediante el arbitraje y
-              las Juntas de Prevención y Resolución de Disputas.
+              Administramos arbitrajes, Juntas de Prevención, Resolución de Disputas, y brindamos servicios de 
+              apoyo a procedimientos arbitrales no administrados por el Centro, bajo un marco institucional que
+               privilegia la eficiencia, la imparcialidad y transpariencia.
             </p>
             <div className="home-hero-actions">
-              <a className="button" href="#servicios">Conocer servicios</a>
+              <a className="button" href="#servicios">Nuestros servicios</a>
               <ButtonLink secondary to={pathFor("contacto")}>Contactar a CENARD</ButtonLink>
             </div>
-            <p className="home-hero-values">Imparcialidad. Especialización. Transparencia.</p>
           </div>
           <div className="home-hero-image">
             <img
@@ -44,19 +44,11 @@ export function HomePage() {
         <div className="container">
           <div className="home-identity-intro">
             <h2 id="identidad-institucional-titulo" tabIndex={-1}>Nuestra identidad institucional</h2>
-            <p>El Centro Nacional para la Resolución de Disputas — CENARD forma parte de la Asociación para la Promoción Cultural de los Mecanismos Alternativos de Solución de Controversias. No constituye una entidad distinta ni independiente de la Asociación.</p>
-          </div>
-          <details className="home-notice">
-            <summary>
-              <span className="home-notice-action">
-                <span className="home-notice-read">Leer comunicado completo</span>
-                <span className="home-notice-close">Cerrar comunicado</span>
-              </span>
-            </summary>
-            <div className="home-notice-content">
-              {notice.map((p) => <p key={p}>{p}</p>)}
+            <div className="home-identity-copy">
+              <p>La Asociación para la Promoción Cultural de los Mecanismos Alternativos de Solución de Controversias informa que su Centro de Arbitraje opera bajo la denominación comercial <strong>“Centro Nacional para la Resolución de Disputas – CENARD”</strong>, formando parte integrante de la Asociación y sin constituir una entidad distinta o independiente de ésta.</p>
+              <p>En consecuencia, la denominación o uso de los nombres <strong>“Centro Nacional para la Resolución de Disputas – CENARD” o “CENARD”</strong> identifican al mismo Centro de Arbitraje.</p>
             </div>
-          </details>
+          </div>
         </div>
       </section>
 
@@ -83,7 +75,8 @@ export function HomePage() {
             <article className="home-service">
               <p className="home-service-label">Solución de controversias</p>
               <h3>Arbitraje</h3>
-              <p className="home-service-description">Administración institucional de procesos arbitrales para la solución de controversias.</p>
+              <p className="home-service-description">Organizamos y administramos procedimientos arbitrales, brindando soporte
+              institucional durante las distintas etapas del proceso.</p>
               <ArrowLink className="home-service-primary" to={pathFor("arbitraje")}>Conocer Arbitraje</ArrowLink>
               <div className="home-service-secondary">
                 <Link to={pathFor("documentos") + "?servicio=Arbitraje"}>Normativa de Arbitraje</Link>
@@ -94,7 +87,7 @@ export function HomePage() {
               <p className="home-service-label">Prevención y resolución de disputas</p>
               <h3>JPRD</h3>
               <p className="home-service-full-name">Juntas de Prevención y Resolución de Disputas</p>
-              <p className="home-service-description">Prevención y resolución de disputas durante la ejecución de contratos de obras y de suministro.</p>
+              <p className="home-service-description">Organizamos y administramos Juntas de Prevención y Resolución de Disputas,orientadas a prevenir y resolver oportunamente los desacuerdos que surjan durante la ejecución contractual.</p>
               <ArrowLink className="home-service-primary" to={pathFor("jprd")}>Conocer JPRD</ArrowLink>
               <div className="home-service-secondary">
                 <Link to={pathFor("documentos") + "?servicio=JPRD"}>Normativa de JPRD</Link>
@@ -112,6 +105,12 @@ export function HomePage() {
               <h3>Mediación</h3>
               <p>Consulta información sobre el servicio de mediación.</p>
               <ArrowLink to={pathFor("contacto")}>Consultar información</ArrowLink>
+            </article>
+            <article className="home-complementary-service">
+              <p className="home-service-label">Servicios complementarios</p>
+              <h3>Otros servicios arbitrales</h3>
+              <p>Brindamos servicios especializados de secretaría arbitral ad hoc, designación de árbitros y atención de recusaciones y remociones en procedimientos no administrados por CENARD, conforme a la normativa aplicable.</p>
+              <ArrowLink to={pathFor("servicios-complemementarios")}>Conocer otros servicios</ArrowLink>
             </article>
           </div>
         </div>

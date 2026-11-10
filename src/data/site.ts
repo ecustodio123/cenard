@@ -62,6 +62,12 @@ const allPages = [
       "Prevención y resolución de disputas durante la ejecución de contratos de obras y de suministro.",
   },
   {
+    slug: "servicios-complemementarios",
+    title: "Servicios complementarios",
+    section: "Servicios",
+    description: "Servicios complementarios de CENARD.",
+  },
+  {
     slug: "documentos",
     title: "Normativa y documentos",
     section: "Recursos",
@@ -145,7 +151,7 @@ export const navigation: { label: string; slugs: string[]; labels?: Record<strin
       "certificaciones",
     ],
   },
-  { label: "Servicios", slugs: ["arbitraje", "jprd"] },
+  { label: "Servicios", slugs: ["arbitraje", "jprd", "servicios-complemementarios"] },
   {
     label: "Recursos",
     slugs: [

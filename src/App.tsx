@@ -23,6 +23,7 @@ import {
 } from "./pages/Institution";
 import type { ReactNode } from "react";
 const components: Record<string, ReactNode> = {
+  "servicios-complemementarios": <section className="complementary-service-page"><div className="container"><h1 tabIndex={-1}>Servicios complementarios</h1></div></section>,
   conocenos: <AboutPage />,
   "organizacion-institucional": <InstitutionalOrganizationPage />,
   certificaciones: <CertificationsPage />,
@@ -53,7 +54,7 @@ export default function App() {
               path={`web/${p.slug}/`}
               element={
                 <>
-                  {p.slug !== "arbitraje" && p.slug !== "jprd" && p.slug !== "documentos" && p.slug !== "listado-de-arbitros" && p.slug !== "nomina-de-adjudicadores" && p.slug !== "preguntas-frecuentes" && !p.slug.startsWith("atalaya-de-integridad") && p.slug !== "contacto" && p.slug !== "calculadora" && <PageIntro
+                  {p.slug !== "servicios-complemementarios" && p.slug !== "arbitraje" && p.slug !== "jprd" && p.slug !== "documentos" && p.slug !== "listado-de-arbitros" && p.slug !== "nomina-de-adjudicadores" && p.slug !== "preguntas-frecuentes" && !p.slug.startsWith("atalaya-de-integridad") && p.slug !== "contacto" && p.slug !== "calculadora" && <PageIntro
                     title={p.title}
                     description={p.description}
                     section={p.section}
