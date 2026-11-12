@@ -35,7 +35,7 @@
 .doclib-services > span { display: inline-block; font-size: 11px; line-height: 1.5; padding: 2px 7px; color: var(--green); background: #eaf0e6; }
 .doclib-observation { display: block; font-size: 13px; margin-top: 8px; color: var(--muted); }
 .doclib-open { font-size: 14px; text-decoration: underline; text-underline-offset: 5px; padding-block: 12px; }
-.doclib-source { border-left: 2px solid var(--accent); padding: 4px 0 4px 20px; margin-top: 32px; max-width: 92ch; }
+.doclib-source { border-left: 2px solid var(--accent); padding: 4px 0 4px 20px; margin-top: 32px; }
 .doclib-source h2 { font-family: var(--sans); font-size: 16px; font-weight: 600; letter-spacing: 0; margin-bottom: 10px; }
 .doclib-source p { font-size: 15px; line-height: 1.7; }
 .doclib-source .doclib-pending { font-size: 13px; margin-top: 12px; }

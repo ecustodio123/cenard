@@ -32,7 +32,6 @@ export function FaqPage() {
             </details>;
           })}
         </div>
-        <p className="faq-resource-validation">Base editorial sujeta a revisión institucional y jurídica antes de publicar.</p>
       </section>
       <aside className="faq-resource-support" aria-labelledby="faq-resource-support-title">
         <h2 id="faq-resource-support-title">¿Necesitas orientación adicional?</h2>

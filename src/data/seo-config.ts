@@ -11,6 +11,7 @@ export function productionIndexable(env: Record<string, string | undefined>) {
 
 // Existing WordPress URLs, verified against the public site's navigation.
 export const legacyRedirects = [
+  ["/web/conocenos/", "/web/quienes-somos/"],
   ["/web/organigrama/", "/web/organizacion-institucional/#estructura-institucional"],
   ["/web/secretaria-general/", "/web/organizacion-institucional/#direccion-secretaria"],
   ["/web/alto-consejo/", "/web/organizacion-institucional/#alto-consejo"],

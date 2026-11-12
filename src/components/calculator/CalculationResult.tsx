@@ -21,7 +21,7 @@ export function CalculationResult({ result }: { result: CostResult }) {
           <div><dt>Importe del concepto</dt><dd>{formatCents(line.amountCents)}</dd></div>
         </dl> : <>
           <p className="cost-engine-amount">{formatCents(line.amountCents)}</p>
-          <p className="cost-design-help">{line.tax === "included" ? "IGV incluido; no se grava nuevamente ni se deduce una base tributaria." : line.tax === "netUnconfirmed" ? "Neto publicado; tratamiento de impuestos pendiente de confirmación." : "Sin añadir ni descontar IGV nuevamente de la base introducida."}</p>
+          <p className="cost-design-help">{line.tax === "included" ? "IGV incluido; no se grava nuevamente ni se deduce una base tributaria." : line.tax === "netUnconfirmed" ? "Neto publicado; tratamiento de impuestos no especificado en la fuente." : "Sin añadir ni descontar IGV nuevamente de la base introducida."}</p>
         </>}
         <p className="cost-engine-source">{line.source.article} · página{line.source.printedPages.length > 1 ? "s" : ""} impresa{line.source.printedPages.length > 1 ? "s" : ""} {line.source.printedPages.join(", ")}</p>
       </div>)}

@@ -16,7 +16,7 @@ export function HomePage() {
       <section className="home-hero">
         <div className="container home-hero-grid">
           <div className="home-hero-copy">
-            <Eyebrow>CENARD · Centro Nacional para la Resolución de Disputas</Eyebrow>
+            <Eyebrow>Centro Nacional para la Resolución de Disputas · CENARD</Eyebrow>
             <h1 tabIndex={-1}>Arbitraje y prevención de disputas.</h1>
             <p className="home-hero-description">
               Administramos arbitrajes, Juntas de Prevención, Resolución de Disputas, y brindamos servicios de 
@@ -68,8 +68,7 @@ export function HomePage() {
 
       <section id="servicios" className="home-services home-section">
         <div className="container">
-          <SectionHeading label="Nuestros servicios" title="Nuestros servicios">
-            <p>Conoce nuestros servicios de solución de controversias y prevención de disputas.</p>
+          <SectionHeading label="Nuestros servicios">
           </SectionHeading>
           <div className="home-service-grid">
             <article className="home-service">
@@ -96,6 +95,12 @@ export function HomePage() {
             </article>
           </div>
           <div className="home-secondary-services">
+            <article className="home-complementary-service">
+              <p className="home-service-label">Servicios complementarios</p>
+              <h3>Otros servicios arbitrales</h3>
+              <p>Brindamos servicios especializados de secretaría arbitral ad hoc, designación de árbitros y atención de recusaciones y remociones en procedimientos no administrados por CENARD, conforme a la normativa aplicable.</p>
+              <ArrowLink to={pathFor("servicios-complemementarios")}>Conocer otros servicios</ArrowLink>
+            </article>
             <article>
               <h3>Dispute Boards</h3>
               <p>Consulta el alcance y las modalidades de este servicio.</p>
@@ -105,12 +110,6 @@ export function HomePage() {
               <h3>Mediación</h3>
               <p>Consulta información sobre el servicio de mediación.</p>
               <ArrowLink to={pathFor("contacto")}>Consultar información</ArrowLink>
-            </article>
-            <article className="home-complementary-service">
-              <p className="home-service-label">Servicios complementarios</p>
-              <h3>Otros servicios arbitrales</h3>
-              <p>Brindamos servicios especializados de secretaría arbitral ad hoc, designación de árbitros y atención de recusaciones y remociones en procedimientos no administrados por CENARD, conforme a la normativa aplicable.</p>
-              <ArrowLink to={pathFor("servicios-complemementarios")}>Conocer otros servicios</ArrowLink>
             </article>
           </div>
         </div>
@@ -129,9 +128,8 @@ export function HomePage() {
           </div>
           <div className="home-institution-copy">
             <Eyebrow>Nuestra institución</Eyebrow>
-            <h2 id="home-institution-title">Conoce CENARD</h2>
             <p>Somos el Centro Nacional para la Resolución de Disputas. Conoce nuestra presentación institucional, nuestra organización y los documentos institucionales disponibles.</p>
-            <ArrowLink to={pathFor("conocenos")}>Conocer la institución</ArrowLink>
+            <ArrowLink to={pathFor("quienes-somos")}>Conocer la institución</ArrowLink>
             <div className="home-institution-links">
               <Link to={pathFor("organizacion-institucional")}>Organización institucional</Link>
               <Link to={pathFor("certificaciones")}>Certificaciones y constancias</Link>
@@ -142,7 +140,7 @@ export function HomePage() {
 
       <section className="home-guidance home-section">
         <div className="container">
-          <SectionHeading label="Información útil" title="Orientación e integridad" />
+          <SectionHeading label="Información útil" />
           <div className="home-guidance-grid">
             <article>
               <h3>Preguntas frecuentes</h3>

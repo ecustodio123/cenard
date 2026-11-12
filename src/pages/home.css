@@ -70,7 +70,7 @@
 .cenard-home .home-notice-action { flex-shrink: 0; font-size: 14px; text-decoration: underline; text-underline-offset: 4px; }
 .cenard-home .home-notice-close, .cenard-home .home-notice[open] .home-notice-read { display: none; }
 .cenard-home .home-notice[open] .home-notice-close { display: inline; }
-.cenard-home .home-notice-content { max-width: 72ch; margin-top: 18px; padding: 0 12px 14px; font-size: 17px; line-height: 1.75; }
+.cenard-home .home-notice-content { margin-top: 18px; padding: 0 12px 14px; font-size: 17px; line-height: 1.75; }
 .cenard-home .home-notice-content .text-link { min-height: 44px; margin-block: 16px; padding-block: 10px; font-size: 15px; }
 .cenard-home .home-notice-content .caption { font-size: 13px; }
 .cenard-home a, .cenard-home summary { overflow-wrap: anywhere; }
@@ -123,7 +123,7 @@
 .cenard-home #identidad-institucional { scroll-margin-top: 0; border-bottom: 1px solid var(--line); }
 .cenard-home .home-identity-intro { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.65fr); align-items: start; gap: 40px; border-top: 2px solid var(--green); padding-top: 22px; }
 .cenard-home .home-identity-intro h2 { font-size: clamp(26px, 2.5vw, 32px); line-height: 1.25; }
-.cenard-home .home-identity-copy { max-width: 76ch; font-size: 17px; line-height: 1.8; }
+.cenard-home .home-identity-copy {font-size: 17px; line-height: 1.8; }
 .cenard-home .home-identity-copy p + p { margin-top: 22px; }
 .cenard-home .home-identity-copy strong { color: var(--green); font-weight: 600; }
 .cenard-home .home-notice { margin-top: 12px; }
@@ -141,6 +141,6 @@
 }
 
 .cenard-home .home-service-full-name { text-transform: uppercase; }
-.cenard-home .home-secondary-services .home-complementary-service { grid-column: 1 / -1; padding: clamp(24px, 3vw, 36px); border-top: 2px solid var(--accent); }
+.cenard-home .home-secondary-services .home-complementary-service { background: #e7ece4; grid-column: 1 / -1; padding: clamp(24px, 3vw, 36px); border-top: 2px solid var(--accent); }
 .cenard-home .home-complementary-service .home-service-label { color: #806126; margin-bottom: 14px; }
 .cenard-home .home-complementary-service > p:not(.home-service-label) { max-width: 90ch; }

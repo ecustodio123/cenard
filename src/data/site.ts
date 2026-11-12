@@ -27,8 +27,8 @@ const allPages = [
       "Centro Nacional para la Resolución de Disputas. Servicios de arbitraje y JPRD, información institucional y recursos públicos.",
   },
   {
-    slug: "conocenos",
-    title: "Conócenos",
+    slug: "quienes-somos",
+    title: "Quiénes somos",
     section: "Institución",
     description:
       "Nuestra institución, misión y compromiso con la cultura de solución de controversias.",
@@ -93,7 +93,7 @@ const allPages = [
     title: "Calculadora de tarifas",
     section: "Recursos",
     description:
-      "Consulta las modalidades de costos de arbitraje y JPRD. Interfaz de estimación en revisión institucional.",
+      "Consulta las modalidades de costos de arbitraje y JPRD.",
   },
   {
     slug: "preguntas-frecuentes",
@@ -138,7 +138,7 @@ export const previewPages = features.tariffCalculator ? [] : [{
   slug: "calculadora",
   title: "Calculadora de costos",
   section: "Herramientas institucionales",
-  description: "Borrador de estimación local de costos de CENARD. Consulta reglas definidas y casos que requieren evaluación. Supuestos y resultados sujetos a confirmación institucional.",
+  description: "Estimación de costos de CENARD. Consulta las reglas aplicables y los casos que requieren evaluación.",
 }];
 
 export const pathFor = (slug = "") => `/web/${slug ? `${slug}/` : ""}`;
@@ -146,7 +146,7 @@ export const navigation: { label: string; slugs: string[]; labels?: Record<strin
   {
     label: "Institución",
     slugs: [
-      "conocenos",
+      "quienes-somos",
       "organizacion-institucional",
       "certificaciones",
     ],

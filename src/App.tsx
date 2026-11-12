@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router";
+import { Navigate, Route, Routes, useLocation } from "react-router";
 import { Layout } from "./components/Layout";
 import { PageIntro } from "./components/UI";
 import { pages, previewPages } from "./data/site";
@@ -24,7 +24,7 @@ import {
 import type { ReactNode } from "react";
 const components: Record<string, ReactNode> = {
   "servicios-complemementarios": <section className="complementary-service-page"><div className="container"><h1 tabIndex={-1}>Servicios complementarios</h1></div></section>,
-  conocenos: <AboutPage />,
+  "quienes-somos": <AboutPage />,
   "organizacion-institucional": <InstitutionalOrganizationPage />,
   certificaciones: <CertificationsPage />,
   arbitraje: <ArbitrationPage />,
@@ -39,6 +39,11 @@ const components: Record<string, ReactNode> = {
   "atalaya-de-integridad/jprd": <IntegrityPage service="jprd" />,
   contacto: <ContactPage />,
 };
+function LegacyAboutRedirect() {
+  const { search, hash } = useLocation();
+  return <Navigate replace to={{ pathname: "/web/quienes-somos/", search, hash }} />;
+}
+
 export default function App() {
   return (
     <Routes>
@@ -46,6 +51,7 @@ export default function App() {
       <Route element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="web/" element={<HomePage />} />
+        <Route path="web/conocenos/" element={<LegacyAboutRedirect />} />
         {pages
           .filter((p) => p.slug)
           .map((p) => (
@@ -54,7 +60,7 @@ export default function App() {
               path={`web/${p.slug}/`}
               element={
                 <>
-                  {p.slug !== "servicios-complemementarios" && p.slug !== "arbitraje" && p.slug !== "jprd" && p.slug !== "documentos" && p.slug !== "listado-de-arbitros" && p.slug !== "nomina-de-adjudicadores" && p.slug !== "preguntas-frecuentes" && !p.slug.startsWith("atalaya-de-integridad") && p.slug !== "contacto" && p.slug !== "calculadora" && <PageIntro
+                  {p.slug !== "quienes-somos" && p.slug !== "servicios-complemementarios" && p.slug !== "arbitraje" && p.slug !== "jprd" && p.slug !== "documentos" && p.slug !== "listado-de-arbitros" && p.slug !== "nomina-de-adjudicadores" && p.slug !== "preguntas-frecuentes" && !p.slug.startsWith("atalaya-de-integridad") && p.slug !== "contacto" && p.slug !== "calculadora" && <PageIntro
                     title={p.title}
                     description={p.description}
                     section={p.section}

@@ -89,12 +89,12 @@ export function validateEstimate(
   );
 }
 
-// No tariff engine is implemented until CENARD approves rules and reference cases.
+// Legacy availability guard for modalities without a calculation engine.
 export function getTariffAvailability() {
   return {
     status: "pending-validation",
     canCalculate: false,
     reason:
-      "Reglas, tramos, impuestos y redondeos pendientes de aprobación institucional.",
+      "Esta modalidad no tiene un motor de cálculo disponible. Consulta a Secretaría General.",
   } as const;
 }

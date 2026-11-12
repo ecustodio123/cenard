@@ -41,7 +41,7 @@ export function calculateCosts(mode: CostMode, input: CostInputs, currency: stri
   const lines: CostLine[] = [];
   const notes = [
     "Estimación o referencia condicionada; no constituye liquidación definitiva, obligación de pago ni cotización aprobada. La asignación corresponde a Secretaría General (artículo 4, página impresa 5). No se afirma vigencia actual ni se realiza un cálculo histórico.",
-    "Criterio técnico provisional: redondeo decimal half-up a dos decimales por concepto. Se redondea la base antes de aplicar IGV y después el impuesto; cada árbitro se trata como un concepto separado y se suman los importes mostrados. Pendiente de aprobación institucional.",
+    "Criterio técnico: redondeo decimal half-up a dos decimales por concepto. Se redondea la base antes de aplicar IGV y después el impuesto; cada árbitro se trata como un concepto separado y se suman los importes mostrados.",
   ];
   const references: RuleSource[] = [sources.assignment];
   const recordSource = (source: RuleSource) => { if (!references.includes(source)) references.push(source); };
@@ -52,7 +52,7 @@ export function calculateCosts(mode: CostMode, input: CostInputs, currency: stri
     recordSource(source);
     const rate = taxRate(config.igvRate);
     if (!rate) throw new ReviewRequired("La tasa de IGV no está configurada de forma válida. Debe confirmarse antes de calcular los conceptos gravados.", source);
-    notes.push(`IGV configurado: ${config.igvRate === "0.18" ? "18%" : `${config.igvRate} como fracción decimal`}. ${config.igvAssumption ? "Supuesto del borrador pendiente de confirmación antes de publicar; el PDF no fija este porcentaje." : "Tasa configurada externamente; no extraída del PDF."}`);
+    notes.push(`IGV configurado: ${config.igvRate === "0.18" ? "18%" : `${config.igvRate} como fracción decimal`}. ${config.igvAssumption ? "Tasa configurada para la estimación; el PDF no fija este porcentaje." : "Tasa configurada externamente; no extraída del PDF."}`);
     const base = roundHalfUp(exact);
     const igv = roundHalfUp(multiply(fraction(base), rate));
     lines.push({ label, baseCents: base.toString(), igvCents: igv.toString(), amountCents: (base + igv).toString(), tax: "plusIgv", source });

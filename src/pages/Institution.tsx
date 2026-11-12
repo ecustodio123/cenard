@@ -29,17 +29,17 @@ export function AboutPage() {
       <section className="container page-content about-intro">
         <div>
           <Eyebrow>Quiénes somos</Eyebrow>
-          <h2>
+          <h1 tabIndex={-1}>
             Una institución dedicada
             <br />a encontrar soluciones.
-          </h2>
+          </h1>
           <p>
             El Centro Nacional para la Resolución de Disputas — CENARD forma
             parte de la Asociación para la Promoción Cultural de los Mecanismos
             Alternativos de Solución de Controversias.
           </p>
           <p>
-            La misión publicada por CENARD es ofrecer servicios de solución de
+            Nuestra misión es ofrecer servicios de solución de
             controversias de manera eficiente, transparente y confiable, con
             procesos imparciales y especializados.
           </p>
@@ -54,7 +54,7 @@ export function AboutPage() {
           />
           <figcaption>
             El diálogo y la especialización como base de la solución de
-            controversias. Imagen ilustrativa.
+            controversias.
           </figcaption>
         </figure>
       </section>
@@ -83,16 +83,14 @@ export function AboutPage() {
               },
             ].map((p) => (
               <article key={p.title}>
-                <p.icon size={32} strokeWidth={1.2} aria-hidden="true" />
+                <span className="about-principle-icon" aria-hidden="true">
+                  <p.icon size={32} strokeWidth={1.2} />
+                </span>
                 <h3>{p.title}</h3>
                 <p>{p.text}</p>
               </article>
             ))}
           </div>
-          <p className="caption">
-            Síntesis editorial del contenido institucional publicado, pendiente
-            de aprobación de CENARD.
-          </p>
         </div>
       </section>
       <section className="container section">
@@ -156,13 +154,13 @@ function InstitutionalProfile({
       <div className="council-profile-overview">
         {image ? (
           <div className="council-portrait">
-            <img src={image} width="600" height="900" alt={placeholder ? `Foto de muestra del secretario general, utilizada provisionalmente en la tarjeta de ${name}` : name} loading="lazy" />
+            <img src={image} width="600" height="900" alt={placeholder ? `Foto de muestra del secretario general, utilizada como imagen ilustrativa en la tarjeta de ${name}` : name} loading="lazy" />
             {placeholder && <span className="profile-photo-sample">Foto de muestra</span>}
           </div>
         ) : (
-          <div className={`institutional-neutral-portrait${placeholder ? " institutional-photo-placeholder" : ""}`} role={placeholder ? "img" : undefined} aria-label={placeholder ? `Fotografía pendiente de ${name}` : undefined} aria-hidden={placeholder ? undefined : true}>
+          <div className={`institutional-neutral-portrait${placeholder ? " institutional-photo-placeholder" : ""}`} role={placeholder ? "img" : undefined} aria-label={placeholder ? `Imagen ilustrativa para ${name}` : undefined} aria-hidden={placeholder ? undefined : true}>
             {initials ? <span>{initials}</span> : <UsersRound size={64} strokeWidth={1} />}
-            <small>{placeholder ? "Foto pendiente" : "CENARD"}</small>
+            {!placeholder && <small>CENARD</small>}
           </div>
         )}
         <div className="council-profile-heading">
@@ -229,7 +227,7 @@ export function InstitutionalOrganizationPage() {
         </div>
         <div className="council-directory">
           {council.map((person, index) => (
-            <InstitutionalProfile key={person.name} id={`council-name-${index}`} name={person.name} role="Alto Consejo · CENARD" image={person.image} specialties={councilSpecialties[index]} biography={<><p className="council-biography-label">Trayectoria y formación</p><p>{person.bio}</p></>} />
+            <InstitutionalProfile key={person.name} id={`council-name-${index}`} name={person.name} role={`CENARD · ${person.role}`} image={person.image} specialties={councilSpecialties[index]} biography={<><p className="council-biography-label">Trayectoria y formación</p><p>{person.bio}</p></>} />
           ))}
         </div>
       </section>
@@ -319,8 +317,7 @@ export function ServicePage({ jprd = false }: { jprd?: boolean }) {
             La fuente indica que también comprende controversias relacionadas
             con prestaciones adicionales autorizadas por la entidad, salvo
             excepciones legales, y que las resoluciones son de cumplimiento
-            obligatorio e inmediato. Este texto requiere validación jurídica
-            antes de publicación.
+            obligatorio e inmediato.
           </p>
         </details>
       )}
@@ -357,10 +354,6 @@ export function ServicePage({ jprd = false }: { jprd?: boolean }) {
               </p>
             </article>
           </div>
-          <p className="caption">
-            Alcance descrito en la información institucional de origen, sujeto a
-            revisión editorial.
-          </p>
         </section>
       )}
       <section className="service-documents">
@@ -373,7 +366,7 @@ export function ServicePage({ jprd = false }: { jprd?: boolean }) {
           </ArrowLink>
         </SectionHeading>
         <p className="caption">
-          Agrupación de origen: desde el 04/08/2025 · Aplicación por confirmar.
+          Agrupación de origen: desde el 04/08/2025.
           Esta agrupación no establece la fecha de publicación individual de los
           archivos.
         </p>
@@ -482,11 +475,9 @@ export function ContactPage() {
             </a>
             <p className="contact-resource-location-note">
               Dirección, horario y canales reproducidos del sitio institucional.
-              Datos pendientes de confirmación antes de publicar.
             </p>
             <p className="contact-resource-location-note">
-              Mapa basado en la dirección del edificio, sin verificación de una ficha
-              oficial de CENARD. La posición exacta del marcador está pendiente de confirmación.
+              Mapa de referencia de la dirección del edificio.
             </p>
           </div>
           <div className="contact-resource-map">
@@ -506,9 +497,7 @@ export function ContactPage() {
           <Eyebrow>Recurso público</Eyebrow>
           <h2 id="reclamaciones-titulo" tabIndex={-1}>Libro de Reclamaciones</h2>
           <p>
-            Formato público disponible para descarga. Las instrucciones de
-            presentación, los plazos y los canales de recepción están pendientes
-            de confirmación de CENARD.
+            Formato público disponible para descarga. Para información sobre su presentación, comunícate con CENARD a través de nuestros canales de atención.
           </p>
           <a className="contact-resource-claims-link" href={site.claimsForm}>
             Descargar libro de reclamaciones 

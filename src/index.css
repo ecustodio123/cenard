@@ -182,6 +182,7 @@ section[id] {
 }
 .eyebrow {
   font: 600 12px/1.5 var(--sans);
+  font-size: 16px !important;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--green);
@@ -1265,7 +1266,7 @@ section[id] {
   align-items: center;
   padding-block: 65px;
 }
-.about-intro h2 {
+.about-intro h1 {
   margin-bottom: 25px;
   font-size: 39px;
 }
@@ -2847,7 +2848,7 @@ figcaption {
     gap: 35px;
     padding-block: 35px 48px;
   }
-  .about-intro h2 {
+  .about-intro h1 {
     font-size: 32px;
   }
   .about-intro p:not(.eyebrow) {
@@ -3339,7 +3340,7 @@ figcaption {
   .about-intro {
     gap: 35px;
   }
-  .about-intro h2 {
+  .about-intro h1 {
     font-size: 33px;
   }
   .council-grid {
@@ -3498,7 +3499,7 @@ figcaption,
 .currency-select,
 .reset-button,
 .unpublished {
-  font-size: 14px !important;
+  font-size: 16px !important;
 }
 .hero-copy .eyebrow,
 .service-number,
@@ -4104,6 +4105,11 @@ figcaption,
 .council-profile-heading { align-self: center; padding: 28px; }
 .council-role { color: var(--muted); font-size: 10px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; margin: 0 0 14px; }
 .council-profile-heading h3 { font: 400 clamp(25px, 2.2vw, 31px)/1.2 var(--serif); margin: 0 0 20px; color: var(--green); }
+#contenido .council-directory .council-role,
+#contenido .council-directory .council-profile-heading h3 {
+  text-align: center;
+  text-align-last: center;
+}
 .council-specialties { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 7px; }
 .council-specialties li { background: #f1f4ef; color: #435b52; font-size: 12px; line-height: 1.45; padding: 5px 9px; border-radius: 4px; }
 .council-biography { border-top: 1px solid var(--line); padding: 17px 24px; }
@@ -4287,9 +4293,26 @@ figcaption,
 .about-notice-close, .about-notice[open] .about-notice-read { display: none; }
 .about-notice[open] .about-notice-close { display: inline; }
 .about-notice[open] summary { border-bottom: 1px solid var(--line); border-radius: 10px 10px 0 0; }
-.about-notice-body { max-width: 76ch; padding: 22px 24px 26px; text-align: left; }
+.about-notice-body { padding: 22px 24px 26px; text-align: left; }
 .about-notice-body p { margin: 0; line-height: 1.8; }
 .about-notice-body p + p { margin-top: 20px; }
+.principles-grid.about-principles { column-gap: 24px; }
+.principles-grid.about-principles article {
+  min-width: 0;
+  padding: 28px;
+  border: 1px solid var(--green);
+  border-radius: 8px;
+  background: white;
+}
+.about-principles .about-principle-icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 26px;
+  color: var(--green);
+}
+.about-principles .about-principle-icon svg { margin: 0; }
 @media (min-width: 768px) {
   .about-principles { grid-template-rows: auto auto auto; row-gap: 0; }
   .about-principles article { display: grid; grid-template-rows: subgrid; grid-row: span 3; row-gap: 0; }

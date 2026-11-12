@@ -42,7 +42,6 @@ export function CalculatorPage() {
   return <div className="cost-design-page">
     <ResourceHeader label="Herramientas institucionales" title="Calculadora de costos" description="Selecciona una modalidad e ingresa los datos de referencia.">
       <div className="cost-design-header-note">
-        <p>Borrador de estimación local. Reglas, supuestos y resultados sujetos a confirmación institucional antes de publicar como herramienta funcional.</p>
         <a href={costsRegulation} target="_blank" rel="noopener noreferrer">
           Consultar Reglamento de Costos · PDF<span className="sr-only"> (se abre en otra pestaña)</span>
         </a>

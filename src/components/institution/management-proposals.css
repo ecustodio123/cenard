@@ -19,7 +19,6 @@
 .management-director-disclosure > summary { color: white; font-size: 15px; font-weight: 600; padding: 16px 38px; }
 .management-director-disclosure > summary:hover { background: var(--green-deep); }
 .management-expanded-profile { background: white; border: 1px solid var(--line); border-top: 0; padding: 30px 38px; }
-.management-expanded-profile > p, .management-expanded-profile > section { max-width: 74ch; }
 .management-expanded-profile p { font-size: 17px; line-height: 1.8; }
 .management-expanded-profile section { margin-top: 24px; }
 .management-expanded-profile h4 { color: var(--green); font: 600 17px/1.5 var(--sans); margin-bottom: 9px; }
@@ -33,12 +32,12 @@
 .management-role-disclosure { margin-top: 18px; border-top: 1px solid var(--line); }
 .management-role-disclosure > summary { color: var(--green); font-size: 14px; padding-block: 12px; }
 .management-role-disclosure > summary:hover { color: #705628; }
-.management-role-description { max-width: 72ch; padding-top: 10px; }
+.management-role-description { padding-top: 10px; }
 .management-role-description p { font-size: 15px; line-height: 1.8; }
 .management-role-description .management-provisional-label { font-size: 12px; font-weight: 600; color: var(--green); }
 .management-role-description section { margin-top: 20px; }
 .management-role-description h5 { font: 600 15px/1.5 var(--sans); color: var(--green); margin: 0 0 8px; }
-.management-confirmation-note { font-size: 13px; line-height: 1.7; max-width: 100ch; margin-block: 30px 20px; }
+.management-confirmation-note { font-size: 13px; line-height: 1.7; margin-block: 30px 20px; }
 .management-selected > .button { min-height: 44px; }
 /* Full-width director profile, followed by the secretariat section. */
 .management-primary-layout .management-director-overview { display: grid; grid-template-columns: minmax(0, .35fr) minmax(0, .65fr); }

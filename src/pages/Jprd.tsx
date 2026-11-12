@@ -50,7 +50,6 @@ export function JprdPage() {
           </div>
           <figure className="arbitration-hero-image" data-provisional="true">
             <img {...heroImage} fetchPriority="high" />
-            <figcaption>Imagen ilustrativa provisional. No representa una obra ni al personal de CENARD.</figcaption>
           </figure>
         </div>
       </section>
@@ -74,7 +73,7 @@ export function JprdPage() {
         <div className="arbitration-accompaniment-grid">
           {functions.map((item, i) => <article key={item.title}><span className="arbitration-number">0{i + 1}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}
         </div>
-        <p className="arbitration-editorial-note">Adaptación editorial de la información institucional de origen, pendiente de aprobación de CENARD. Estas funciones no representan etapas obligatorias de un procedimiento.</p>
+        <p className="arbitration-editorial-note">Estas funciones no representan etapas obligatorias de un procedimiento.</p>
       </section>
       <section className="arbitration-library" aria-labelledby="normativa-jprd">
         <div className="container">
@@ -82,7 +81,7 @@ export function JprdPage() {
             <div><Eyebrow>Biblioteca del servicio</Eyebrow><h2 id="normativa-jprd">Normativa y documentos de JPRD</h2></div>
             <ArrowLink to="/web/documentos/?servicio=JPRD">Ver toda la normativa</ArrowLink>
           </div>
-          <p className="arbitration-library-note">La fecha corresponde a la agrupación de la fuente original desde el 04/08/2025. Su aplicación y vigencia están pendientes de confirmación institucional; no indica la aprobación ni la publicación individual de los archivos.</p>
+          <p className="arbitration-library-note">La fecha corresponde a la agrupación de la fuente original desde el 04/08/2025. Esta fecha no indica la aprobación ni la publicación individual de los archivos.</p>
           <div className="arbitration-document-groups">
             <details className="arbitration-document-group" open>
               <summary><span><span className="arbitration-group-label">Agrupación de origen</span><span className="arbitration-group-title">Desde el 04/08/2025</span></span><span className="arbitration-disclosure"><span className="arbitration-show">Mostrar documentos</span><span className="arbitration-hide">Ocultar documentos</span></span></summary>
@@ -96,14 +95,13 @@ export function JprdPage() {
           </div>
           <section className="jprd-legal" aria-labelledby="jprd-legal-title">
             <h3 id="jprd-legal-title">Información normativa complementaria</h3>
-            <p className="jprd-legal-validation">Las afirmaciones de la fuente antigua requieren validación jurídica de CENARD y no constituyen una confirmación de vigencia actual.</p>
             <details className="jprd-legal-details">
               <summary><span className="jprd-legal-read">Leer información normativa</span><span className="jprd-legal-close">Cerrar información normativa</span></summary>
               <div className="jprd-legal-body">
                 <p>La página institucional de origen describe a la JPRD como un órgano especializado encargado de fomentar la prevención y la resolución de conflictos durante la ejecución de contratos de obras y de suministro. Señala la atención de consultas técnicas o contractuales, la resolución de disputas en esos ámbitos y otras funciones establecidas en el Reglamento de la Ley N.º 32069.</p>
                 <p>Según esa fuente, su jurisdicción abarca desde el inicio del plazo de ejecución del contrato hasta el pago o entrega final en los contratos de suministro, o hasta la recepción completa en los contratos de obra, según corresponda.</p>
                 <p>La descripción también incluye controversias relacionadas con prestaciones adicionales autorizadas por la entidad contratante, salvo en los casos exceptuados por la ley. La fuente indica que las resoluciones emitidas por la JPRD son de cumplimiento obligatorio e inmediato.</p>
-                <p>La página antigua cita la Directiva 4–2025–OECE–CD, numeral 8.2.7.2, e indica que CENARD solo puede administrar controversias en contrataciones del Estado hasta 2000 UIT. Esta referencia histórica queda pendiente de confirmación jurídica institucional; no se presenta como un límite vigente confirmado del servicio.</p>
+                <p>La página antigua cita la Directiva 4–2025–OECE–CD, numeral 8.2.7.2, e indica que CENARD solo puede administrar controversias en contrataciones del Estado hasta 2000 UIT.</p>
               </div>
             </details>
           </section>

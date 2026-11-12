@@ -3,7 +3,7 @@ import { officialOrigin } from "../data/seo-config";
 
 const titles: Record<string, string> = {
   "": "CENARD | Arbitraje y JPRD en Lima, Perú",
-  conocenos: "Conoce CENARD | Centro Nacional para la Resolución de Disputas",
+  "quienes-somos": "Quiénes somos | CENARD",
   "organizacion-institucional": "Organización institucional y Alto Consejo | CENARD",
   certificaciones: "Certificaciones y constancias institucionales | CENARD",
   arbitraje: "Arbitraje institucional: servicios y normativa | CENARD",
@@ -17,7 +17,7 @@ const titles: Record<string, string> = {
 };
 const descriptions: Record<string, string> = {
   "": "Conoce CENARD, Centro Nacional para la Resolución de Disputas en Lima, Perú. Consulta servicios de Arbitraje y JPRD, normativa y nóminas publicadas.",
-  conocenos: "Conoce la presentación institucional de CENARD, su misión y su compromiso con la cultura de solución de controversias mediante el arbitraje y las JPRD.",
+  "quienes-somos": "Conoce la presentación institucional de CENARD, su misión y su compromiso con la cultura de solución de controversias mediante el arbitraje y las JPRD.",
   "organizacion-institucional": "Conoce la estructura institucional de CENARD, su Dirección y Secretaría General, así como los integrantes y perfiles publicados del Alto Consejo.",
   certificaciones: "Consulta los certificados ISO, las constancias de los servicios y la licencia de funcionamiento publicados por CENARD, con acceso a sus documentos.",
   arbitraje: "Conoce el servicio de arbitraje institucional de CENARD y accede a su normativa, documentos y nómina de árbitros para consultar información del servicio.",
@@ -77,7 +77,7 @@ export function getPageSeo(pathname: string, indexable: boolean) {
       publisher: { "@id": organizationId },
     },
     {
-      "@type": page.slug === "contacto" ? "ContactPage" : page.slug === "conocenos" ? "AboutPage" : "WebPage",
+      "@type": page.slug === "contacto" ? "ContactPage" : page.slug === "quienes-somos" ? "AboutPage" : "WebPage",
       "@id": `${canonical}#webpage`, url: canonical, name: title, description,
       inLanguage: "es-PE", isPartOf: { "@id": websiteId }, about: { "@id": organizationId },
     },

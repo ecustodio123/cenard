@@ -263,7 +263,7 @@ export function Layout() {
                 className="footer-links"
                 aria-label="Enlaces del pie de página"
               >
-                <Link to={pathFor("conocenos")}>Institución</Link>
+                <Link to={pathFor("quienes-somos")}>Institución</Link>
                 <Link to="/web/#servicios">Servicios</Link>
                 <Link to={pathFor("documentos")}>Documentos</Link>
                 <Link to={pathFor("atalaya-de-integridad")}>Integridad</Link>
@@ -307,10 +307,6 @@ export function Layout() {
           <div className="footer-bottom">
             <span>© 2025 CENARD Arbitraje. Todos los derechos reservados.</span>
             <a href={site.claimsForm}>Libro de Reclamaciones (DOCX)</a>
-          </div>
-          <div className="preview-label">
-            <span />
-            Vista previa · Contenido pendiente de validación institucional.
           </div>
         </div>
       </footer>

@@ -67,7 +67,7 @@
 .arb-membership-links { display: flex; gap: 12px 28px; flex-wrap: wrap; margin-top: 12px; }
 .arb-membership a { color: var(--green); text-decoration: underline; text-underline-offset: 4px; overflow-wrap: anywhere; }
 .arb-membership-links a { display: inline-flex; align-items: center; min-height: 44px; font-size: 15px; padding-block: 10px; }
-.arb-validation { font-size: 13px; max-width: 100ch; border-left: 2px solid var(--accent); padding-left: 16px; margin-top: 24px; }
+.arb-validation { font-size: 13px; border-left: 2px solid var(--accent); padding-left: 16px; margin-top: 24px; }
 @media (max-width: 1100px) {
   .arb-filters { grid-template-columns: 1fr; gap: 22px; }
   .arb-groups > div { max-width: 630px; }

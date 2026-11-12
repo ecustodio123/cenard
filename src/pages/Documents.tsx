@@ -77,7 +77,7 @@ export function DocumentsPage() {
               <ResourceGroupHeading id={group.id} title={group.title} countLabel={`${group.matches.length} ${group.matches.length === 1 ? "documento" : "documentos"}`} />
               <div className="doclib-rows">{group.matches.map(doc => <a className="doclib-row" key={doc.id} href={doc.urlPublic} target="_blank" rel="noopener noreferrer">
                 <span className="doclib-file"><FileText size={23} strokeWidth={1.3} aria-hidden="true" /></span>
-                <span className="doclib-document-copy"><span className="doclib-document-title"><HighlightedText text={doc.title} query={query} /></span><span className="doclib-document-meta"><span className="doclib-services">{doc.services.map(associated => <span key={associated}><HighlightedText text={associated} query={query} /></span>)}</span><span><HighlightedText text={doc.type} query={query} /> · PDF</span></span>{doc.validationStatus !== "Aplicación por confirmar" && <span className="doclib-observation">{doc.validationStatus}</span>}</span>
+                <span className="doclib-document-copy"><span className="doclib-document-title"><HighlightedText text={doc.title} query={query} /></span><span className="doclib-document-meta"><span className="doclib-services">{doc.services.map(associated => <span key={associated}><HighlightedText text={associated} query={query} /></span>)}</span><span><HighlightedText text={doc.type} query={query} /> · PDF</span></span></span>
                 <span className="doclib-open">Ver PDF<span className="sr-only"> · abre en otra pestaña</span></span>
               </a>)}</div>
             </section>)}
@@ -85,7 +85,7 @@ export function DocumentsPage() {
         </div>
         {filtered.length > 0 && <a className="doclib-back-to-filters" href="#filtros-documentales" onClick={() => focusDestination("filtros-documentales")}>Volver a filtros</a>}
 
-        <aside className="doclib-source"><h2>Sobre las fuentes y la vigencia</h2><p>Los documentos conservan sus enlaces públicos originales. Las agrupaciones reproducen la organización de la fuente y no acreditan la vigencia de cada archivo.</p><p className="doclib-pending">Pendiente de validación de CENARD: vigencia, versión y aplicación de cada documento.</p></aside>
+        <aside className="doclib-source"><h2>Sobre las fuentes y la vigencia</h2><p>Los documentos conservan sus enlaces públicos originales. Las agrupaciones reproducen la organización de la fuente y no acreditan la vigencia de cada archivo.</p></aside>
         <ResourceRelated id="doclib-related-title">
           <article><h3>Certificaciones y constancias</h3><p>Consulta los documentos de certificación y autorización institucional.</p><Link to={pathFor("certificaciones")}>Consultar certificaciones</Link></article>
           <article><h3>Formato de reclamaciones</h3><p>Consulta el formato público de reclamaciones.</p><a href={site.claimsForm}>Obtener formato de reclamaciones · DOCX</a></article>

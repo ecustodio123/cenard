@@ -107,7 +107,7 @@ for (const page of previewPages) {
   if (page.slug === 'calculadora') {
     assert.ok(html.includes('Calculadora de costos'), 'Calculator renders its own page')
     assert.match(html, /<button[^>]*type="submit"[^>]*>Calcular costos<\/button>/, 'Local calculator form is available')
-    assert.ok(html.includes('Borrador de estimación local'), 'Calculator retains its draft status')
+    assert.ok(!html.includes('Borrador de estimación local'), 'Calculator no longer shows an editorial approval notice')
     assert.ok(!html.includes('Este camino no lleva'), 'Calculator does not render the 404 page')
   }
 }

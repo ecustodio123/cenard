@@ -76,7 +76,7 @@ export function SectionHeading({
   children,
 }: {
   label: string;
-  title: string;
+  title?: string;
   children?: ReactNode;
 }) {
   return (

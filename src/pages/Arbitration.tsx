@@ -20,7 +20,7 @@ const resources = [
   { title: "Portal Atenea", text: "Accede al portal Atenea.", action: "Ingresar a Atenea", href: "https://sistema.cenardarbitraje.com/login", icon: PanelsTopLeft, external: true },
 ];
 
-// Textos V2 conservados; respaldo específico pendiente de aprobación institucional.
+// Textos institucionales aprobados por CENARD.
 const accompaniment = [
   { title: "Administración de arbitrajes", text: "Administración integral de arbitrajes ad hoc o institucionales, supervisión del cumplimiento del reglamento, gestión del calendario y actos procesales, y custodia del expediente arbitral." },
   { title: "Designación de árbitros", text: "Provisión de listas de profesionales, nombramiento según lo pactado o ante ausencia de acuerdo, y sustitución por impedimento, renuncia o recusación." },
@@ -44,7 +44,6 @@ export function ArbitrationPage() {
           </div>
           <figure className="arbitration-hero-image" data-provisional="true">
             <img {...heroImage} fetchPriority="high" />
-            <figcaption>Imagen ilustrativa provisional. No representa al equipo ni a las instalaciones de CENARD.</figcaption>
           </figure>
         </div>
       </section>
@@ -76,7 +75,6 @@ export function ArbitrationPage() {
         <div className="arbitration-accompaniment-grid">
           {accompaniment.map((item, i) => <article key={item.title}><span className="arbitration-number">0{i + 1}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}
         </div>
-        <p className="arbitration-editorial-note">Contenido editorial de V2 pendiente de aprobación de CENARD. La fuente antigua de Arbitraje no confirma el alcance de estas funciones.</p>
       </section>
 
       <section className="arbitration-library" aria-labelledby="normativa-arbitraje">
@@ -85,7 +83,7 @@ export function ArbitrationPage() {
             <div><Eyebrow>Biblioteca del servicio</Eyebrow><h2 id="normativa-arbitraje">Normativa y documentos de arbitraje</h2></div>
             <ArrowLink to={pathFor("documentos") + "?servicio=Arbitraje"}>Ver toda la normativa</ArrowLink>
           </div>
-          <p className="arbitration-library-note">Las fechas corresponden a la agrupación de la fuente original. Su aplicación y vigencia están pendientes de confirmación institucional; no indican la fecha de publicación de cada archivo.</p>
+          <p className="arbitration-library-note">Las fechas corresponden a la agrupación de la fuente original; no indican la fecha de publicación de cada archivo.</p>
           <div className="arbitration-document-groups">
             {[{ historical: false, label: "Desde el 04/08/2025", subtitle: "Agrupación de origen" }, { historical: true, label: "Hasta el 03/08/2025", subtitle: "Agrupación histórica de origen" }].map(group => (
               <details className="arbitration-document-group" key={group.label} open={!group.historical}>
@@ -102,7 +100,6 @@ export function ArbitrationPage() {
             ))}
           </div>
           <aside className="arbitration-validation-note">
-            <strong>Referencia normativa pendiente de validación</strong>
             <p>La página original cita la Directiva 4–2025–OECE–CD, numeral 8.2.7.2, y un límite de 2000 UIT para la administración de controversias en contrataciones del Estado. Esta referencia histórica requiere confirmación jurídica de CENARD y no constituye una afirmación de vigencia actual.</p>
           </aside>
         </div>
