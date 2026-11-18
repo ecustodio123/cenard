@@ -3,6 +3,7 @@ import { ResourceHeader } from "../components/ResourceUI";
 import "./contact.css";
 import { contactLocation } from "../data/contact";
 import {
+  ArrowUpRight,
   BookOpenText,
   Compass,
   ChevronDown,
@@ -29,20 +30,9 @@ export function AboutPage() {
       <section className="container page-content about-intro">
         <div>
           <Eyebrow>Quiénes somos</Eyebrow>
-          <h1 tabIndex={-1}>
-            Una institución dedicada
-            <br />a encontrar soluciones.
-          </h1>
-          <p>
-            El Centro Nacional para la Resolución de Disputas — CENARD forma
-            parte de la Asociación para la Promoción Cultural de los Mecanismos
-            Alternativos de Solución de Controversias.
-          </p>
-          <p>
-            Nuestra misión es ofrecer servicios de solución de
-            controversias de manera eficiente, transparente y confiable, con
-            procesos imparciales y especializados.
-          </p>
+          <h1 tabIndex={-1}>Una institución comprometida con la solución de controversias</h1>
+          <p>El Centro Nacional para la Resolución de Disputas – CENARD forma parte de la Asociación para la Promoción Cultural de los Mecanismos Alternativos de Solución de Controversias y se especializa en la administración de procesos arbitrales y otros mecanismos de prevención y resolución de disputas.</p>
+          <p>Nuestra misión es brindar servicios especializados para la resolución de controversias, promoviendo una administración eficiente y transparente de los procesos arbitrales, con respeto a los principios de independencia e imparcialidad.</p>
           <ButtonLink to="/web/#servicios">Nuestros servicios</ButtonLink>
         </div>
         <figure>
@@ -52,34 +42,30 @@ export function AboutPage() {
             height="934"
             alt="Reunión de profesionales. Fotografía ilustrativa del sitio original."
           />
-          <figcaption>
-            El diálogo y la especialización como base de la solución de
-            controversias.
-          </figcaption>
         </figure>
       </section>
       <section className="section muted-section">
         <div className="container">
           <SectionHeading
             label="Nuestra forma de trabajar"
-            title="Un compromiso compartido."
+            title="Nuestro compromiso institucional."
           />
           <div className="principles-grid about-principles">
             {[
               {
                 icon: Compass,
                 title: "Promoción de la cultura arbitral",
-                text: "CENARD orienta su actividad a promover los mecanismos alternativos de solución de controversias entre empresas, instituciones y ciudadanos.",
+                text: "Promovemos el conocimiento del arbitraje y de otros mecanismos de prevención y resolución de disputas en los ámbitos público y privado.",
               },
               {
                 icon: Scale,
                 title: "Especialización y ética",
-                text: "La imparcialidad, la confidencialidad y la transparencia son principios declarados por la institución para la conducción de los procesos.",
+                text: "Nuestra actuación institucional se sustenta en la especialización, la transparencia y la confidencialidad, con respeto a la independencia e imparcialidad de quienes resuelven las controversias.",
               },
               {
                 icon: UsersRound,
-                title: "Gestión y acompañamiento",
-                text: "La administración institucional acompaña las distintas etapas del proceso arbitral y la gestión documental.",
+                title: "Gestión institucional",
+                text: "Brindamos soporte administrativo durante las distintas etapas de los procesos arbitrales, mediante la gestión de actuaciones, comunicaciones y plazos, conforme a las reglas aplicables.",
               },
             ].map((p) => (
               <article key={p.title}>
@@ -95,17 +81,17 @@ export function AboutPage() {
       </section>
       <section className="container section">
         <SectionHeading
-          label="Conoce la organización"
-          title="Las personas detrás de la institución."
+          label="Conoce al CENARD"
+          title="Nuestra organización"
         />
         <div className="link-rows about-organization-links">
           <ArrowLink to={pathFor("organizacion-institucional") + "#estructura-institucional"}>
-            Estructura institucional
+            Estructura institucional <ArrowUpRight size={18} aria-hidden="true" />
           </ArrowLink>
           <ArrowLink to={pathFor("organizacion-institucional") + "#direccion-secretaria"}>
-            Dirección y Secretaría General
+            Dirección y Secretaría General <ArrowUpRight size={18} aria-hidden="true" />
           </ArrowLink>
-          <ArrowLink to={pathFor("organizacion-institucional") + "#alto-consejo"}>Alto Consejo</ArrowLink>
+          <ArrowLink to={pathFor("organizacion-institucional") + "#alto-consejo"}>Alto Consejo <ArrowUpRight size={18} aria-hidden="true" /></ArrowLink>
         </div>
         <details className="plain-details about-notice">
           <summary>
@@ -124,13 +110,6 @@ export function AboutPage() {
   );
 }
 
-const councilSpecialties = [
-  ["Ingeniería civil", "Obras públicas y privadas"],
-  ["Derecho corporativo", "Transacciones internacionales"],
-  ["Derecho societario", "Fusiones y adquisiciones"],
-  ["Gestión pública", "Contratación y arbitraje"],
-  ["Ingeniería civil", "Gestión de proyectos"],
-];
 
 function InstitutionalProfile({
   id, name, role, image, initials, specialties = [], biography, subheading = false, placeholder = false, rolePreview = false, showDisclosure = true,
@@ -202,13 +181,13 @@ export function InstitutionalOrganizationPage() {
         <div id="estructura-institucional" className="council-directory-heading organization-anchor">
           <div><Eyebrow>Gobierno institucional</Eyebrow><h2 id="structure-title">Estructura institucional</h2></div>
         </div>
-        <p className="organ-intro">Una estructura jerárquica que articula la conducción institucional con el funcionamiento del centro.</p>
         <div className="organ-reference-layout">
           <figure className="organ-source-figure">
-            <img src="/assets/institution/organigrama.webp" width="600" height="600" loading="lazy" alt="Organigrama de CENARD: El Director, El Alto Consejo y La Secretaría General, de dirección a gestión." />
+            <img src="/assets/institution/organigrama.webp" width="1024" height="1280" loading="lazy" alt="Organigrama de CENARD: El Director, El Alto Consejo y La Secretaría General, de dirección a gestión." />
           </figure>
           <div className="organ-description">
-            <p>El organigrama del <strong>CENARD Arbitraje</strong> muestra una estructura jerárquica clara y formal. En la cima se ubica <strong>El Director</strong> como <strong>Órgano Directivo</strong>, responsable de la conducción institucional y de definir las directrices generales. En el nivel intermedio está <strong>El Alto Consejo</strong>, <strong>Órgano Decisorio</strong> que analiza, delibera y adopta resoluciones clave. En la base se encuentra <strong>La Secretaría General</strong>, <strong>Órgano de Gestión</strong> encargado de ejecutar las políticas, coordinar la administración y asegurar el funcionamiento operativo del centro.</p>
+            <p>La organización del CENARD comprende tres órganos institucionales, con funciones diferenciadas conforme a lo establecido en su Reglamento Interno: <strong>el Director</strong>, como órgano directivo, responsable de la conducción institucional; <strong>el Alto Consejo</strong>, como órgano decisorio, encargado de adoptar las decisiones que corresponden a su competencia; y <strong>la Secretaría General</strong>, como órgano de gestión, responsable de la administración y coordinación de las actividades del Centro.</p>
+            <p>Esta estructura permite distribuir las responsabilidades de dirección, decisión y gestión, contribuyendo al adecuado funcionamiento institucional y a la administración de los procesos arbitrales.</p>
           </div>
         </div>
       </section>
@@ -222,12 +201,12 @@ export function InstitutionalOrganizationPage() {
 
       <section className="organization-section council-gallery" aria-labelledby="council-title">
         <div id="alto-consejo" className="council-directory-heading organization-anchor">
-          <div><Eyebrow>Integrantes</Eyebrow><h2 id="council-title">Alto Consejo</h2></div>
+          <div><Eyebrow>Decisión institucional</Eyebrow><h2 id="council-title">Alto Consejo</h2></div>
           <span className="council-count">{council.length} integrantes</span>
         </div>
         <div className="council-directory">
           {council.map((person, index) => (
-            <InstitutionalProfile key={person.name} id={`council-name-${index}`} name={person.name} role={`CENARD · ${person.role}`} image={person.image} specialties={councilSpecialties[index]} biography={<><p className="council-biography-label">Trayectoria y formación</p><p>{person.bio}</p></>} />
+            <InstitutionalProfile key={person.name} id={`council-name-${index}`} name={person.name} role={person.role} image={person.image} specialties={person.specialties} biography={<><p className="council-biography-label">Trayectoria y formación</p><p>{person.bio}</p></>} />
           ))}
         </div>
       </section>

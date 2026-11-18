@@ -1,13 +1,14 @@
-import { BookOpenText, FileCheck2, UsersRound } from "lucide-react";
+import { ArrowUpRight, BookOpenText, Calculator, FileCheck2, UsersRound } from "lucide-react";
 import { Link } from "react-router";
 import { ArrowLink, ButtonLink, Eyebrow, SectionHeading } from "../components/UI";
 import { pathFor } from "../data/site";
 import "./home.css";
 
 const shortcuts = [
-  { icon: BookOpenText, title: "Normativa y documentos", text: "Reglamentos, directivas y fichas.", slug: "documentos" },
-  { icon: UsersRound, title: "Nómina de árbitros", text: "Consulta los registros publicados.", slug: "listado-de-arbitros" },
-  { icon: FileCheck2, title: "Nómina de adjudicadores", text: "Consulta los registros publicados.", slug: "nomina-de-adjudicadores" },
+  { icon: BookOpenText, title: "Normativa y documentos", text: "Reglamentos, directivas, tarifarios y formatos institucionales.", slug: "documentos" },
+  { icon: UsersRound, title: "Nómina de árbitros", text: "Profesionales que integran nuestros registros institucionales.", slug: "listado-de-arbitros" },
+  { icon: FileCheck2, title: "Nómina de adjudicadores", text: "Especialistas habilitados para integrar las JPRD.", slug: "nomina-de-adjudicadores" },
+  { icon: Calculator, title: "Costos arbitrales", text: "Calculadora de costos arbitrales del Centro.", slug: "calculadora" },
 ];
 
 export function HomePage() {
@@ -19,9 +20,9 @@ export function HomePage() {
             <Eyebrow>Centro Nacional para la Resolución de Disputas · CENARD</Eyebrow>
             <h1 tabIndex={-1}>Arbitraje y prevención de disputas.</h1>
             <p className="home-hero-description">
-              Administramos arbitrajes, Juntas de Prevención, Resolución de Disputas, y brindamos servicios de 
-              apoyo a procedimientos arbitrales no administrados por el Centro, bajo un marco institucional que
-               privilegia la eficiencia, la imparcialidad y transpariencia.
+              Administramos arbitrajes, Juntas de Prevención y Resolución de Disputas, y brindamos servicios de
+              apoyo a procesos arbitrales no administrados por el Centro, bajo un marco institucional que
+               privilegia la eficiencia, la imparcialidad y transparencia.
             </p>
             <div className="home-hero-actions">
               <a className="button" href="#servicios">Nuestros servicios</a>
@@ -74,7 +75,7 @@ export function HomePage() {
             <article className="home-service">
               <p className="home-service-label">Solución de controversias</p>
               <h3>Arbitraje</h3>
-              <p className="home-service-description">Organizamos y administramos procedimientos arbitrales, brindando soporte
+              <p className="home-service-description">Organizamos y administramos procesos arbitrales, brindando soporte
               institucional durante las distintas etapas del proceso.</p>
               <ArrowLink className="home-service-primary" to={pathFor("arbitraje")}>Conocer Arbitraje</ArrowLink>
               <div className="home-service-secondary">
@@ -86,7 +87,7 @@ export function HomePage() {
               <p className="home-service-label">Prevención y resolución de disputas</p>
               <h3>JPRD</h3>
               <p className="home-service-full-name">Juntas de Prevención y Resolución de Disputas</p>
-              <p className="home-service-description">Organizamos y administramos Juntas de Prevención y Resolución de Disputas,orientadas a prevenir y resolver oportunamente los desacuerdos que surjan durante la ejecución contractual.</p>
+              <p className="home-service-description">Organizamos y administramos Juntas de Prevención y Resolución de Disputas, orientadas a prevenir y resolver oportunamente los desacuerdos que surjan durante la ejecución contractual.</p>
               <ArrowLink className="home-service-primary" to={pathFor("jprd")}>Conocer JPRD</ArrowLink>
               <div className="home-service-secondary">
                 <Link to={pathFor("documentos") + "?servicio=JPRD"}>Normativa de JPRD</Link>
@@ -97,25 +98,16 @@ export function HomePage() {
           <div className="home-secondary-services">
             <article className="home-complementary-service">
               <p className="home-service-label">Servicios complementarios</p>
-              <h3>Otros servicios arbitrales</h3>
-              <p>Brindamos servicios especializados de secretaría arbitral ad hoc, designación de árbitros y atención de recusaciones y remociones en procedimientos no administrados por CENARD, conforme a la normativa aplicable.</p>
+              <h3>Servicios de apoyo arbitral</h3>
+              <p>Brindamos servicios especializados de secretaría arbitral ad hoc, designación de árbitros y atención de recusaciones y remociones en arbitrajes no administrados por el CENARD, conforme a la normativa aplicable.</p>
               <ArrowLink to={pathFor("servicios-complemementarios")}>Conocer otros servicios</ArrowLink>
             </article>
-            <article>
-              <h3>Dispute Boards</h3>
-              <p>Consulta el alcance y las modalidades de este servicio.</p>
-              <ArrowLink to={pathFor("contacto")}>Consultar información</ArrowLink>
-            </article>
-            <article>
-              <h3>Mediación</h3>
-              <p>Consulta información sobre el servicio de mediación.</p>
-              <ArrowLink to={pathFor("contacto")}>Consultar información</ArrowLink>
-            </article>
+
           </div>
         </div>
       </section>
 
-      <section className="home-institution home-section" aria-labelledby="home-institution-title">
+      <section className="home-institution home-section" aria-label="Nuestra institución">
         <div className="container home-institution-grid">
           <div className="home-institution-image">
             <img
@@ -128,11 +120,11 @@ export function HomePage() {
           </div>
           <div className="home-institution-copy">
             <Eyebrow>Nuestra institución</Eyebrow>
-            <p>Somos el Centro Nacional para la Resolución de Disputas. Conoce nuestra presentación institucional, nuestra organización y los documentos institucionales disponibles.</p>
+            <p>El Centro Nacional para la Resolución de Disputas - CENARD es una institución especializada en la administración de procesos arbitrales y en la prevención y resolución de disputas, comprometida con la independencia, la imparcialidad, la transparencia y la eficiencia en la prestación de sus servicios.</p>
             <ArrowLink to={pathFor("quienes-somos")}>Conocer la institución</ArrowLink>
             <div className="home-institution-links">
               <Link to={pathFor("organizacion-institucional")}>Organización institucional</Link>
-              <Link to={pathFor("certificaciones")}>Certificaciones y constancias</Link>
+              <Link to={pathFor("certificaciones")}>Registros y constancias institucionales</Link>
             </div>
           </div>
         </div>
@@ -144,13 +136,13 @@ export function HomePage() {
           <div className="home-guidance-grid">
             <article>
               <h3>Preguntas frecuentes</h3>
-              <p>Consulta respuestas generales sobre el arbitraje y el inicio de un proceso en CENARD.</p>
-              <ArrowLink to={pathFor("preguntas-frecuentes")}>Consultar preguntas frecuentes</ArrowLink>
+              <p>Encuentra respuestas a las consultas más frecuentes sobre nuestros servicios y cómo iniciar un proceso arbitral ante el CENARD.</p>
+              <ArrowLink to={pathFor("preguntas-frecuentes")}>Ver respuestas <ArrowUpRight size={18} aria-hidden="true" /></ArrowLink>
             </article>
             <article>
               <h3>Atalaya de Integridad</h3>
-              <p>Accede a los laudos arbitrales publicados y consulta la disponibilidad de otras categorías de información.</p>
-              <ArrowLink to={pathFor("atalaya-de-integridad")}>Visitar Atalaya</ArrowLink>
+              <p>Accede a los laudos arbitrales publicados y a la información institucional disponible en materia de transparencia.</p>
+              <ArrowLink to={pathFor("atalaya-de-integridad")}>Explorar Atalaya <ArrowUpRight size={18} aria-hidden="true" /></ArrowLink>
             </article>
           </div>
         </div>

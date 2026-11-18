@@ -61,6 +61,7 @@ export default function App() {
               element={
                 <>
                   {p.slug !== "quienes-somos" && p.slug !== "servicios-complemementarios" && p.slug !== "arbitraje" && p.slug !== "jprd" && p.slug !== "documentos" && p.slug !== "listado-de-arbitros" && p.slug !== "nomina-de-adjudicadores" && p.slug !== "preguntas-frecuentes" && !p.slug.startsWith("atalaya-de-integridad") && p.slug !== "contacto" && p.slug !== "calculadora" && <PageIntro
+                    className={p.slug === "organizacion-institucional" ? "organization-page-intro" : undefined}
                     title={p.title}
                     description={p.description}
                     section={p.section}

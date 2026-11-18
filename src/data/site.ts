@@ -38,14 +38,14 @@ const allPages = [
     title: "Organización institucional",
     section: "Institución",
     description:
-      "Conoce la estructura de CENARD y a las personas que integran sus órganos institucionales.",
+      "Conoce cómo se organiza el CENARD y cómo se distribuyen las funciones de dirección, decisión y gestión que permiten su adecuado funcionamiento. Esta sección presenta los órganos que integran el Centro, sus principales responsabilidades y los profesionales que los conforman, de acuerdo con lo establecido en su Reglamento Interno.",
   },
   {
     slug: "certificaciones",
-    title: "Certificaciones",
+    title: "Registros y constancias institucionales",
     section: "Institución",
     description:
-      "Consulta la licencia, certificados y constancias publicados por CENARD.",
+      "Consulta los registros, certificaciones y constancias institucionales del CENARD, así como la documentación que acredita su alcance y vigencia.",
   },
   {
     slug: "arbitraje",

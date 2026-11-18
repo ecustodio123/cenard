@@ -87,7 +87,7 @@ export function DocumentsPage() {
 
         <aside className="doclib-source"><h2>Sobre las fuentes y la vigencia</h2><p>Los documentos conservan sus enlaces públicos originales. Las agrupaciones reproducen la organización de la fuente y no acreditan la vigencia de cada archivo.</p></aside>
         <ResourceRelated id="doclib-related-title">
-          <article><h3>Certificaciones y constancias</h3><p>Consulta los documentos de certificación y autorización institucional.</p><Link to={pathFor("certificaciones")}>Consultar certificaciones</Link></article>
+          <article><h3>Registros y constancias institucionales</h3><p>Consulta los documentos de certificación y autorización institucional.</p><Link to={pathFor("certificaciones")}>Consultar certificaciones</Link></article>
           <article><h3>Formato de reclamaciones</h3><p>Consulta el formato público de reclamaciones.</p><a href={site.claimsForm}>Obtener formato de reclamaciones · DOCX</a></article>
         </ResourceRelated>
       </div>

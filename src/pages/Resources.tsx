@@ -175,9 +175,9 @@ export function ProfessionalsPage({
 const certificatePresentation = [
   { id: "2", image: "/assets/certificates/iso-9001.webp", title: "ISO 9001", category: "Gestión de la calidad", description: "Consulta el certificado publicado y revisa su alcance, versión y periodo de validez." },
   { id: "1", image: "/assets/certificates/iso-37001.webp", title: "ISO 37001", category: "Gestión antisoborno", description: "Accede al certificado para conocer la norma de referencia y el alcance documentado." },
-  { id: "4", image: "/assets/certificates/oece-arbitraje.webp", title: "Constancia de Arbitraje", category: "OECE · Arbitraje", description: "Documento institucional correspondiente al servicio de arbitraje." },
-  { id: "3", image: "/assets/certificates/oece-jprd.webp", title: "Constancia de JPRD", category: "OECE · JPRD", description: "Documento correspondiente a Juntas de Prevención y Resolución de Disputas." },
-  { id: "0", image: "/assets/certificates/licencia-funcionamiento.webp", title: "Licencia de funcionamiento", category: "Autorización municipal", description: "Consulta la licencia de funcionamiento publicada por CENARD." },
+  { id: "4", image: "/assets/certificates/oece-arbitraje.webp", title: "Constancia de registro de incorporación de arbitraje", category: "OECE · Arbitraje", description: "Documento emitido por el OECE que acredita la incorporación del CENARD al registro correspondiente como institución arbitral." },
+  { id: "3", image: "/assets/certificates/oece-jprd.webp", title: "Constancia de registro de incorporación de JPRD", category: "OECE · JPRD", description: "Documento emitido por el OECE que acredita la incorporación del CENARD como centro de administración de Juntas de Prevención y Resolución de Disputas (JPRD)." },
+  { id: "0", image: "/assets/certificates/licencia-funcionamiento.webp", title: "Licencia de funcionamiento", category: "Autorización municipal", description: "Documento emitido por la Municipalidad de Magdalena del Mar que acredita la autorización municipal de funcionamiento del establecimiento del CENARD." },
 ];
 
 export function CertificationsPage() {

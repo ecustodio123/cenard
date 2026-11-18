@@ -5,7 +5,7 @@ const titles: Record<string, string> = {
   "": "CENARD | Arbitraje y JPRD en Lima, Perú",
   "quienes-somos": "Quiénes somos | CENARD",
   "organizacion-institucional": "Organización institucional y Alto Consejo | CENARD",
-  certificaciones: "Certificaciones y constancias institucionales | CENARD",
+  certificaciones: "Registros y constancias institucionales | CENARD",
   arbitraje: "Arbitraje institucional: servicios y normativa | CENARD",
   jprd: "JPRD: prevención y resolución de disputas | CENARD",
   documentos: "Normativa y documentos de Arbitraje y JPRD | CENARD",

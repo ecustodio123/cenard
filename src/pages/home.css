@@ -144,3 +144,25 @@
 .cenard-home .home-secondary-services .home-complementary-service { background: #e7ece4; grid-column: 1 / -1; padding: clamp(24px, 3vw, 36px); border-top: 2px solid var(--accent); }
 .cenard-home .home-complementary-service .home-service-label { color: #806126; margin-bottom: 14px; }
 .cenard-home .home-complementary-service > p:not(.home-service-label) { max-width: 90ch; }
+
+/* Approved home refinements: four shortcuts and balanced service cards. */
+.cenard-home .home-shortcut-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.cenard-home .home-service { padding-inline: clamp(24px, 3vw, 40px); text-align: center; }
+#contenido .cenard-home .home-service :is(.home-service-label, .home-service-description, .home-service-full-name),
+#contenido .cenard-home .home-complementary-service > p {
+  text-align: center;
+  text-align-last: center;
+  margin-inline: auto;
+}
+.cenard-home .home-service-primary { align-self: center; }
+.cenard-home .home-service-secondary { justify-content: center; }
+.cenard-home .home-complementary-service { text-align: center; }
+.cenard-home .home-guidance-grid .text-link { display: inline-flex; align-items: center; gap: 8px; }
+@media (min-width: 768px) and (max-width: 1199px) {
+  .cenard-home .home-shortcut-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 767px) {
+  .cenard-home .home-shortcut-grid { grid-template-columns: minmax(0, 1fr); }
+}
+#contenido .cenard-home .home-service :is(.home-service-label, .home-service-description, .home-service-full-name),
+#contenido .cenard-home .home-complementary-service > p { hyphens: none; }

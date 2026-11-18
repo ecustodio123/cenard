@@ -83,7 +83,7 @@ export function SectionHeading({
     <div className="section-heading">
       <div>
         <Eyebrow>{label}</Eyebrow>
-        <h2>{title}</h2>
+        {title && <h2>{title}</h2>}
       </div>
       {children && <div className="heading-aside">{children}</div>}
     </div>
@@ -110,13 +110,15 @@ export function PageIntro({
   title,
   description,
   section,
+  className = "",
 }: {
   title: string;
   description: string;
   section: string;
+  className?: string;
 }) {
   return (
-    <section className="page-intro">
+    <section className={`page-intro ${className}`}>
       <div className="container">
         <Eyebrow>{section}</Eyebrow>
         <h1 tabIndex={-1}>{title}</h1>

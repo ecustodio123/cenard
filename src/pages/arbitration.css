@@ -93,3 +93,23 @@
   .arbitration-actions { flex-direction: column; align-items: stretch; }
   .arbitration-actions .button { justify-content: center; padding-inline: 12px; }
 }
+
+/* Service guide and consultation tools. */
+.arbitration-page .arbitration-tools-heading { flex-direction: column; align-items: flex-start; gap: 10px; }
+.arbitration-page .arbitration-tools-grid article { padding-inline: 20px; text-align: center; }
+.arbitration-page .arbitration-tools-grid article:last-child { padding-inline: 20px; }
+#contenido .arbitration-page .arbitration-tools-grid p { text-align: center; text-align-last: center; }
+.arbitration-page .arbitration-tools-grid a { justify-self: center; align-items: center; }
+.arbitration-request-download { margin-top: 32px; }
+.arbitration-download-link { display: inline-flex; align-items: center; gap: 18px; max-width: 100%; min-height: 76px; padding: 18px 24px; border: 1px solid var(--line); border-radius: 14px; background: white; color: var(--green); font: 600 17px/1.5 var(--sans); text-align: left; }
+.arbitration-download-link > svg { flex-shrink: 0; }
+.arbitration-download-link:disabled { opacity: .65; cursor: not-allowed; }
+.arbitration-request-download > p { color: var(--muted); font-size: 14px; margin-top: 10px; }
+.arbitration-group-title { text-transform: uppercase; }
+.arbitration-group-date { display: flex; align-items: center; gap: 10px; margin-top: 12px; font-size: 17px; font-weight: 500; }
+@media (max-width: 767px) {
+  .arbitration-page .arbitration-tools-grid article,
+  .arbitration-page .arbitration-tools-grid article:last-child { padding-inline: 0; }
+  .arbitration-download-link { width: 100%; padding: 18px; font-size: 15px; }
+}
+#contenido .arbitration-page .arbitration-tools-grid p { hyphens: none; }

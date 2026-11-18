@@ -61,3 +61,15 @@
   .management-primary-layout .management-secretariat-list[data-multiple="true"] { grid-template-columns: minmax(0, 1fr); gap: 18px; }
   .management-secretariat-intro h4 { font-size: 25px; }
 }
+
+.management-director-copy h3 { color: #e0c995; }
+.management-secretariat-member { background: var(--green); border: 1px solid var(--green); border-radius: 16px; padding: 28px 30px; }
+.management-secretariat-intro h4 { color: white; font: 600 clamp(21px, 2.1vw, 27px)/1.4 var(--sans); }
+.management-secretariat-role { color: #d3e4dc; font-size: 16px; }
+.management-secretariat-description { color: white; font-size: 17px; line-height: 1.8; border-top: 1px solid #ffffff40; margin-top: 22px; padding-top: 22px; }
+.management-selected > .button { margin-top: 24px; }
+@media (max-width: 767px) {
+  .management-secretariat-member { padding: 24px; }
+}
+.management-primary-layout .management-secretariat-list[data-multiple="true"] { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+.management-secretariat-description { max-width: none; }
